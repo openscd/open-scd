@@ -4,7 +4,6 @@ import '../../../../_snowpack/pkg/@material/mwc-fab.js';
 import '../../../../_snowpack/pkg/@material/mwc-icon.js';
 import '../../../../openscd/src/action-icon.js';
 import { createClientLnWizard } from '../../wizards/clientln.js';
-import { gooseIcon, smvIcon, reportIcon, } from '../../../../openscd/src/icons/icons.js';
 import { wizards } from '../../wizards/wizard-library.js';
 import { newWizardEvent } from '../../../../openscd/src/foundation.js';
 import { newActionEvent } from '../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js';
@@ -72,29 +71,11 @@ let IedEditor = class IedEditor extends LitElement {
       ></mwc-fab
       ><mwc-fab
         slot="action"
-        class="selectreport"
-        mini
-        @click="${() => this.openReportControlSelection()}"
-        ><mwc-icon slot="icon">${reportIcon}</mwc-icon></mwc-fab
-      ><mwc-fab
-        slot="action"
-        class="selectsmv"
-        mini
-        @click="${() => this.openSmvControlSelection()}"
-        ><mwc-icon slot="icon">${smvIcon}</mwc-icon></mwc-fab
-      ><mwc-fab
-        slot="action"
         class="connectreport"
         mini
         @click="${() => this.openCommunicationMapping()}"
         icon="add_link"
       ></mwc-fab
-      ><mwc-fab
-        slot="action"
-        class="selectgse"
-        mini
-        @click="${() => this.openGseControlSelection()}"
-        ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
       ></action-icon
     > `;
     }

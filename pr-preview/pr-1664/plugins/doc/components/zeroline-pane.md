@@ -22,15 +22,11 @@
 
 ## Methods
 
-| Method                             | Type                 |
-|------------------------------------|----------------------|
-| `openCommunicationMapping`         | `(): void`           |
-| `openGseControlSelection`          | `(): void`           |
-| `openReportControlSelection`       | `(): void`           |
-| `openSampledValueControlSelection` | `(): void`           |
-| `renderIedContainer`               | `(): TemplateResult` |
-| `renderLines`                      | `(): TemplateResult` |
-| `renderProcesses`                  | `(): TemplateResult` |
-| `renderSubstation`                 | `(): TemplateResult` |
-| `toggleShowFunctions`              | `(): void`           |
-| `toggleShowIEDs`                   | `(): void`           |
+| Method                | Type                 |
+|-----------------------|----------------------|
+| `renderIedContainer`  | `(): TemplateResult` |
+| `renderLines`         | `(): TemplateResult` |
+| `renderProcesses`     | `(): TemplateResult` |
+| `renderSubstation`    | `(): TemplateResult` |
+| `toggleShowFunctions` | `(): void`           |
+| `toggleShowIEDs`      | `(): void`           |

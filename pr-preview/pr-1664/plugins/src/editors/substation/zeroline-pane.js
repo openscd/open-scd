@@ -24,18 +24,9 @@ import "./line-editor.js";
 import "./process-editor.js";
 import "./substation-editor.js";
 import "./ied-editor.js";
-import {communicationMappingWizard} from "../../wizards/commmap-wizards.js";
-import {
-  gooseIcon,
-  smvIcon,
-  reportIcon
-} from "../../../../openscd/src/icons/icons.js";
 import {isPublic, newWizardEvent} from "../../../../openscd/src/foundation.js";
-import {selectGseControlWizard} from "../../wizards/gsecontrol.js";
 import {emptyWizard, wizards} from "../../wizards/wizard-library.js";
 import {getAttachedIeds} from "./foundation.js";
-import {selectSampledValueControlWizard} from "../../wizards/sampledvaluecontrol.js";
-import {selectReportControlWizard} from "../../wizards/reportcontrol.js";
 import {tags} from "../../../../openscd/src/foundation.js";
 function shouldShowIEDs() {
   return localStorage.getItem("showieds") === "on";
@@ -60,20 +51,6 @@ export let ZerolinePane = class extends LitElement {
     this.editCount = -1;
     this.readonly = false;
     this.getAttachedIeds = () => [];
-  }
-  openCommunicationMapping() {
-    const wizard = communicationMappingWizard(this.doc);
-    if (wizard)
-      this.dispatchEvent(newWizardEvent(wizard));
-  }
-  openReportControlSelection() {
-    this.dispatchEvent(newWizardEvent(() => selectReportControlWizard(this.doc.documentElement)));
-  }
-  openGseControlSelection() {
-    this.dispatchEvent(newWizardEvent(() => selectGseControlWizard(this.doc.documentElement)));
-  }
-  openSampledValueControlSelection() {
-    this.dispatchEvent(newWizardEvent(() => selectSampledValueControlWizard(this.doc.documentElement)));
   }
   toggleShowIEDs() {
     if (shouldShowIEDs())
@@ -189,34 +166,6 @@ export let ZerolinePane = class extends LitElement {
               offIcon="layers_clear"
             ></mwc-icon-button-toggle>
           </abbr>
-          <abbr title="${get("zeroline.commmap")}">
-            <mwc-icon-button
-              id="commmap"
-              icon="link"
-              @click=${() => this.openCommunicationMapping()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr title="${get("zeroline.reportcontrol")}"
-            ><mwc-icon-button
-              id="reportcontrol"
-              @click="${() => this.openReportControlSelection()}"
-              >${reportIcon}</mwc-icon-button
-            ></abbr
-          >
-          <abbr title="${get("zeroline.gsecontrol")}"
-            ><mwc-icon-button
-              id="gsecontrol"
-              @click="${() => this.openGseControlSelection()}"
-              >${gooseIcon}</mwc-icon-button
-            ></abbr
-          >
-          <abbr title="${get("zeroline.smvcontrol")}"
-            ><mwc-icon-button
-              id="smvcontrol"
-              @click="${() => this.openSampledValueControlSelection()}"
-              >${smvIcon}</mwc-icon-button
-            ></abbr
-          >
         </nav>
       </h1>
       ${this.renderIedContainer()}
