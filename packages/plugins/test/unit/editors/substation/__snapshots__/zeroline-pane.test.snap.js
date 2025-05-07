@@ -64,25 +64,6 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
       >
       </mwc-icon-button-toggle>
     </abbr>
-    <abbr title="[zeroline.commmap]">
-      <mwc-icon-button
-        icon="link"
-        id="commmap"
-      >
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.reportcontrol]">
-      <mwc-icon-button id="reportcontrol">
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.gsecontrol]">
-      <mwc-icon-button id="gsecontrol">
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.smvcontrol]">
-      <mwc-icon-button id="smvcontrol">
-      </mwc-icon-button>
-    </abbr>
   </nav>
 </h1>
 <section>
@@ -157,25 +138,6 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
         onicon="layers"
       >
       </mwc-icon-button-toggle>
-    </abbr>
-    <abbr title="[zeroline.commmap]">
-      <mwc-icon-button
-        icon="link"
-        id="commmap"
-      >
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.reportcontrol]">
-      <mwc-icon-button id="reportcontrol">
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.gsecontrol]">
-      <mwc-icon-button id="gsecontrol">
-      </mwc-icon-button>
-    </abbr>
-    <abbr title="[zeroline.smvcontrol]">
-      <mwc-icon-button id="smvcontrol">
-      </mwc-icon-button>
     </abbr>
   </nav>
 </h1>

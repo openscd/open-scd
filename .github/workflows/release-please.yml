@@ -20,6 +20,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       # The logic below handles the npm publication:
       - uses: actions/checkout@v4
+        with:
+          submodules: "true"
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v4
         with:

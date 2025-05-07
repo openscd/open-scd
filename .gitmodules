@@ -1,0 +1,4 @@
+[submodule "packages/external-plugins/oscd-publisher"]
+	path = packages/external-plugins/oscd-publisher
+	url = https://github.com/openscd/oscd-publisher
+	branch = deploy

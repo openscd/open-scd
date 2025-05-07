@@ -119,10 +119,10 @@ implemented in these plugins.
 
 ### Publisher
 
-> <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/open-scd/)
-> 
+> <kbd>✅ Official</kbd> | <kbd>Editor</kbd> | by [OpenSCD](https://github.com/openscd) | [Repository](https://github.com/openscd/oscd-publisher/)
+>
 > ```
-> https://openscd.github.io/plugins/src/editors/Publisher.js
+> https://openscd.github.io/external-plugins/oscd-publisher/oscd-publisher.js
 > ```
 
 ### Cleanup

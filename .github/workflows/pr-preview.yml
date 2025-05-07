@@ -21,7 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+        with:
+          submodules: "true"
       - name: Install and Build OpenSCD
         if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
         run: |
