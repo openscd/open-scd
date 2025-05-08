@@ -48,6 +48,14 @@
 					<P type="OSI-SSEL">0002</P>
 					<P type="OSI-TSEL">0002</P>
 				</Address>
+				<SMV ldInst="MU01" cbName="MSVCB02">
+					<Address>
+						<P type="MAC-Address">01-0C-CD-04-00-21</P>
+						<P type="VLAN-ID">008</P>
+						<P type="VLAN-PRIORITY">5</P>
+						<P type="APPID">4003</P>
+					</Address>
+				</SMV>
 			</ConnectedAP>
 			<ConnectedAP iedName="IED1" apName="P3">
 				<Address>
