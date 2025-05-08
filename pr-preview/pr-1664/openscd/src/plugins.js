@@ -62,7 +62,7 @@ export const officialPlugins = [
     name: "Subscriber Later Binding (SMV/GOOSE)",
     src: generatePluginPath("external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js"),
     icon: "link",
-    activeByDefault: false,
+    activeByDefault: true,
     kind: "editor",
     requireDoc: true
   },
