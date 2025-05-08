@@ -10,8 +10,10 @@ import {
   WizardActor,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { ComplexAction } from '@openscd/core/foundation/deprecated/editor.js';
+import { ComplexAction, EditorAction, Move } from '@openscd/core/foundation/deprecated/editor.js';
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
+import { html } from 'lit-element';
+import { getAllConnectedAPsOfSameIED, getCurrentConnectedAP } from '../editors/communication/helpers.js';
 
 export function updateSmvAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[], wizard: Element): WizardAction[] => {
@@ -72,6 +74,74 @@ export function editSMvWizard(element: Element): Wizard {
         action: updateSmvAction(element),
       },
       content: [...contentGseOrSmvWizard({ hasInstType, attributes })],
+    },
+  ];
+}
+
+let newlySelectedAP : null | Element = null;
+
+function setNewlySelectedAP(connectedAP: Element): void {
+
+  newlySelectedAP = connectedAP;
+}
+
+function moveSVMToAnotherConnectedAP(element: Element): WizardActor {
+  
+  return (): EditorAction[] => {
+    const moveAction: Move = {
+      old:{
+        parent: element.parentElement!,
+        element,
+        reference: null,
+      },
+      new:{
+        parent: newlySelectedAP!,
+      }
+    }
+
+
+    return[
+      {
+        actions: [moveAction], 
+        title: "Move SVM to another ConnectedAP",
+      }
+    ]
+  } 
+}
+
+
+export function moveSMVWizard(element: Element, doc: XMLDocument): Wizard {
+
+  const currentConnectedAP = getCurrentConnectedAP(element);
+  const iedName = currentConnectedAP?.getAttribute('iedName');
+
+  const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(element, doc);
+
+  
+
+  return [
+    {
+      title: get('wizard.title.selectAp'),
+      element,
+      primary: {
+        label: get('save'),
+        icon: 'save',
+        action: moveSVMToAnotherConnectedAP(element),
+      },
+      content: [
+        html`
+         ${allConnectedAPsOfSameIED.map(connectedAP => 
+          html`
+            <mwc-button
+              label="${iedName} > ${connectedAP.getAttribute('apName')}"
+              @click=${() => setNewlySelectedAP(connectedAP)}
+              raised
+              ?disabled=${connectedAP === currentConnectedAP}
+              >
+              </mwc-button>
+          `)}
+        `
+      ],
     },
   ];
 }

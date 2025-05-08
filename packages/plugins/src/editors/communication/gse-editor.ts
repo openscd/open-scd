@@ -13,7 +13,9 @@ import '@openscd/open-scd/src/action-icon.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { sizableGooseIcon } from '@openscd/open-scd/src/icons/icons.js';
-import { editGseWizard } from '../../wizards/gse.js';
+import { editGseWizard, moveGSEWizard } from '../../wizards/gse.js';
+import { getAllConnectedAPsOfSameIED } from './helpers.js';
+
 
 @customElement('gse-editor')
 export class GseEditor extends LitElement {
@@ -35,6 +37,10 @@ export class GseEditor extends LitElement {
   private openEditWizard(): void {
     this.dispatchEvent(newWizardEvent(editGseWizard(this.element)));
   }
+  
+  private openMoveGSEWizard():void {
+    this.dispatchEvent(newWizardEvent(moveGSEWizard(this.element, this.doc)));
+  }
 
   remove(): void {
     if (this.element)
@@ -50,6 +56,10 @@ export class GseEditor extends LitElement {
   }
 
   render(): TemplateResult {
+
+    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(this.element, this.doc);
+    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;  
+
     return html`<action-icon label="${this.label}" .icon="${sizableGooseIcon}"
       ><mwc-fab
         slot="action"
@@ -62,7 +72,17 @@ export class GseEditor extends LitElement {
         mini
         icon="delete"
         @click="${() => this.remove()}}"
-      ></mwc-fab
-    ></action-icon>`;
+      ></mwc-fab>
+      ${hasMoreThanOneConnectedAP ? 
+        html`
+          <mwc-fab
+            slot="action"
+            mini
+            icon="forward"
+            @click="${() => this.openMoveGSEWizard()}}"
+            >
+          </mwc-fab>`
+        : ''}
+    </action-icon>`;
   }
 }
