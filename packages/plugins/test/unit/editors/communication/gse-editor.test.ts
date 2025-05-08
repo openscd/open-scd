@@ -53,4 +53,16 @@ describe('Editor web component for GSE element', () => {
     expect(actionEvent).to.have.been.calledOnce;
     expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
   });
+
+  it('triggers move ConnectedAP wizard on action button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[icon="forward"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(wizardEvent).to.have.be.calledOnce;
+    const wizardTitle = wizardEvent.args[0][0].detail.wizard()[0].title;
+    expect(wizardTitle).to.contain('selectAp'); 
+  });
 });

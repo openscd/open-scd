@@ -56,4 +56,16 @@ describe('Editor web component for SMV element', () => {
     expect(actionEvent).to.have.been.calledOnce;
     expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
   });
+
+
+  it('triggers move ConnectedAP wizard on action button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[icon="forward"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(wizardEvent).to.have.be.calledOnce;
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('ConnectedAP');
+  });
 });

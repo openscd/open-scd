@@ -85,7 +85,7 @@ function setNewlySelectedAP(connectedAP: Element): void {
   newlySelectedAP = connectedAP;
 }
 
-function moveSVMToAnotherConnectedAP(element: Element): WizardActor {
+function moveSVMAction(element: Element): WizardActor {
   
   return (): EditorAction[] => {
     const moveAction: Move = {
@@ -126,7 +126,7 @@ export function moveSMVWizard(element: Element, doc: XMLDocument): Wizard {
       primary: {
         label: get('save'),
         icon: 'save',
-        action: moveSVMToAnotherConnectedAP(element),
+        action: moveSVMAction(element),
       },
       content: [
         html`

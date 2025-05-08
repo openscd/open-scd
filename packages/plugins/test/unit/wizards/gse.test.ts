@@ -22,6 +22,7 @@ import {
   editGseWizard,
   getMTimeAction,
   updateGSEAction,
+  moveGSEWizard,
 } from '../../../src/wizards/gse.js';
 
 describe('gse wizards', () => {
@@ -247,6 +248,64 @@ describe('gse wizards', () => {
     it('remove a MaxTime child element if present', () => {
       const editorAction = getMTimeAction('MaxTime', oldMaxTime, null, gse);
       expect(editorAction).to.satisfy(isDelete);
+    });
+  });
+
+  describe('moveGSEWizard', () => {
+    let doc: XMLDocument;
+    let gse: Element;
+    let connectedAPs: Element[];
+    let iedName: string | undefined | null;
+
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/wizards/gsemove.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      gse = doc.querySelector(
+        'GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]'
+      )!;
+      iedName = gse.closest('ConnectedAP')?.getAttribute('iedName')
+      connectedAPs = Array.from(
+        doc.querySelectorAll('SubNetwork > ConnectedAP')
+      ).filter(
+        ap => ap.getAttribute('iedName') === iedName
+      );      
+    });
+
+    it('renders a wizard with buttons for each ConnectedAP of the same IED', async () => {
+      const wizard = moveGSEWizard(gse, doc);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      const buttons = Array.from(
+        element.wizardUI.dialog?.querySelectorAll('mwc-button') || []
+      ).filter(button =>
+        button.getAttribute('label')?.includes(iedName!)
+      );
+      expect(buttons?.length).to.equal(connectedAPs.length);
+
+      connectedAPs.forEach((ap, index) => {
+        expect(buttons?.[index].getAttribute('label')).to.include(
+          ap.getAttribute('apName')!
+        );
+      });
+    });
+
+    it('disables the button for the current ConnectedAP', async () => {
+      const currentConnectedAP = gse.closest('ConnectedAP');
+      const wizard = moveGSEWizard(gse, doc);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      const buttons = element.wizardUI.dialog?.querySelectorAll('mwc-button');
+      const currentButton = Array.from(buttons!).find(button =>
+        button.getAttribute('label')?.includes(
+          currentConnectedAP?.getAttribute('apName')!
+        )
+      );
+
+      expect(currentButton?.hasAttribute('disabled')).to.be.true;
     });
   });
 });

@@ -78,7 +78,6 @@ export class SmvEditor extends LitElement {
             slot="action"
             mini
             icon="forward"
-            ?disabled=${hasMoreThanOneConnectedAP}
             @click="${() => this.openMoveSMVWizard()}}"
             >
           </mwc-fab>` 

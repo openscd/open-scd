@@ -180,7 +180,7 @@ function setNewlySelectedAP(connectedAP: Element): void {
   newlySelectedAP = connectedAP;
 }
 
-function moveGseToAnotherConnectedAP(element: Element): WizardActor {
+function moveGSEAction(element: Element): WizardActor {
   
   return (): EditorAction[] => {
     const moveAction: Move = {
@@ -219,7 +219,7 @@ export function moveGSEWizard(element: Element, doc: XMLDocument): Wizard {
       primary: {
         label: get('save'),
         icon: 'save',
-        action: moveGseToAnotherConnectedAP(element),
+        action: moveGSEAction(element),
       },
       content: [
         html`

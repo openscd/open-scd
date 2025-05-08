@@ -18,6 +18,12 @@ snapshots["Editor web component for SMV element looks like its latest snapshot"]
     slot="action"
   >
   </mwc-fab>
+  <mwc-fab
+    icon="forward"
+    mini=""
+    slot="action"
+  >
+  </mwc-fab>
 </action-icon>
 `;
 /* end snapshot Editor web component for SMV element looks like its latest snapshot */
