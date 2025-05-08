@@ -66,6 +66,6 @@ describe('Editor web component for SMV element', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('ConnectedAP');
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.include('selectAp');
   });
 });
