@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, html, expect, waitUntil } from '@open-wc/testing';
 
 import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
@@ -31,11 +31,19 @@ describe('gse-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('gse-editor');
-      await (<HTMLElement>(
+      await element?.updateComplete;
+
+      const editButton = <HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-      )).click();
+      );
+      expect(editButton).to.exist;
+      editButton.click();
       await parent.updateComplete;
 
+      await waitUntil(
+        () => !!parent.wizardUI.dialog,
+        'wizardUI.dialog did not appear'
+      );
       macAddressField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
           'wizard-textfield[label="MAC-Address"]'

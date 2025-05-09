@@ -8,15 +8,15 @@ import {
   Wizard,
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   isCreate,
   isDelete,
   isSimple,
   isReplace,
-  ComplexAction, 
-  Create, 
-  Delete, 
-  Replace 
+  ComplexAction,
+  Create,
+  Delete,
+  Replace,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import {
   editGseWizard,

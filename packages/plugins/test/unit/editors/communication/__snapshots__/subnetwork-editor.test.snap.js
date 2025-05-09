@@ -102,3 +102,45 @@ snapshots["subnetwork-editor with child SMV elements looks like the latest snaps
 `;
 /* end snapshot subnetwork-editor with child SMV elements looks like the latest snapshot */
 
+snapshots["subnetwork-editor move GSE/SMV dialog behavior opens the move dialog on request-gse-move event"] = 
+`<mwc-dialog
+  heading="Select New ConnectedAP"
+  id="moveDialog"
+>
+  <mwc-list>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      mwc-list-item=""
+      tabindex="0"
+    >
+      GOOSE_Publisher >
+                AP1
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      GOOSE_Publisher >
+                AP2
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    disabled=""
+    icon="save"
+    slot="primaryAction"
+  >
+    [save]
+  </mwc-button>
+  <mwc-button
+    dialogaction="close"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+    [close]
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot subnetwork-editor move GSE/SMV dialog behavior opens the move dialog on request-gse-move event */
+
