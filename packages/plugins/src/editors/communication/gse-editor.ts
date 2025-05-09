@@ -5,6 +5,7 @@ import {
   customElement,
   property,
   state,
+  css,
 } from 'lit-element';
 
 import '@material/mwc-icon';
@@ -13,9 +14,8 @@ import '@openscd/open-scd/src/action-icon.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { sizableGooseIcon } from '@openscd/open-scd/src/icons/icons.js';
-import { editGseWizard, moveGSEWizard } from '../../wizards/gse.js';
+import { editGseWizard } from '../../wizards/gse.js';
 import { getAllConnectedAPsOfSameIED } from './helpers.js';
-
 
 @customElement('gse-editor')
 export class GseEditor extends LitElement {
@@ -37,9 +37,15 @@ export class GseEditor extends LitElement {
   private openEditWizard(): void {
     this.dispatchEvent(newWizardEvent(editGseWizard(this.element)));
   }
-  
-  private openMoveGSEWizard():void {
-    this.dispatchEvent(newWizardEvent(moveGSEWizard(this.element, this.doc)));
+
+  private openGseMoveDialog(): void {
+    this.dispatchEvent(
+      new CustomEvent('request-gse-move', {
+        detail: { element: this.element },
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   remove(): void {
@@ -56,9 +62,11 @@ export class GseEditor extends LitElement {
   }
 
   render(): TemplateResult {
-
-    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(this.element, this.doc);
-    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;  
+    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(
+      this.element,
+      this.doc
+    );
+    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;
 
     return html`<action-icon label="${this.label}" .icon="${sizableGooseIcon}"
       ><mwc-fab
@@ -71,18 +79,26 @@ export class GseEditor extends LitElement {
         slot="action"
         mini
         icon="delete"
-        @click="${() => this.remove()}}"
+        @click="${() => this.remove()}"
       ></mwc-fab>
-      ${hasMoreThanOneConnectedAP ? 
-        html`
-          <mwc-fab
-            slot="action"
-            mini
-            icon="forward"
-            @click="${() => this.openMoveGSEWizard()}}"
-            >
-          </mwc-fab>`
-        : ''}
-    </action-icon>`;
+      <mwc-fab
+        slot="action"
+        mini
+        icon="forward"
+        class="gse-move-button"
+        ?disabled="${!hasMoreThanOneConnectedAP}"
+        @click="${() => this.openGseMoveDialog()}"
+      >
+      </mwc-fab>
+    </action-icon> `;
   }
+
+  static styles = css`
+    :host(:focus-within) .gse-move-button[disabled] {
+      color: var(--mdc-theme-text-disabled-on-light, #9e9e9e);
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  `;
 }

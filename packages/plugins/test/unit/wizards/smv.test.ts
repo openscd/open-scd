@@ -6,12 +6,12 @@ import '@openscd/open-scd/src/addons/Wizards.js';
 import { OscdWizards } from '@openscd/open-scd/src/addons/Wizards.js';
 
 import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
-import { 
-  ComplexAction, 
-  Create, 
-  Delete, 
+import {
+  ComplexAction,
+  Create,
+  Delete,
 } from '@openscd/core/foundation/deprecated/editor.js';
-import { editSMvWizard, moveSMVWizard } from '../../../src/wizards/smv.js';
+import { editSMvWizard } from '../../../src/wizards/smv.js';
 import { invertedRegex, MAC, regExp } from '../../foundation.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 
@@ -309,61 +309,4 @@ describe('Wizards for SCL element SMV', () => {
       ).to.equal('3');
     });
   });
-  describe('moveGSEWizard', () => {
-      let doc: XMLDocument;
-      let smv: Element;
-      let connectedAPs: Element[];
-      let iedName: string | undefined | null;
-  
-      beforeEach(async () => {
-        doc = await fetch('/test/testfiles/wizards/gsemove.scd')
-          .then(response => response.text())
-          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-  
-        smv = doc.querySelector(
-          'SMV[ldInst="MU01"][cbName="MSVCB02"]'
-        )!;
-        iedName = smv.closest('ConnectedAP')?.getAttribute('iedName')
-        connectedAPs = Array.from(
-          doc.querySelectorAll('SubNetwork > ConnectedAP')
-        ).filter(
-          ap => ap.getAttribute('iedName') === iedName
-        );      
-      });
-  
-      it('renders a wizard with buttons for each ConnectedAP of the same IED', async () => {
-        const wizard = moveSMVWizard(smv, doc);
-        element.workflow.push(() => wizard);
-        await element.requestUpdate();
-  
-        const buttons = Array.from(
-          element.wizardUI.dialog?.querySelectorAll('mwc-button') || []
-        ).filter(button =>
-          button.getAttribute('label')?.includes(iedName!)
-        );
-        expect(buttons?.length).to.equal(connectedAPs.length);
-  
-        connectedAPs.forEach((ap, index) => {
-          expect(buttons?.[index].getAttribute('label')).to.include(
-            ap.getAttribute('apName')!
-          );
-        });
-      });
-  
-      it('disables the button for the current ConnectedAP', async () => {
-        const currentConnectedAP = smv.closest('ConnectedAP');
-        const wizard = moveSMVWizard(smv, doc);
-        element.workflow.push(() => wizard);
-        await element.requestUpdate();
-  
-        const buttons = element.wizardUI.dialog?.querySelectorAll('mwc-button');
-        const currentButton = Array.from(buttons!).find(button =>
-          button.getAttribute('label')?.includes(
-            currentConnectedAP?.getAttribute('apName')!
-          )
-        );
-  
-        expect(currentButton?.hasAttribute('disabled')).to.be.true;
-      });
-    });
 });

@@ -1,4 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
+import { SinonSpy, spy } from 'sinon';
 
 import '../../../../src/editors/communication/subnetwork-editor.js';
 import { SubNetworkEditor } from '../../../../src/editors/communication/subnetwork-editor.js';
@@ -89,5 +90,87 @@ describe('subnetwork-editor', () => {
 
     it('looks like the latest snapshot', async () =>
       await expect(element).shadowDom.to.equalSnapshot());
+  });
+
+  describe('move GSE/SMV dialog behavior', () => {
+    let actionEvent: SinonSpy;
+
+    beforeEach(async () => {
+      subNetwork = doc.querySelector('SubNetwork[name="StationBus"]')!;
+      element = <SubNetworkEditor>(
+        await fixture(
+          html`<subnetwork-editor
+            .doc=${doc}
+            .element=${subNetwork}
+          ></subnetwork-editor>`
+        )
+      );
+      actionEvent = spy();
+      window.addEventListener('editor-action', actionEvent);
+    });
+
+    it('opens the move dialog on request-gse-move event', async () => {
+      const gseElement = subNetwork.querySelector('GSE')!;
+      element.dispatchEvent(
+        new CustomEvent('request-gse-move', {
+          detail: { element: gseElement },
+          bubbles: true,
+          composed: true,
+        })
+      );
+
+      await element.updateComplete;
+
+      const dialog = element.shadowRoot?.querySelector('mwc-dialog#moveDialog');
+      expect(dialog).to.exist;
+      expect(dialog).to.equalSnapshot();
+    });
+
+    it('dispatches editor-action event on confirm', async () => {
+      const gseElement = subNetwork.querySelector('GSE')!;
+      element.dispatchEvent(
+        new CustomEvent('request-gse-move', {
+          detail: { element: gseElement },
+          bubbles: true,
+          composed: true,
+        })
+      );
+
+      await element.updateComplete;
+
+      const dialog = element.shadowRoot?.querySelector('mwc-dialog#moveDialog');
+      expect(dialog).to.exist;
+
+      const connectedAP = subNetwork.querySelector('ConnectedAP')!;
+      element.newlySelectedAP = connectedAP;
+
+      (<HTMLElement>(
+        dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      )).click();
+
+      expect(actionEvent).to.have.been.calledOnce;
+      expect(actionEvent.args[0][0].detail.action.title).to.contain(
+        'Move GSE to another ConnectedAP'
+      );
+    });
+
+    it('disables confirm button when no ConnectedAP is selected', async () => {
+      const gseElement = subNetwork.querySelector('GSE')!;
+      element.dispatchEvent(
+        new CustomEvent('request-gse-move', {
+          detail: { element: gseElement },
+          bubbles: true,
+          composed: true,
+        })
+      );
+
+      await element.updateComplete;
+
+      const confirmButton = element.shadowRoot?.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      );
+      expect(confirmButton).to.exist;
+      expect(confirmButton?.hasAttribute('disabled')).to.be.true;
+    });
   });
 });

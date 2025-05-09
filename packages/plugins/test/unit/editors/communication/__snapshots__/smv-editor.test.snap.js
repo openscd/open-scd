@@ -19,6 +19,7 @@ snapshots["Editor web component for SMV element looks like its latest snapshot"]
   >
   </mwc-fab>
   <mwc-fab
+    class="smv-move-button"
     icon="forward"
     mini=""
     slot="action"
