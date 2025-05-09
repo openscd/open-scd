@@ -14,9 +14,12 @@ import {
   customElement,
   html,
   property,
-  css
+  css,
+  state,
+  query
 } from "../../../../_snowpack/pkg/lit-element.js";
 import {get} from "../../../../_snowpack/pkg/lit-translate.js";
+import "../../../../_snowpack/pkg/@material/mwc-dialog.js";
 import "../../../../_snowpack/pkg/@material/mwc-icon-button.js";
 import "./connectedap-editor.js";
 import "./gse-editor.js";
@@ -28,10 +31,13 @@ import {
 import {newActionEvent} from "../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js";
 import {createConnectedApWizard} from "../../wizards/connectedap.js";
 import {wizards} from "../../wizards/wizard-library.js";
+import {getAllConnectedAPsOfSameIED} from "./helpers.js";
 export let SubNetworkEditor = class extends LitElement {
   constructor() {
     super(...arguments);
     this.editCount = -1;
+    this.moveTargetElement = null;
+    this.newlySelectedAP = null;
   }
   get name() {
     return this.element.getAttribute("name") ?? "UNDEFINED";
@@ -51,6 +57,15 @@ export let SubNetworkEditor = class extends LitElement {
     const unit = ` ${m ?? ""}b/s`;
     return bitRateValue ? bitRateValue + unit : null;
   }
+  firstUpdated() {
+    this.addEventListener("request-gse-move", (e) => this.openMoveDialog(e));
+    this.addEventListener("request-smv-move", (e) => this.openMoveDialog(e));
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener("request-gse-move", (e) => this.openMoveDialog(e));
+    this.removeEventListener("request-smv-move", (e) => this.openMoveDialog(e));
+  }
   openConnectedAPwizard() {
     this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
@@ -68,6 +83,33 @@ export let SubNetworkEditor = class extends LitElement {
           reference: this.element.nextSibling
         }
       }));
+  }
+  async openMoveDialog(e) {
+    this.moveTargetElement = e.detail.element;
+    this.newlySelectedAP = null;
+    await this.updateComplete;
+    this.moveDialog.show();
+  }
+  confirmMove() {
+    if (this.moveTargetElement && this.newlySelectedAP) {
+      const moveAction = {
+        old: {
+          parent: this.moveTargetElement.parentElement,
+          element: this.moveTargetElement,
+          reference: null
+        },
+        new: {
+          parent: this.newlySelectedAP
+        }
+      };
+      this.dispatchEvent(newActionEvent({
+        actions: [moveAction],
+        title: `Move ${this.moveTargetElement.tagName} to another ConnectedAP`
+      }));
+    }
+    this.moveDialog.close();
+    this.moveTargetElement = null;
+    this.newlySelectedAP = null;
   }
   renderSmvEditors(iedName) {
     return Array.from(this.element.closest("Communication")?.querySelectorAll(`ConnectedAP[iedName="${iedName}"] > SMV`) ?? []).map((smv) => html`<smv-editor
@@ -96,6 +138,49 @@ export let SubNetworkEditor = class extends LitElement {
           ${this.renderConnectedApEditors(iedName)}${this.renderGseEditors(iedName)}${this.renderSmvEditors(iedName)}
         </action-pane>`);
   }
+  renderSmvGseMoveDialog() {
+    if (!this.moveTargetElement)
+      return html``;
+    const allConnectedAPs = getAllConnectedAPsOfSameIED(this.moveTargetElement, this.doc);
+    const currentConnectedAP = this.moveTargetElement.closest("ConnectedAP");
+    return html`
+      <mwc-dialog
+        id="moveDialog"
+        heading="Select New ConnectedAP"
+        @closed=${() => {
+      this.moveTargetElement = null;
+      this.newlySelectedAP = null;
+    }}
+      >
+        <mwc-list>
+          ${allConnectedAPs.map((connectedAP) => html`
+              <mwc-list-item
+                @click=${() => this.newlySelectedAP = connectedAP}
+                ?selected=${connectedAP === this.newlySelectedAP}
+                ?disabled=${connectedAP === currentConnectedAP}
+              >
+                ${connectedAP.getAttribute("iedName")} >
+                ${connectedAP.getAttribute("apName")}
+              </mwc-list-item>
+            `)}
+        </mwc-list>
+        <mwc-button
+          slot="primaryAction"
+          icon="save"
+          @click=${() => this.confirmMove()}
+          ?disabled=${!this.newlySelectedAP}
+        >
+          ${get("save")}
+        </mwc-button>
+        <mwc-button
+          slot="secondaryAction"
+          dialogAction="close"
+          style="--mdc-theme-primary: var(--mdc-theme-error)"
+          >${get("close")}</mwc-button
+        >
+      </mwc-dialog>
+    `;
+  }
   subNetworkSpecs() {
     if (!this.type && !this.bitrate)
       return "";
@@ -107,26 +192,27 @@ export let SubNetworkEditor = class extends LitElement {
   }
   render() {
     return html`<action-pane label="${this.header()}">
-      <abbr slot="action" title="${get("edit")}">
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${get("remove")}">
-        <mwc-icon-button
-          icon="delete"
-          @click=${() => this.remove()}
-        ></mwc-icon-button>
-      </abbr>
-      <abbr slot="action" title="${get("add")}">
-        <mwc-icon-button
-          icon="playlist_add"
-          @click="${() => this.openConnectedAPwizard()}"
-        ></mwc-icon-button>
-      </abbr>
-      <div id="iedContainer">${this.renderIEDs()}</div>
-    </action-pane> `;
+        <abbr slot="action" title="${get("edit")}">
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openEditWizard()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${get("remove")}">
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.remove()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr slot="action" title="${get("add")}">
+          <mwc-icon-button
+            icon="playlist_add"
+            @click="${() => this.openConnectedAPwizard()}"
+          ></mwc-icon-button>
+        </abbr>
+        <div id="iedContainer">${this.renderIEDs()}</div>
+      </action-pane>
+      ${this.renderSmvGseMoveDialog()}`;
   }
 };
 SubNetworkEditor.styles = css`
@@ -159,6 +245,12 @@ SubNetworkEditor.styles = css`
       text-decoration: none;
       border-bottom: none;
     }
+
+    mwc-list-item[disabled] {
+      color: var(--mdc-theme-text-disabled, #9e9e9e); /* Gray text */
+      opacity: 0.6;
+      pointer-events: none;
+    }
   `;
 __decorate([
   property({attribute: false})
@@ -181,6 +273,15 @@ __decorate([
 __decorate([
   property({type: String})
 ], SubNetworkEditor.prototype, "bitrate", 1);
+__decorate([
+  state()
+], SubNetworkEditor.prototype, "moveTargetElement", 2);
+__decorate([
+  state()
+], SubNetworkEditor.prototype, "newlySelectedAP", 2);
+__decorate([
+  query("#moveDialog")
+], SubNetworkEditor.prototype, "moveDialog", 2);
 SubNetworkEditor = __decorate([
   customElement("subnetwork-editor")
 ], SubNetworkEditor);

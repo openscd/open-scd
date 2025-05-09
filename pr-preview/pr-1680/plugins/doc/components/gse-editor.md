@@ -13,3 +13,9 @@
 | Method   | Type       |
 |----------|------------|
 | `remove` | `(): void` |
+
+## Events
+
+| Event              | Type                                 |
+|--------------------|--------------------------------------|
+| `request-gse-move` | `CustomEvent<{ element: Element; }>` |

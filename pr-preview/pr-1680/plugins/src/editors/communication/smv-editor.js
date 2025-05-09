@@ -14,14 +14,15 @@ import {
   html,
   customElement,
   property,
-  state
+  state,
+  css
 } from "../../../../_snowpack/pkg/lit-element.js";
 import "../../../../_snowpack/pkg/@material/mwc-icon.js";
 import "../../../../openscd/src/action-icon.js";
 import {sizableSmvIcon} from "../../../../openscd/src/icons/icons.js";
 import {newWizardEvent} from "../../../../openscd/src/foundation.js";
 import {newActionEvent} from "../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js";
-import {editSMvWizard, moveSMVWizard} from "../../wizards/smv.js";
+import {editSMvWizard} from "../../wizards/smv.js";
 import {getAllConnectedAPsOfSameIED} from "./helpers.js";
 export let SmvEditor = class extends LitElement {
   get label() {
@@ -30,8 +31,12 @@ export let SmvEditor = class extends LitElement {
   openEditWizard() {
     this.dispatchEvent(newWizardEvent(editSMvWizard(this.element)));
   }
-  openMoveSMVWizard() {
-    this.dispatchEvent(newWizardEvent(moveSMVWizard(this.element, this.doc)));
+  openSmvMoveDialog() {
+    this.dispatchEvent(new CustomEvent("request-smv-move", {
+      detail: {element: this.element},
+      bubbles: true,
+      composed: true
+    }));
   }
   remove() {
     if (this.element)
@@ -57,20 +62,28 @@ export let SmvEditor = class extends LitElement {
         slot="action"
         mini
         icon="delete"
-        @click="${() => this.remove()}}"
+        @click="${() => this.remove()}"
       ></mwc-fab>
-      ${hasMoreThanOneConnectedAP ? html`
-          <mwc-fab
-            slot="action"
-            mini
-            icon="forward"
-            @click="${() => this.openMoveSMVWizard()}}"
-            >
-          </mwc-fab>` : ""}
-      
-      </action-icon>`;
+      <mwc-fab
+        slot="action"
+        mini
+        icon="forward"
+        class="smv-move-button"
+        ?disabled=${!hasMoreThanOneConnectedAP}
+        @click="${() => this.openSmvMoveDialog()}"
+      >
+      </mwc-fab>
+    </action-icon>`;
   }
 };
+SmvEditor.styles = css`
+    :host(:focus-within) .smv-move-button[disabled] {
+      color: var(--mdc-theme-text-disabled-on-light, #9e9e9e);
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  `;
 __decorate([
   property({attribute: false})
 ], SmvEditor.prototype, "doc", 2);

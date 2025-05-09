@@ -4,7 +4,6 @@ import '../../../openscd/src/wizard-textfield.js';
 import { getValue, identity, } from '../../../openscd/src/foundation.js';
 import { createElement } from '../../../_snowpack/link/packages/xml/dist/index.js';
 import { contentGseOrSmvWizard, updateAddress } from './address.js';
-import { getAllConnectedAPsOfSameIED, getCurrentConnectedAP } from '../editors/communication/helpers.js';
 export function getMTimeAction(type, oldTime, Time, gse) {
     if (oldTime === null) {
         const element = createElement(gse.ownerDocument, type, {
@@ -103,59 +102,6 @@ export function editGseWizard(element) {
           suffix="ms"
           type="number"
         ></wizard-textfield>`,
-            ],
-        },
-    ];
-}
-let newlySelectedAP = null;
-function setNewlySelectedAP(connectedAP) {
-    newlySelectedAP = connectedAP;
-}
-function moveGSEAction(element) {
-    return () => {
-        const moveAction = {
-            old: {
-                parent: element.parentElement,
-                element,
-                reference: null,
-            },
-            new: {
-                parent: newlySelectedAP,
-            }
-        };
-        return [
-            {
-                actions: [moveAction],
-                title: "Move GSE to another ConnectedAP",
-            }
-        ];
-    };
-}
-export function moveGSEWizard(element, doc) {
-    const currentConnectedAP = getCurrentConnectedAP(element);
-    const iedName = currentConnectedAP?.getAttribute('iedName');
-    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(element, doc);
-    return [
-        {
-            title: get('wizard.title.selectAp'),
-            element,
-            primary: {
-                label: get('save'),
-                icon: 'save',
-                action: moveGSEAction(element),
-            },
-            content: [
-                html `
-         ${allConnectedAPsOfSameIED.map(connectedAP => html `
-            <mwc-button
-              label="${iedName} > ${connectedAP.getAttribute('apName')}"
-              @click=${() => setNewlySelectedAP(connectedAP)}
-              raised
-              ?disabled=${connectedAP === currentConnectedAP}
-              >
-              </mwc-button>
-          `)}
-        `
             ],
         },
     ];

@@ -4,8 +4,6 @@ import {
   identity
 } from "../../../openscd/src/foundation.js";
 import {contentGseOrSmvWizard, updateAddress} from "./address.js";
-import {html} from "../../../_snowpack/pkg/lit-element.js";
-import {getAllConnectedAPsOfSameIED, getCurrentConnectedAP} from "../editors/communication/helpers.js";
 export function updateSmvAction(element) {
   return (inputs, wizard) => {
     const complexAction = {
@@ -46,59 +44,6 @@ export function editSMvWizard(element) {
         action: updateSmvAction(element)
       },
       content: [...contentGseOrSmvWizard({hasInstType, attributes})]
-    }
-  ];
-}
-let newlySelectedAP = null;
-function setNewlySelectedAP(connectedAP) {
-  newlySelectedAP = connectedAP;
-}
-function moveSVMAction(element) {
-  return () => {
-    const moveAction = {
-      old: {
-        parent: element.parentElement,
-        element,
-        reference: null
-      },
-      new: {
-        parent: newlySelectedAP
-      }
-    };
-    return [
-      {
-        actions: [moveAction],
-        title: "Move SVM to another ConnectedAP"
-      }
-    ];
-  };
-}
-export function moveSMVWizard(element, doc) {
-  const currentConnectedAP = getCurrentConnectedAP(element);
-  const iedName = currentConnectedAP?.getAttribute("iedName");
-  const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(element, doc);
-  return [
-    {
-      title: get("wizard.title.selectAp"),
-      element,
-      primary: {
-        label: get("save"),
-        icon: "save",
-        action: moveSVMAction(element)
-      },
-      content: [
-        html`
-         ${allConnectedAPsOfSameIED.map((connectedAP) => html`
-            <mwc-button
-              label="${iedName} > ${connectedAP.getAttribute("apName")}"
-              @click=${() => setNewlySelectedAP(connectedAP)}
-              raised
-              ?disabled=${connectedAP === currentConnectedAP}
-              >
-              </mwc-button>
-          `)}
-        `
-      ]
     }
   ];
 }

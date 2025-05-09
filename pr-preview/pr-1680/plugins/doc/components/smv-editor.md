@@ -13,3 +13,9 @@
 | Method   | Type       |
 |----------|------------|
 | `remove` | `(): void` |
+
+## Events
+
+| Event              | Type                                 |
+|--------------------|--------------------------------------|
+| `request-smv-move` | `CustomEvent<{ element: Element; }>` |
