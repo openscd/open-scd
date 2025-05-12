@@ -6,7 +6,7 @@ import { newWizardEvent } from '../../../../openscd/src/foundation.js';
 import { newActionEvent } from '../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js';
 import { sizableGooseIcon } from '../../../../openscd/src/icons/icons.js';
 import { editGseWizard } from '../../wizards/gse.js';
-import { getAllConnectedAPsOfSameIED } from './helpers.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 let GseEditor = class GseEditor extends LitElement {
     get label() {
         return (this.element.getAttribute('ldInst') +

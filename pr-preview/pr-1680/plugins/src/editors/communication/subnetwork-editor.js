@@ -31,7 +31,7 @@ import {
 import {newActionEvent} from "../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js";
 import {createConnectedApWizard} from "../../wizards/connectedap.js";
 import {wizards} from "../../wizards/wizard-library.js";
-import {getAllConnectedAPsOfSameIED} from "./helpers.js";
+import {getAllConnectedAPsOfSameIED} from "./foundation.js";
 export let SubNetworkEditor = class extends LitElement {
   constructor() {
     super(...arguments);

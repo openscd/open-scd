@@ -23,7 +23,7 @@ import {newWizardEvent} from "../../../../openscd/src/foundation.js";
 import {newActionEvent} from "../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js";
 import {sizableGooseIcon} from "../../../../openscd/src/icons/icons.js";
 import {editGseWizard} from "../../wizards/gse.js";
-import {getAllConnectedAPsOfSameIED} from "./helpers.js";
+import {getAllConnectedAPsOfSameIED} from "./foundation.js";
 export let GseEditor = class extends LitElement {
   get label() {
     return this.element.getAttribute("ldInst") + "/" + this.element.getAttribute("cbName");

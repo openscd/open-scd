@@ -6,7 +6,7 @@ import { sizableSmvIcon } from '../../../../openscd/src/icons/icons.js';
 import { newWizardEvent } from '../../../../openscd/src/foundation.js';
 import { newActionEvent } from '../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../wizards/smv.js';
-import { getAllConnectedAPsOfSameIED } from './helpers.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 let SmvEditor = class SmvEditor extends LitElement {
     get label() {
         return (this.element.getAttribute('ldInst') +

@@ -10,7 +10,7 @@ import { newWizardEvent, compareNames, } from '../../../../openscd/src/foundatio
 import { newActionEvent } from '../../../../_snowpack/link/packages/core/dist/foundation/deprecated/editor.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { getAllConnectedAPsOfSameIED } from './helpers.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 let SubNetworkEditor = class SubNetworkEditor extends LitElement {
     constructor() {
