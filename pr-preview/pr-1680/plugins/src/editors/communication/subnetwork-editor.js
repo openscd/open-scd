@@ -146,7 +146,7 @@ export let SubNetworkEditor = class extends LitElement {
     return html`
       <mwc-dialog
         id="moveDialog"
-        heading="Select New ConnectedAP"
+        heading=${get("wizard.title.selectAp")}
         @closed=${() => {
       this.moveTargetElement = null;
       this.newlySelectedAP = null;
@@ -155,6 +155,7 @@ export let SubNetworkEditor = class extends LitElement {
         <mwc-list>
           ${allConnectedAPs.map((connectedAP) => html`
               <mwc-list-item
+                class=${connectedAP === this.newlySelectedAP ? "selected" : ""}
                 @click=${() => this.newlySelectedAP = connectedAP}
                 ?selected=${connectedAP === this.newlySelectedAP}
                 ?disabled=${connectedAP === currentConnectedAP}
@@ -250,6 +251,12 @@ SubNetworkEditor.styles = css`
       color: var(--mdc-theme-text-disabled, #9e9e9e); /* Gray text */
       opacity: 0.6;
       pointer-events: none;
+    }
+
+    mwc-list-item.selected {
+      background-color: var(--mdc-theme-primary);
+      color: var(--mdc-theme-on-primary, #ffffff);
+      font-weight: bold;
     }
   `;
 __decorate([
