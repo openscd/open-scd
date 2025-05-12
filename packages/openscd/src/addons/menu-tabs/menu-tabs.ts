@@ -5,14 +5,15 @@ import {
   property,
   query,
   state,
-  TemplateResult,
   css
 } from 'lit-element';
 
 import '@material/mwc-list';
-import '@material/mwc-tab';
-import '@material/mwc-tab-bar';
+import '@material/mwc-menu';
+import type { Menu } from '@material/mwc-menu';
 import '@material/mwc-button';
+import '@material/mwc-icon-button';
+import '@material/mwc-icon';
 
 import {
   Plugin,
@@ -33,47 +34,152 @@ export class OscdMenuTabs extends LitElement {
   };
 
   @state() private activeTabIndex = 0;
+  @state() private visibleTabs: Plugin[] = [];
+  @state() private hiddenTabs: Plugin[] = [];
+  @query('.app-bar-container') private appBarContainer!: HTMLElement;
+  @query('mwc-menu') private overflowMenu!: Menu;
 
-  render(){
-    if(this.editors.length === 0){ return html``; }
+  firstUpdated() {
+    this.#calculateVisibleTabs();
+    window.addEventListener('resize', () => this.#calculateVisibleTabs());
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', () => this.#calculateVisibleTabs());
+    super.disconnectedCallback();
+  }
+
+  async #calculateVisibleTabs() {
+    await this.updateComplete;
+
+    const visibleTabs: Plugin[] = [];
+    const hiddenTabs: Plugin[] = [];
+    let totalWidth = 0;
+
+    const measurer = document.createElement('div');
+    Object.assign(measurer.style, {
+      position: 'absolute',
+      visibility: 'hidden',
+      whiteSpace: 'nowrap',
+      fontSize: '14px',
+      padding: '0 20 px',
+    });
+    document.body.appendChild(measurer);
+
+    try {
+      for (let i = 0; i < this.editors.length; i++) {
+        measurer.textContent = this.editors[i].name;
+        const approximateWidthOtherThanText = 112;
+        const buttonWidth =
+          measurer.offsetWidth + approximateWidthOtherThanText;
+
+        var availableWidth = this.appBarContainer.offsetWidth;
+        const isMenuButtonVisible = this.hiddenTabs.length > 0;
+        if (isMenuButtonVisible) {
+          availableWidth -= 48;
+        }
+        if (totalWidth + buttonWidth <= availableWidth) {
+          totalWidth += buttonWidth;
+          visibleTabs.push(this.editors[i]);
+        } else {
+          hiddenTabs.push(this.editors[i]);
+        }
+      }
+
+      this.visibleTabs = visibleTabs;
+      this.hiddenTabs = hiddenTabs;
+    } finally {
+      document.body.removeChild(measurer);
+    }
+  }
+
+  render() {
+    if (this.activeEditor === undefined && this.editors.length > 0) {
+      this.#activateTab(0);
+    }
 
     return html`
-      <mwc-tab-bar
-        @MDCTabBar:activated=${this.handleActivatedEditorTab}
-        activeIndex=${this.activeTabIndex}
-      >
-        ${ this.editors.map( EditorTab ) }
-      </mwc-tab-bar>
-    `
+      <div class="app-bar-container">
+        ${this.hiddenTabs.length > 0
+          ? html`
+              <mwc-icon-button
+                icon="more_vert"
+                @click=${() => this.overflowMenu.show()}
+              ></mwc-icon-button>
+
+              <mwc-menu>
+                ${this.hiddenTabs.map(
+                  (editor, index) => html`
+                    <mwc-list-item
+                      graphic="icon"
+                      @click=${() =>
+                        this.#activateTab(this.visibleTabs.length + index)}
+                    >
+                      <span>${editor.name}</span>
+                      <mwc-icon slot="graphic">${editor.icon}</mwc-icon>
+                    </mwc-list-item>
+                  `
+                )}
+              </mwc-menu>
+            `
+          : ''}
+        ${this.visibleTabs.map(
+          (editor, index) => html`
+            <mwc-button
+              label=${editor.name}
+              icon=${editor.icon}
+              ?active=${this.activeTabIndex === index}
+              @click=${() => this.#activateTab(index)}
+            ></mwc-button>
+          `
+        )}
+      </div>
+    `;
+  }
+
+  #activateTab(index: number) {
+    this.activeTabIndex = index;
+    this._activeEditor = this.editors[index];
+    this.dispatchEvent(
+      new CustomEvent(TabActivatedEventKey, {
+        detail: { editor: this.editors[index] },
+        composed: true,
+        bubbles: true,
+      })
+    );
   }
 
   static styles = css`
-    mwc-tab {
-      background-color: var(--primary);
-      --mdc-theme-primary: var(--mdc-theme-on-primary);
+    .app-bar-container {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      background-color: var(--mdc-theme-primary, #6200ee);
+      position: relative;
     }
-  `
 
-  private handleActivatedEditorTab(e: CustomEvent): void {
-    const tabIndex = e.detail.index;
-    const editor = this.editors[tabIndex];
-    this.activeTabIndex = tabIndex;
-    this.dispatchActivateEditor(editor);
-  }
+    mwc-button {
+      --mdc-theme-on-primary: #174b46;
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
+      --mdc-shape-small: 0px;
+      white-space: nowrap;
+      margin: 0 10px;
+    }
 
-  private dispatchActivateEditor( editor: Plugin ){
-    const newEvent = new CustomEvent(TabActivatedEventKey, {
-      detail: { editor },
-      composed: true,
-      bubbles: true
-    })
-    this.dispatchEvent(newEvent)
-  }
-}
+    mwc-button[active] {
+      background: #42a99f;
+      --mdc-theme-on-primary: white;
+    }
 
-function EditorTab({ name, icon }: Plugin): TemplateResult {
-  return html`
-    <mwc-tab label=${name} icon=${icon || 'edit'}> </mwc-tab>
+    mwc-icon-button {
+      color: #174b46;
+    }
+
+    mwc-menu {
+      position: absolute;
+      left: 0;
+      top: 100%;
+    }
   `;
 }
 
