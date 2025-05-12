@@ -15,7 +15,7 @@ import { sizableSmvIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../wizards/smv.js';
-import { getAllConnectedAPsOfSameIED } from './helpers.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 
 @customElement('smv-editor')
 export class SmvEditor extends LitElement {

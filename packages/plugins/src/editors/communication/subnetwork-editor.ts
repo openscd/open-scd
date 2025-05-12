@@ -24,7 +24,7 @@ import {
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { getAllConnectedAPsOfSameIED } from './helpers.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-editor')
