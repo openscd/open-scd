@@ -76,25 +76,6 @@ export class SubNetworkEditor extends LitElement {
 
   @query('#moveDialog') private moveDialog!: Dialog;
 
-  firstUpdated() {
-    this.addEventListener('request-gse-move', e =>
-      this.openMoveDialog(e as CustomEvent<{ element: Element }>)
-    );
-    this.addEventListener('request-smv-move', e =>
-      this.openMoveDialog(e as CustomEvent<{ element: Element }>)
-    );
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('request-gse-move', e =>
-      this.openMoveDialog(e as CustomEvent<{ element: Element }>)
-    );
-    this.removeEventListener('request-smv-move', e =>
-      this.openMoveDialog(e as CustomEvent<{ element: Element }>)
-    );
-  }
-
   private openConnectedAPwizard(): void {
     this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
@@ -161,6 +142,7 @@ export class SubNetworkEditor extends LitElement {
         .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${smv}
+        @request-smv-move=${(e: CustomEvent) => this.openMoveDialog(e)}
       ></smv-editor>`
     );
   }
@@ -176,6 +158,7 @@ export class SubNetworkEditor extends LitElement {
         .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${gse}
+        @request-gse-move=${(e: CustomEvent) => this.openMoveDialog(e)}
       ></gse-editor>`
     );
   }

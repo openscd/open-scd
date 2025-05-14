@@ -111,7 +111,11 @@ describe('subnetwork-editor', () => {
 
     it('opens the move dialog on request-gse-move event', async () => {
       const gseElement = subNetwork.querySelector('GSE')!;
-      element.dispatchEvent(
+
+      const gseEditor = element.shadowRoot?.querySelector('gse-editor');
+      expect(gseEditor).to.exist;
+
+      gseEditor?.dispatchEvent(
         new CustomEvent('request-gse-move', {
           detail: { element: gseElement },
           bubbles: true,
@@ -128,7 +132,11 @@ describe('subnetwork-editor', () => {
 
     it('dispatches editor-action event on confirm', async () => {
       const gseElement = subNetwork.querySelector('GSE')!;
-      element.dispatchEvent(
+
+      const gseEditor = element.shadowRoot?.querySelector('gse-editor');
+      expect(gseEditor).to.exist;
+
+      gseEditor?.dispatchEvent(
         new CustomEvent('request-gse-move', {
           detail: { element: gseElement },
           bubbles: true,
@@ -156,7 +164,11 @@ describe('subnetwork-editor', () => {
 
     it('disables confirm button when no ConnectedAP is selected', async () => {
       const gseElement = subNetwork.querySelector('GSE')!;
-      element.dispatchEvent(
+
+      const gseEditor = element.shadowRoot?.querySelector('gse-editor');
+      expect(gseEditor).to.exist;
+
+      gseEditor?.dispatchEvent(
         new CustomEvent('request-gse-move', {
           detail: { element: gseElement },
           bubbles: true,
