@@ -41,15 +41,6 @@ let SubNetworkEditor = class SubNetworkEditor extends LitElement {
         const unit = ` ${m ?? ''}b/s`;
         return bitRateValue ? bitRateValue + unit : null;
     }
-    firstUpdated() {
-        this.addEventListener('request-gse-move', e => this.openMoveDialog(e));
-        this.addEventListener('request-smv-move', e => this.openMoveDialog(e));
-    }
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        this.removeEventListener('request-gse-move', e => this.openMoveDialog(e));
-        this.removeEventListener('request-smv-move', e => this.openMoveDialog(e));
-    }
     openConnectedAPwizard() {
         this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
     }
@@ -103,6 +94,7 @@ let SubNetworkEditor = class SubNetworkEditor extends LitElement {
         .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${smv}
+        @request-smv-move=${(e) => this.openMoveDialog(e)}
       ></smv-editor>`);
     }
     renderGseEditors(iedName) {
@@ -113,6 +105,7 @@ let SubNetworkEditor = class SubNetworkEditor extends LitElement {
         .editCount=${this.editCount}
         .doc=${this.doc}
         .element=${gse}
+        @request-gse-move=${(e) => this.openMoveDialog(e)}
       ></gse-editor>`);
     }
     renderConnectedApEditors(iedName) {

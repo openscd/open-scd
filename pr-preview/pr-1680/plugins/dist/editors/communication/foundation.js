@@ -22,6 +22,6 @@ export function getAllConnectedAPsOfSameIED(element, doc) {
         return [];
     }
     const iedName = currentConnectedAP.getAttribute('iedName');
-    return Array.from(doc.querySelectorAll('SubNetwork > ConnectedAP')).filter(connectedAP => connectedAP.getAttribute('iedName') === iedName);
+    return Array.from(doc.querySelectorAll(`SubNetwork > ConnectedAP[iedName=${iedName}`));
 }
 //# sourceMappingURL=foundation.js.map
