@@ -41,15 +41,15 @@ export class OscdMenuTabs extends LitElement {
 
   firstUpdated() {
     this.#calculateVisibleTabs();
-    window.addEventListener('resize', () => this.#calculateVisibleTabs());
+    window.addEventListener('resize', this.#calculateVisibleTabs);
   }
 
   disconnectedCallback() {
-    window.removeEventListener('resize', () => this.#calculateVisibleTabs());
+    window.removeEventListener('resize', this.#calculateVisibleTabs);
     super.disconnectedCallback();
   }
 
-  async #calculateVisibleTabs() {
+  #calculateVisibleTabs = async () => {
     await this.updateComplete;
 
     const visibleTabs: Plugin[] = [];
@@ -91,7 +91,7 @@ export class OscdMenuTabs extends LitElement {
     } finally {
       document.body.removeChild(measurer);
     }
-  }
+  };
 
   render() {
     if (this.activeEditor === undefined && this.editors.length > 0) {
