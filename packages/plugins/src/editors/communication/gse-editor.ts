@@ -5,6 +5,7 @@ import {
   customElement,
   property,
   state,
+  css,
 } from 'lit-element';
 
 import '@material/mwc-icon';
@@ -14,6 +15,7 @@ import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { sizableGooseIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { editGseWizard } from '../../wizards/gse.js';
+import { getAllConnectedAPsOfSameIED } from './foundation.js';
 
 @customElement('gse-editor')
 export class GseEditor extends LitElement {
@@ -36,6 +38,16 @@ export class GseEditor extends LitElement {
     this.dispatchEvent(newWizardEvent(editGseWizard(this.element)));
   }
 
+  private openGseMoveDialog(): void {
+    this.dispatchEvent(
+      new CustomEvent('request-gse-move', {
+        detail: { element: this.element },
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
   remove(): void {
     if (this.element)
       this.dispatchEvent(
@@ -50,6 +62,12 @@ export class GseEditor extends LitElement {
   }
 
   render(): TemplateResult {
+    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(
+      this.element,
+      this.doc
+    );
+    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;
+
     return html`<action-icon label="${this.label}" .icon="${sizableGooseIcon}"
       ><mwc-fab
         slot="action"
@@ -61,8 +79,26 @@ export class GseEditor extends LitElement {
         slot="action"
         mini
         icon="delete"
-        @click="${() => this.remove()}}"
-      ></mwc-fab
-    ></action-icon>`;
+        @click="${() => this.remove()}"
+      ></mwc-fab>
+      <mwc-fab
+        slot="action"
+        mini
+        icon="forward"
+        class="gse-move-button"
+        ?disabled="${!hasMoreThanOneConnectedAP}"
+        @click="${() => this.openGseMoveDialog()}"
+      >
+      </mwc-fab>
+    </action-icon> `;
   }
+
+  static styles = css`
+    :host(:focus-within) .gse-move-button[disabled] {
+      color: var(--mdc-theme-text-disabled-on-light, #9e9e9e);
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  `;
 }

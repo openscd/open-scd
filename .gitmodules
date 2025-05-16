@@ -2,3 +2,7 @@
 	path = packages/external-plugins/oscd-publisher
 	url = https://github.com/openscd/oscd-publisher
 	branch = deploy
+[submodule "packages/external-plugins/oscd-subscriber-later-binding"]
+	path = packages/external-plugins/oscd-subscriber-later-binding
+	url = https://github.com/danyill/oscd-subscriber-later-binding
+	branch = gh-pages
