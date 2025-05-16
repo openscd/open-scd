@@ -100,6 +100,16 @@ export class OscdMenuTabs extends LitElement {
 
     return html`
       <div class="app-bar-container">
+        ${this.visibleTabs.map(
+          (editor, index) => html`
+            <mwc-button
+              label=${editor.name}
+              icon=${editor.icon}
+              ?active=${this.activeTabIndex === index}
+              @click=${() => this.#activateTab(index)}
+            ></mwc-button>
+          `
+        )}
         ${this.hiddenTabs.length > 0
           ? html`
               <mwc-icon-button
@@ -123,16 +133,6 @@ export class OscdMenuTabs extends LitElement {
               </mwc-menu>
             `
           : ''}
-        ${this.visibleTabs.map(
-          (editor, index) => html`
-            <mwc-button
-              label=${editor.name}
-              icon=${editor.icon}
-              ?active=${this.activeTabIndex === index}
-              @click=${() => this.#activateTab(index)}
-            ></mwc-button>
-          `
-        )}
       </div>
     `;
   }
@@ -153,6 +153,7 @@ export class OscdMenuTabs extends LitElement {
     .app-bar-container {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       height: 48px;
       background-color: var(--mdc-theme-primary, #6200ee);
       position: relative;
