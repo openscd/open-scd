@@ -154,7 +154,7 @@ export class OscdMenuTabs extends LitElement {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 48px;
+      height: 36px;
       background-color: var(--mdc-theme-primary, #6200ee);
       position: relative;
     }
@@ -163,13 +163,13 @@ export class OscdMenuTabs extends LitElement {
       --mdc-theme-on-primary: #174b46;
       --mdc-theme-primary: var(--mdc-theme-on-primary);
       --mdc-shape-small: 0px;
+      --mdc-button-horizontal-padding: 24px;
+      --mdc-typography-button-font-size: 0.9rem;
       white-space: nowrap;
-      margin: 0 10px;
     }
 
     mwc-button[active] {
-      background: #42a99f;
-      --mdc-theme-on-primary: white;
+      --mdc-theme-on-primary: #d9e0ce;
     }
 
     mwc-icon-button {
