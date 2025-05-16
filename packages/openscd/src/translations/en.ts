@@ -91,6 +91,7 @@ export const en = {
       select: 'Select {{tagName}}',
       edit: 'Edit {{tagName}}',
       add: 'Add {{tagName}}',
+      selectAp: 'Select New ConnectedAP'
     },
   },
   openSCD: {
