@@ -5,7 +5,7 @@ import {
   property,
   query,
   state,
-  css
+  css,
 } from 'lit-element';
 
 import '@material/mwc-list';
@@ -15,23 +15,23 @@ import '@material/mwc-button';
 import '@material/mwc-icon-button';
 import '@material/mwc-icon';
 
-import {
-  Plugin,
-} from "../../plugin.js"
-
+import { Plugin } from '../../plugin.js';
 
 @customElement('oscd-menu-tabs')
 export class OscdMenuTabs extends LitElement {
-
   @property({ type: Array }) editors: Plugin[] = [];
   _activeEditor: Plugin | undefined;
-  @property({ type: Object }) get activeEditor() { return this._activeEditor; }
+  @property({ type: Object }) get activeEditor() {
+    return this._activeEditor;
+  }
   set activeEditor(editor: Plugin | undefined) {
     this._activeEditor = editor;
-    const editorIndex = this.editors.findIndex(e => e.name === editor?.name && e.src === editor?.src);
+    const editorIndex = this.editors.findIndex(
+      e => e.name === editor?.name && e.src === editor?.src
+    );
     this.activeTabIndex = editorIndex > -1 ? editorIndex : 0;
     this.requestUpdate();
-  };
+  }
 
   @state() private activeTabIndex = 0;
   @state() private visibleTabs: Plugin[] = [];
@@ -183,6 +183,6 @@ export class OscdMenuTabs extends LitElement {
   `;
 }
 
-export const TabActivatedEventKey = 'oscd-editor-tab-activated'
+export const TabActivatedEventKey = 'oscd-editor-tab-activated';
 export type TabActivatedEvent = CustomEvent<TabActivatedEventDetail>;
-export type TabActivatedEventDetail = { editor: Plugin }
+export type TabActivatedEventDetail = { editor: Plugin };
