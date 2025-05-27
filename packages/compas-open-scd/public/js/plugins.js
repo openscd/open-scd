@@ -340,6 +340,15 @@ export const officialPlugins = [
     position: 'middle',
   },
   {
+    name: 'Wizarding',
+    src: '/external-plugins/scl-wizarding/scl-wizarding.js',
+    icon: 'edit',
+    activeByDefault: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle',
+  },
+  {
     name: 'Show SCL History',
     src: '/plugins/src/menu/SclHistory.js',
     icon: 'history_toggle_off',
