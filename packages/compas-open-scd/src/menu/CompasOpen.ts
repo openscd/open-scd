@@ -28,9 +28,6 @@ export default class CompasOpenMenuPlugin extends LitElement {
     this.compasOpenElement.selectedType = undefined;
     await this.compasOpenElement.requestUpdate();
 
-    // TODO: Fix for dialog, the menu has to be open to see the dialog
-    this.dispatchEvent(compasOpenMenuEvent());
-
     this.dialog.show();
   }
 
