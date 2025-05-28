@@ -52,7 +52,7 @@ import '@material/mwc-dialog';
 import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
-import { nothing } from 'lit';
+import { pluginTag } from '../plugin-tag.js';
 
 import {OscdPluginManager} from "./plugin-manager/plugin-manager.js";
 import "./plugin-manager/plugin-manager.js";
@@ -85,6 +85,7 @@ export class OscdLayout extends LitElement {
   @state() activeEditor: Plugin | undefined = this.calcActiveEditors()[0];
 
   @query('#menu') menuUI!: Drawer;
+  @query('#menuContent') menuContent!: List;
   @query('#pluginManager') pluginUI!: OscdPluginManager;
   @query('#pluginList') pluginList!: List;
   @query('#pluginAdd') pluginDownloadUI!: OscdCustomPluginDialog;
@@ -98,8 +99,8 @@ export class OscdLayout extends LitElement {
         @oscd-run-menu=${this.handleRunMenuByEvent}
       >
         <slot></slot>
-        ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-        ${this.renderLanding()} ${this.renderPlugging()}
+        ${this.renderHeader()} ${this.renderAside()} ${this.renderMenuContent()}
+        ${this.renderContent()} ${this.renderLanding()} ${this.renderPlugging()}
       </div>
     `;
   }
@@ -107,6 +108,11 @@ export class OscdLayout extends LitElement {
 
   private renderPlugging(): TemplateResult {
     return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
+  }
+
+  private getMenuContent(src: string) {
+    const tag = pluginTag(src);
+    return this.menuContent.querySelector(tag);
   }
 
   /** Renders the "Add Custom Plug-in" UI*/
@@ -280,9 +286,16 @@ export class OscdLayout extends LitElement {
         this.menuUI
           .querySelector('mwc-list')!
           .items.filter(item => item.className === 'validator')
-          .map(item =>
-            (<Validator>(<unknown>item.nextElementSibling)).validate()
-          )
+          .map(item => {
+            const src = item.dataset.src ?? '';
+            const menuContentElement = this.getMenuContent(src);
+
+            if (!menuContentElement) {
+              return;
+            }
+
+            return (menuContentElement as unknown as Validator).validate()
+          })
       ).then();
       this.dispatchEvent(newPendingStateEvent(this.validated));
     });
@@ -300,16 +313,14 @@ export class OscdLayout extends LitElement {
       return {
         icon: plugin.icon || pluginIcons['menu'],
         name: plugin.name,
+        src: plugin.src,
         action: ae => {
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<MenuPlugin>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).run()
-            )
-          );
+          const menuContentElement = this.getMenuContent(plugin.src);
+          if (!menuContentElement) {
+            return;
+          }
+
+          this.dispatchEvent(newPendingStateEvent((menuContentElement as unknown as MenuPlugin).run()))
         },
         disabled: (): boolean => plugin.requireDoc! && this.doc === null,
         content: () => {
@@ -326,18 +337,16 @@ export class OscdLayout extends LitElement {
       return {
         icon: plugin.icon || pluginIcons['validator'],
         name: plugin.name,
+        src: plugin.src,
         action: ae => {
           this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
 
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<Validator>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).validate()
-            )
-          );
+          const menuContentElement = this.getMenuContent(plugin.src);
+          if (!menuContentElement) {
+            return;
+          }
+
+          this.dispatchEvent(newPendingStateEvent((menuContentElement as unknown as Validator).validate()))
         },
         disabled: (): boolean => this.doc === null,
         content: plugin.content ?? (() => html``),
@@ -358,6 +367,7 @@ export class OscdLayout extends LitElement {
         iconid="${me.icon}"
         graphic="icon"
         data-name="${me.name}"
+        data-src="${me.src ?? ''}"
         .disabled=${me.disabled?.() || !me.action}
         ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
         <span>${get(me.name)}</span>
@@ -365,7 +375,6 @@ export class OscdLayout extends LitElement {
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
           : ''}
       </mwc-list-item>
-      ${me.content ? me.content() : nothing}
     `;
   }
 
@@ -398,6 +407,18 @@ export class OscdLayout extends LitElement {
       <div slot="title" id="title">${this.docName}</div>
       ${this.menu.map(this.renderActionItem)}
     </mwc-top-app-bar-fixed>`;
+  }
+
+  protected renderMenuContent(): TemplateResult {
+    return html`
+      <div id="menuContent">
+        ${
+          this.menu
+            .filter(p => (p as MenuItem).content)
+            .map(p => (p as MenuItem).content())
+        }
+      </div>
+    `;
   }
 
   /**
@@ -502,10 +523,13 @@ export class OscdLayout extends LitElement {
     // TODO: this is a workaround, fix it
     this.menuUI.open = true;
     const menuEntry = this.menuUI.querySelector(`[data-name="${e.detail.name}"]`) as HTMLElement
-    const menuElement = menuEntry.nextElementSibling
-    if(!menuElement){ return; } // TODO: log error
 
-    (menuElement as unknown as MenuPlugin).run()
+    const menuContentElement = this.getMenuContent(menuEntry.dataset.src ?? '');
+    if (!menuContentElement) {
+      return;
+    }
+
+    (menuContentElement as unknown as MenuPlugin).run();
   }
 
   /**
