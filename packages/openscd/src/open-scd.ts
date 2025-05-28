@@ -493,6 +493,7 @@ declare global {
 export interface MenuItem {
   icon: string;
   name: string;
+  src?: string;
   hint?: string;
   actionItem?: boolean;
   action?: (event: CustomEvent<ActionDetail>) => void;

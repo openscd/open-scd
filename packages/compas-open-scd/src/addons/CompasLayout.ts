@@ -44,7 +44,7 @@ import { OscdPluginManager } from '@openscd/open-scd/src/addons/plugin-manager/p
 import '@openscd/open-scd/src/addons/plugin-manager/plugin-manager';
 import { OscdCustomPluginDialog } from '@openscd/open-scd/src/addons/plugin-manager/custom-plugin-dialog';
 import '@openscd/open-scd/src/addons/plugin-manager/custom-plugin-dialog';
-import { nothing } from 'lit';
+import { pluginTag } from '../plugin-tag.js';
 
 // TODO: What happens with this?
 export function compasOpenMenuEvent(): CustomEvent<void> {
@@ -77,6 +77,7 @@ export class CompasLayout extends LitElement {
   @state() shouldValidate = false;
 
   @query('#menu') menuUI!: Drawer;
+  @query('#menuContent') menuContent!: List;
   @query('#pluginManager') pluginUI!: OscdPluginManager;
   @query('#pluginList') pluginList!: List;
   @query('#pluginAdd') pluginDownloadUI!: OscdCustomPluginDialog;
@@ -89,14 +90,19 @@ export class CompasLayout extends LitElement {
         @oscd-run-menu=${this.handleRunMenuByEvent}
       >
         <slot></slot>
-        ${this.renderHeader()} ${this.renderAside()} ${this.renderContent()}
-        ${this.renderLanding()} ${this.renderPlugging()}
+        ${this.renderHeader()} ${this.renderAside()} ${this.renderMenuContent()}
+        ${this.renderContent()} ${this.renderLanding()} ${this.renderPlugging()}
       </div>
     `;
   }
 
   private renderPlugging(): TemplateResult {
     return html` ${this.renderPluginUI()} ${this.renderDownloadUI()} `;
+  }
+
+  private getMenuContent(src: string) {
+    const tag = pluginTag(src);
+    return this.menuContent.querySelector(tag);
   }
 
   /** Renders the "Add Custom Plug-in" UI*/
@@ -271,8 +277,17 @@ export class CompasLayout extends LitElement {
         this.menuUI
           .querySelector('mwc-list')!
           .items.filter(item => item.className === 'validator')
-          .map(item =>
-            (<Validator>(<unknown>item.nextElementSibling)).validate()
+          .map(item => {
+            const src = item.dataset.src ?? '';
+
+            const menuContentElement = this.getMenuContent(src);
+
+            if (!menuContentElement) {
+              return;
+            }
+
+            return (menuContentElement as unknown as Validator).validate()
+          }
           )
       ).then();
       this.dispatchEvent(newPendingStateEvent(this.validated));
@@ -293,16 +308,14 @@ export class CompasLayout extends LitElement {
       return {
         icon: plugin.icon || pluginIcons['menu'],
         name: plugin.name,
+        src: plugin.src,
         action: ae => {
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<MenuPlugin>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).run()
-            )
-          );
+          const menuContentElement = this.getMenuContent(plugin.src);
+          if (!menuContentElement) {
+            return;
+          }
+
+          this.dispatchEvent(newPendingStateEvent((menuContentElement as unknown as MenuPlugin).run()))
         },
         disabled: (): boolean => plugin.requireDoc! && this.doc === null,
         content: () => {
@@ -319,18 +332,16 @@ export class CompasLayout extends LitElement {
       return {
         icon: plugin.icon || pluginIcons['validator'],
         name: plugin.name,
+        src: plugin.src,
         action: ae => {
           this.dispatchEvent(newEmptyIssuesEvent(plugin.src));
 
-          this.dispatchEvent(
-            newPendingStateEvent(
-              (<Validator>(
-                (<unknown>(
-                  (<List>ae.target).items[ae.detail.index].nextElementSibling
-                ))
-              )).validate()
-            )
-          );
+          const menuContentElement = this.getMenuContent(plugin.src);
+          if (!menuContentElement) {
+            return;
+          }
+
+          this.dispatchEvent(newPendingStateEvent((menuContentElement as unknown as Validator).validate()))
         },
         disabled: (): boolean => this.doc === null,
         content: plugin.content ?? (() => html``),
@@ -347,13 +358,23 @@ export class CompasLayout extends LitElement {
     const hasActionItem = me !== 'divider' && me.actionItem;
 
     if (isDivider(me)) { return html`<li divider padded role="separator"></li>`; }
-    if (hasActionItem){ return html``; }
+    if (hasActionItem){
+      return html``;
+    }
+
+    /*
+    if (me.kind === 'validator') {
+      console.log('rendering validator with data')
+      console.log(me)
+    }
+    */
     return html`
       <mwc-list-item
         class="${me.kind}"
         iconid="${me.icon}"
         graphic="icon"
         data-name="${me.name}"
+        data-src="${me.src ?? ''}"
         .disabled=${me.disabled?.() || !me.action}
         ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
         <span>${get(me.name)}</span>
@@ -361,7 +382,6 @@ export class CompasLayout extends LitElement {
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
           : ''}
       </mwc-list-item>
-      ${me.content ? me.content() : nothing}
     `;
   }
 
@@ -404,6 +424,18 @@ export class CompasLayout extends LitElement {
               : ``}
       ${this.menu.map(this.renderActionItem)}
     </mwc-top-app-bar-fixed>`;
+  }
+
+  protected renderMenuContent(): TemplateResult {
+    return html`
+      <div id="menuContent">
+        ${
+          this.menu
+            .filter(p => (p as MenuItem).content)
+            .map(p => (p as MenuItem).content())
+        }
+      </div>
+    `;
   }
 
   /**
@@ -505,14 +537,16 @@ export class CompasLayout extends LitElement {
   }
 
   private handleRunMenuByEvent(e: CustomEvent<{name: string}>): void {
-
     // TODO: this is a workaround, fix it
     this.menuUI.open = true;
     const menuEntry = this.menuUI.querySelector(`[data-name="${e.detail.name}"]`) as HTMLElement
-    const menuElement = menuEntry.nextElementSibling
-    if(!menuElement){ return; } // TODO: log error
 
-    (menuElement as unknown as MenuPlugin).run()
+    const menuContentElement = this.getMenuContent(menuEntry.dataset.src ?? '');
+    if (!menuContentElement) {
+      return;
+    }
+
+    (menuContentElement as unknown as MenuPlugin).run()
   }
 
   /**

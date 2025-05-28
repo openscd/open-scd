@@ -26,3 +26,7 @@
 	path = packages/external-plugins/scl-bay-template
 	url = https://github.com/com-pas/scl-bay-template
 	branch = deploy
+[submodule "packages/external-plugins/scl-wizarding"]
+	path = packages/external-plugins/scl-wizarding
+	url = https://github.com/openenergytools/scl-wizarding
+	branch = deploy
