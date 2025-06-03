@@ -250,6 +250,7 @@ export const en = {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
+      noDescWarning: "Warning! Some S-IEDs cannot be displayed because they do not have a “desc” attribute. Click here to add the attribute manually.",
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',
