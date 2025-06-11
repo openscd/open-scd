@@ -12,6 +12,10 @@ export function getAllConnectedAPsOfSameIED(element, doc) {
   const iedName = currentConnectedAP.getAttribute("iedName");
   return Array.from(doc.querySelectorAll(`SubNetwork > ConnectedAP[iedName=${iedName}`));
 }
+const controlTagDictionary = {
+  GSE: "GSEControl",
+  SMV: "SampledValueControl"
+};
 export function canMoveCommunicationElementToConnectedAP(communicationElement, connectedAP, doc) {
   const currentConnectedAP = getCurrentConnectedAP(communicationElement);
   if (!currentConnectedAP || currentConnectedAP === connectedAP) {
@@ -28,10 +32,34 @@ export function canMoveCommunicationElementToConnectedAP(communicationElement, c
   }
   const targetApName = connectedAP.getAttribute("apName");
   const targetAp = ied.querySelector(`:scope > AccessPoint[name=${targetApName}]`);
-  if (!targetAp) {
+  if (!targetAp || !targetApName) {
     return false;
   }
-  const hasServer = targetAp.querySelector(":scope > Server") !== null;
-  const hasServerAt = targetAp.querySelector(`:scope > ServerAt[apName=${apName}]`) !== null;
-  return hasServer || hasServerAt;
+  const server = queryServer(ied, targetApName);
+  if (!server) {
+    return false;
+  }
+  const ldInst = communicationElement.getAttribute("ldInst");
+  const cbName = communicationElement.getAttribute("cbName");
+  const controlTag = controlTagDictionary[communicationElement.tagName];
+  const controlElement = server.querySelector(`:scope > LDevice[inst=${ldInst}] ${controlTag}[name=${cbName}]`);
+  const serverHasControl = controlElement !== null;
+  return serverHasControl;
+}
+function queryServer(ied, apName) {
+  const accessPoint = ied.querySelector(`AccessPoint[name=${apName}]`);
+  if (!accessPoint) {
+    return null;
+  }
+  const server = accessPoint.querySelector("Server");
+  if (server) {
+    return server;
+  }
+  const serverAt = accessPoint.querySelector("ServerAt");
+  const serverApName = serverAt?.getAttribute("apName");
+  if (!serverApName) {
+    return null;
+  }
+  const accessPointWithServer = ied.querySelector(`AccessPoint[name=${serverApName}]`);
+  return accessPointWithServer?.querySelector("Server") ?? null;
 }
