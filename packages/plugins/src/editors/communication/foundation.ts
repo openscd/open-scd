@@ -33,3 +33,40 @@ export function getAllConnectedAPsOfSameIED(
     doc.querySelectorAll(`SubNetwork > ConnectedAP[iedName=${iedName}`)
   );
 }
+
+export function canMoveCommunicationElementToConnectedAP(
+  communicationElement: Element,
+  connectedAP: Element,
+  doc: XMLDocument
+): boolean {
+  const currentConnectedAP = getCurrentConnectedAP(communicationElement);
+
+  if (!currentConnectedAP || currentConnectedAP === connectedAP) {
+    return false;
+  }
+
+  const apName = currentConnectedAP.getAttribute('apName');
+  const iedName = currentConnectedAP.getAttribute('iedName');
+
+  if (!apName || !iedName) {
+    return false;
+  }
+
+  const ied = doc.querySelector(`IED[name=${iedName}]`);
+
+  if (!ied) {
+    return false;
+  }
+
+  const targetApName = connectedAP.getAttribute('apName');
+  const targetAp = ied.querySelector(`:scope > AccessPoint[name=${targetApName}]`);
+
+  if (!targetAp) {
+    return false;
+  }
+
+  const hasServer = targetAp.querySelector(':scope > Server') !== null;
+  const hasServerAt = targetAp.querySelector(`:scope > ServerAt[apName=${apName}]`) !== null;
+
+  return hasServer || hasServerAt;
+}
