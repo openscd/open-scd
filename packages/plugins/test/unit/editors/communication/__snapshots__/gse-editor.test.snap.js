@@ -20,6 +20,7 @@ snapshots["Editor web component for GSE element looks like its latest snapshot"]
   </mwc-fab>
   <mwc-fab
     class="gse-move-button"
+    disabled=""
     icon="forward"
     mini=""
     slot="action"
