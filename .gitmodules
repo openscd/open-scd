@@ -12,11 +12,11 @@
 	branch = gh-pages
 [submodule "packages/external-plugins/oscd-template-generator"]
 	path = packages/external-plugins/oscd-template-generator
-	url = https://github.com/OpenEnergyTools/oscd-template-generator
+	url = https://github.com/openscd/oscd-template-generator
 	branch = deploy
 [submodule "packages/external-plugins/scl-template-update"]
 	path = packages/external-plugins/scl-template-update
-	url = https://github.com/OpenEnergyTools/scl-template-update
+	url = https://github.com/openscd/scl-template-update
 	branch = deploy
 [submodule "packages/external-plugins/oscd-designer"]
 	path = packages/external-plugins/oscd-designer
