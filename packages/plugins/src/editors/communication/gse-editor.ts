@@ -70,7 +70,7 @@ export class GseEditor extends LitElement {
         cap,
         this.doc
       ));
-    const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 1;
+    const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 0;
 
     return html`<action-icon label="${this.label}" .icon="${sizableGooseIcon}"
       ><mwc-fab
