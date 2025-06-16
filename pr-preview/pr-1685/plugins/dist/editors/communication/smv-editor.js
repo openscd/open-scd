@@ -35,7 +35,7 @@ let SmvEditor = class SmvEditor extends LitElement {
     }
     render() {
         const validTargetConnectedAPs = getAllConnectedAPsOfSameIED(this.element, this.doc).filter(cap => canMoveCommunicationElementToConnectedAP(this.element, cap, this.doc));
-        const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 1;
+        const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 0;
         return html `<action-icon label="${this.label}" .icon="${sizableSmvIcon}"
       ><mwc-fab
         slot="action"
