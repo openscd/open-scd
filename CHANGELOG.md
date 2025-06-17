@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.39.1](https://github.com/openscd/open-scd/compare/v0.39.0...v0.39.1) (2025-06-17)
+
+
+### Bug Fixes
+
+* **communication-plugin:** Offer only valid connected aps as move targets ([#1685](https://github.com/openscd/open-scd/issues/1685)) ([bfd43ba](https://github.com/openscd/open-scd/commit/bfd43bab3e164d15f7aa2bafe5d0d428df9d10e7))
+
 ## [0.39.0](https://github.com/openscd/open-scd/compare/v0.38.1...v0.39.0) (2025-05-28)
 
 
