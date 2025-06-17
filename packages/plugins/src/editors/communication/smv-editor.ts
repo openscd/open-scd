@@ -15,7 +15,7 @@ import { sizableSmvIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { editSMvWizard } from '../../wizards/smv.js';
-import { getAllConnectedAPsOfSameIED } from './foundation.js';
+import { canMoveCommunicationElementToConnectedAP, getAllConnectedAPsOfSameIED } from './foundation.js';
 
 @customElement('smv-editor')
 export class SmvEditor extends LitElement {
@@ -62,11 +62,15 @@ export class SmvEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(
+    const validTargetConnectedAPs = getAllConnectedAPsOfSameIED(
       this.element,
       this.doc
-    );
-    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;
+    ).filter(cap => canMoveCommunicationElementToConnectedAP(
+        this.element!,
+        cap,
+        this.doc
+      ));
+    const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 0;
 
     return html`<action-icon label="${this.label}" .icon="${sizableSmvIcon}"
       ><mwc-fab
@@ -86,7 +90,7 @@ export class SmvEditor extends LitElement {
         mini
         icon="forward"
         class="smv-move-button"
-        ?disabled=${!hasMoreThanOneConnectedAP}
+        ?disabled=${!hasValidConnectedAPMoveTarget}
         @click="${() => this.openSmvMoveDialog()}"
       >
       </mwc-fab>

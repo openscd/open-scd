@@ -15,7 +15,7 @@ import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { sizableGooseIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { editGseWizard } from '../../wizards/gse.js';
-import { getAllConnectedAPsOfSameIED } from './foundation.js';
+import { canMoveCommunicationElementToConnectedAP, getAllConnectedAPsOfSameIED } from './foundation.js';
 
 @customElement('gse-editor')
 export class GseEditor extends LitElement {
@@ -62,11 +62,15 @@ export class GseEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    const allConnectedAPsOfSameIED = getAllConnectedAPsOfSameIED(
+    const validTargetConnectedAPs = getAllConnectedAPsOfSameIED(
       this.element,
       this.doc
-    );
-    const hasMoreThanOneConnectedAP = allConnectedAPsOfSameIED.length > 1;
+    ).filter(cap => canMoveCommunicationElementToConnectedAP(
+        this.element!,
+        cap,
+        this.doc
+      ));
+    const hasValidConnectedAPMoveTarget = validTargetConnectedAPs.length > 0;
 
     return html`<action-icon label="${this.label}" .icon="${sizableGooseIcon}"
       ><mwc-fab
@@ -86,7 +90,7 @@ export class GseEditor extends LitElement {
         mini
         icon="forward"
         class="gse-move-button"
-        ?disabled="${!hasMoreThanOneConnectedAP}"
+        ?disabled="${!hasValidConnectedAPMoveTarget}"
         @click="${() => this.openGseMoveDialog()}"
       >
       </mwc-fab>
