@@ -15,7 +15,6 @@ import CompasOpenElement, { DocRetrievedEvent } from '../compas/CompasOpen.js';
 import { updateDocumentInOpenSCD } from '../compas/foundation.js';
 
 import '../compas/CompasOpen.js';
-import { compasOpenMenuEvent } from '../addons/CompasLayout.js';
 
 export default class CompasOpenMenuPlugin extends LitElement {
   @query('mwc-dialog#compas-open-dlg')
