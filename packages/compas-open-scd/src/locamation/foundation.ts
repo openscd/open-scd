@@ -1,14 +1,16 @@
-import {Nsdoc} from "open-scd/src/foundation/nsdoc.js";
+import {Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
 import {
-  cloneElement,
   getDescriptionAttribute,
   getInstanceAttribute,
   getNameAttribute,
   getValue,
-  SimpleAction,
   WizardInputElement
-} from "open-scd/src/foundation.js";
+} from "@openscd/open-scd/src/foundation.js";
+import { cloneElement } from '@openscd/xml';
+import { SimpleAction } from "@openscd/core/foundation/deprecated/editor.js";
+
+
 
 export const LOCAMATION_MANUFACTURER = "Locamation B.V.";
 export const LOCAMATION_PRIVATE = "LCMTN_VMU_SENSOR";

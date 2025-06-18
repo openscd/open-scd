@@ -1,8 +1,8 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newWizardEvent, Wizard } from 'open-scd/src/foundation.js';
-import { mergeWizard } from 'open-scd/src/wizards.js';
+import { newWizardEvent, Wizard } from '@openscd/open-scd/src/foundation.js';
+import { mergeWizard } from '@openscd/open-scd/src/wizards.js';
 
 import { DocRetrievedEvent } from '../compas/CompasOpen.js';
 

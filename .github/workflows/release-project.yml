@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
+        with:
+          submodules: 'true'
 
       - name: Cache Docker Register
         uses: actions/cache@v4
@@ -44,7 +46,6 @@ jobs:
 
       - name: Build application with npm
         run: |
-          cd packages/compas-open-scd
           npm ci
           npm run-script build
       - name: Build and push docker image to Docker Hub

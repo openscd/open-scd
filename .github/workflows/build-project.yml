@@ -15,12 +15,14 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 45
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
+        with:
+          submodules: 'true'
 
       - name: Cache Docker Register
         if: ${{ github.event_name == 'pull_request' }}
@@ -42,15 +44,15 @@ jobs:
         timeout-minutes: 45
         if: ${{ github.event_name == 'push' }}
         run: |
-          cd packages/compas-open-scd
           npm ci
+          npm run-script build
+          cd packages/compas-open-scd
           npm run-script test
 
       - name: Build application with npm
         if: ${{ github.event_name == 'pull_request' }}
         timeout-minutes: 45
         run: |
-          cd packages/compas-open-scd
           npm ci
           npm run-script build
       - name: Build docker image

@@ -2,14 +2,15 @@ import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
-  cloneElement,
-  ComplexAction,
-  EditorAction,
   getValue,
   Wizard,
   WizardActor,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
+
+import { cloneElement } from '@openscd/xml';
+
+import { ComplexAction, EditorAction } from "@openscd/core/foundation/deprecated/editor.js";
 
 import '../compas/CompasLabelsField.js';
 

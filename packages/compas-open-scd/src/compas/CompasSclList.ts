@@ -14,10 +14,10 @@ import '@material/mwc-icon';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
-import { SelectedItemsChangedEvent } from 'open-scd/src/oscd-filter-button.js';
+import { SelectedItemsChangedEvent } from '@openscd/open-scd/src/oscd-filter-button.js';
 
-import 'open-scd/src/filtered-list.js';
-import 'open-scd/src/oscd-filter-button.js';
+import '@openscd/open-scd/src/filtered-list.js';
+import '@openscd/open-scd/src/oscd-filter-button.js';
 
 import {
   CompasSclDataService,

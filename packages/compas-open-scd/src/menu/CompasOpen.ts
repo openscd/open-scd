@@ -7,14 +7,15 @@ import { Dialog } from '@material/mwc-dialog';
 
 import {
   newLogEvent,
-  newOpenDocEvent,
-  newPendingStateEvent,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/core/foundation/deprecated/history.js';
+import { newOpenDocEvent } from "@openscd/core/foundation/deprecated/open-event.js";
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
 import CompasOpenElement, { DocRetrievedEvent } from '../compas/CompasOpen.js';
 import { updateDocumentInOpenSCD } from '../compas/foundation.js';
 
 import '../compas/CompasOpen.js';
+import { compasOpenMenuEvent } from '../addons/CompasLayout.js';
 
 export default class CompasOpenMenuPlugin extends LitElement {
   @query('mwc-dialog#compas-open-dlg')
@@ -26,6 +27,7 @@ export default class CompasOpenMenuPlugin extends LitElement {
   async run(): Promise<void> {
     this.compasOpenElement.selectedType = undefined;
     await this.compasOpenElement.requestUpdate();
+
     this.dialog.show();
   }
 

@@ -13,8 +13,8 @@ import '@material/mwc-list';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 
-import 'open-scd/src/action-pane.js';
-import 'open-scd/src/action-icon.js';
+import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/src/action-icon.js';
 
 import './sitipe-bay.js';
 

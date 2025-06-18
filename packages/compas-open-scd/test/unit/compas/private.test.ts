@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 
-import { fetchDoc } from 'open-scd/test/unit/wizards/test-support.js';
+import { fetchDoc } from "@openscd/plugins/test/unit/wizards/test-support.js";
 import {
   COMPAS_NAMESPACE,
   COMPAS_PREFIX,

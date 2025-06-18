@@ -2,7 +2,7 @@ import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
 
 import './sitipe/sitipe-substation.js';
-import { isPublic } from 'open-scd/src/foundation.js';
+import { isPublic } from '@openscd/open-scd/src/foundation.js';
 
 /** An editor [[`plugin`]] for Sitipe based configuration */
 export default class SitipePlugin extends LitElement {

@@ -17,17 +17,15 @@ import '@material/mwc-icon-button';
 
 import { IconButton } from '@material/mwc-icon-button';
 
-import {
-  ComplexAction,
-  createElement,
-  isPublic,
-  newActionEvent,
-  newLogEvent,
-  SimpleAction,
-} from 'open-scd/src/foundation.js';
+import { isPublic } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
+import { createElement } from '@openscd/xml';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
-import 'open-scd/src/action-pane.js';
-import 'open-scd/src/action-icon.js';
+import { ComplexAction, SimpleAction } from "@openscd/core/foundation/deprecated/editor.js";
+
+import '@openscd/open-scd/src/action-pane.js';
+import '@openscd/open-scd/src/action-icon.js';
 
 import {
   SIEMENS_SITIPE_IED_REF,
@@ -45,7 +43,7 @@ import {
 } from './sitipe-service.js';
 import { defaultNamingStrategy, NamingStrategy } from './sitipe-substation.js';
 import { get } from 'lit-translate';
-import { updateReferences } from 'open-scd/src/wizards/foundation/references.js';
+import { updateReferences } from '@openscd/plugins/src/wizards/foundation/references.js';
 
 /**
  * Transfer namespaces from one element to another

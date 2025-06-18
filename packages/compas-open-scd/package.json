@@ -1,6 +1,6 @@
 {
   "name": "compas-open-scd",
-  "version": "0.33.0-6",
+  "version": "0.38.0-2",
   "repository": "https://github.com/openscd/open-scd.git",
   "description": "OpenSCD CoMPAS Edition",
   "directory": "packages/compas-open-scd",
@@ -43,7 +43,9 @@
     "lit-translate": "^1.2.1",
     "marked": "^4.0.10",
     "panzoom": "^9.4.2",
-    "open-scd": "*"
+    "@openscd/open-scd": "*",
+    "@openscd/plugins": "*",
+    "@openscd/addons": "*"
   },
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
@@ -66,10 +68,11 @@
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
-    "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && npm run build:only",
-    "build:only": "snowpack build && workbox generateSW workbox-config.cjs",
-    "start": "snowpack dev"
+    "build:test": "npm run test && npm run build && cp .nojekyll build/",
+    "build": "npm run doc && npm run build:only && cp .nojekyll build/",
+    "build:only": "npx rimraf node_modules/.cache/snowpack/build/lit@2.8.0 && snowpack build && workbox generateSW workbox-config.cjs",
+    "__comment:start": "snowpack dev fails if the lit package is cached. I don't know why, but we have to delete it before starting",
+    "start": "npx rimraf node_modules/.cache/snowpack/build/lit@2.8.0 && snowpack dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
