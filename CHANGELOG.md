@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.39.0](https://github.com/openscd/open-scd/compare/v0.38.1...v0.39.0) (2025-05-28)
+
+
+### Features
+
+* add commit lint to OpenSCD ([#1676](https://github.com/openscd/open-scd/issues/1676)) ([fffd1a7](https://github.com/openscd/open-scd/commit/fffd1a766f175044f78f34b0d833079dba34e085))
+* add subscriber later binding plugin ([#1664](https://github.com/openscd/open-scd/issues/1664)) ([26f6900](https://github.com/openscd/open-scd/commit/26f690007cb5e7fe42b22f7fc46f18035d934008))
+* move gse smv between connectedAPs ([#1680](https://github.com/openscd/open-scd/issues/1680)) ([da8324e](https://github.com/openscd/open-scd/commit/da8324e08483a3b45dc7436d7c2e22381fa3c9e8))
+* remove communication from the substation editor and use oscd-publisher plugin ([#1650](https://github.com/openscd/open-scd/issues/1650)) ([c850088](https://github.com/openscd/open-scd/commit/c8500880bfdffd87cf014a5ad1d9fcef89a5ba41))
+
+
+### Bug Fixes
+
+* change pattern definition of tIDNaming to non-whitespace characters ([#1670](https://github.com/openscd/open-scd/issues/1670)) ([5476bd0](https://github.com/openscd/open-scd/commit/5476bd08711ae94341802db0636dcfd0e231cd41))
+* Fix handle activate editor ([#1651](https://github.com/openscd/open-scd/issues/1651)) ([3847944](https://github.com/openscd/open-scd/commit/384794420292a9e5192eac937d907238a6113120))
+* modify start script to clear snowpack cache ([#1654](https://github.com/openscd/open-scd/issues/1654)) ([ff699e3](https://github.com/openscd/open-scd/commit/ff699e357442593f07bf9665473b1fbc499606b0))
+* Move menu item content outside drawer ([#1683](https://github.com/openscd/open-scd/issues/1683)) ([15b2872](https://github.com/openscd/open-scd/commit/15b287240a015ab49590d6a4ab094f9180a16917))
+* update deprecated ubuntu image in pr-preview workflow ([#1665](https://github.com/openscd/open-scd/issues/1665)) ([f9f5e45](https://github.com/openscd/open-scd/commit/f9f5e450dee98fe3c5192f50d8ecb302be666705))
+
+## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* Attach release files in release please ([#1636](https://github.com/openscd/open-scd/issues/1636)) ([f2e6a1d](https://github.com/openscd/open-scd/commit/f2e6a1d8b8fc49b03c75e94dfeed565eeb1bda2f))
+* Build entire project and attach distribution to build output ([#1639](https://github.com/openscd/open-scd/issues/1639)) ([bd554e7](https://github.com/openscd/open-scd/commit/bd554e72f308a3c6e60f4ee1d98fa4884fc5d8f8))
+* continue to upload assets job even if npm publish step fails ([#1638](https://github.com/openscd/open-scd/issues/1638)) ([bc7571e](https://github.com/openscd/open-scd/commit/bc7571e8351d2a1770e19c58eabf91404cf1726e))
+* rename releases_created into release_created for release_please_action@V4 ([#1641](https://github.com/openscd/open-scd/issues/1641)) ([81801cc](https://github.com/openscd/open-scd/commit/81801cc776311ff996c512ea2f441b2b9cc5e2cd))
+
 ## [0.38.0](https://github.com/openscd/open-scd/compare/v0.37.1...v0.38.0) (2025-02-26)
 
 

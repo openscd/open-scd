@@ -93,6 +93,7 @@ export const de: Translations = {
       select: '{{tagName}} auswählen',
       edit: '{{tagName}} bearbeiten',
       add: '{{tagName}} hinzufügen',
+      selectAp: 'ConnectedAP auswählen'
     },
   },
   openSCD: {

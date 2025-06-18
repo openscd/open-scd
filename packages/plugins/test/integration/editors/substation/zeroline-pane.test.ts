@@ -4,7 +4,6 @@ import '@openscd/open-scd/test/mock-wizard-editor.js';
 import { MockWizardEditor } from '@openscd/open-scd/test/mock-wizard-editor.js';
 
 import '../../../../src/editors/substation/zeroline-pane.js';
-import { FilteredList } from '@openscd/open-scd/src/filtered-list.js';
 import { ZerolinePane } from '../../../../src/editors/substation/zeroline-pane.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 import { IconButton } from '@material/mwc-icon-button';
@@ -29,50 +28,6 @@ describe('zeroline-pane wizarding editing integration', () => {
     );
     zeroline = <ZerolinePane>parent.querySelector('zeroline-pane');
     await parent.updateComplete;
-  });
-
-  it('opens selectGseControlWizard for the complete SCL file', async () => {
-    zeroline.gsecontrol.click();
-    await parent.updateComplete;
-    await parent.wizardUI.updateComplete;
-    expect(parent.wizardUI.dialog).to.exist;
-    const gseControlList = <FilteredList>(
-      parent.wizardUI.dialog?.querySelector('filtered-list')
-    );
-    await gseControlList.updateComplete;
-    expect(gseControlList.items.length).to.equal(
-      doc.querySelectorAll('GSEControl').length
-    );
-  });
-
-  it('opens selectSampledValueControlWizard for the complete SCL file', async () => {
-    zeroline.smvcontrol.click();
-    await parent.updateComplete;
-    await parent.wizardUI.updateComplete;
-
-    expect(parent.wizardUI.dialog).to.exist;
-    const smvControlList = <FilteredList>(
-      parent.wizardUI.dialog?.querySelector('filtered-list')
-    );
-    await smvControlList.updateComplete;
-    expect(smvControlList.items.length).to.equal(
-      doc.querySelectorAll('SampledValueControl').length
-    );
-  });
-
-  it('opens select wizard for SCL element ReportControl for the complete project', async () => {
-    zeroline.reportcontrol.click();
-    await parent.updateComplete;
-    await parent.wizardUI.updateComplete;
-
-    expect(parent.wizardUI.dialog).to.exist;
-    const reportControlList = <FilteredList>(
-      parent.wizardUI.dialog?.querySelector('filtered-list')
-    );
-    await reportControlList.updateComplete;
-    expect(reportControlList.items.length).to.equal(
-      doc.querySelectorAll('ReportControl').length
-    );
   });
 
   it('add Substation element with add button', async () => {

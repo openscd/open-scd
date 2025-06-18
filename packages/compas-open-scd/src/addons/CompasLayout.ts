@@ -38,18 +38,17 @@ import '@material/mwc-dialog';
 import '@material/mwc-switch';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
+import { pluginTag } from '../plugin-tag.js';
+
 import type { UserInfoEvent } from '../compas/foundation';
 import { HistoryState } from '@openscd/open-scd/src/addons/History.js';
 import { OscdPluginManager } from '@openscd/open-scd/src/addons/plugin-manager/plugin-manager';
 import '@openscd/open-scd/src/addons/plugin-manager/plugin-manager';
 import { OscdCustomPluginDialog } from '@openscd/open-scd/src/addons/plugin-manager/custom-plugin-dialog';
 import '@openscd/open-scd/src/addons/plugin-manager/custom-plugin-dialog';
-import { pluginTag } from '../plugin-tag.js';
+import '@openscd/open-scd/src/addons/menu-tabs/menu-tabs.js';
+import { TabActivatedEvent } from '@openscd/open-scd/src/addons/menu-tabs/menu-tabs.js';
 
-// TODO: What happens with this?
-export function compasOpenMenuEvent(): CustomEvent<void> {
-  return new CustomEvent<void>('open-drawer', { bubbles: true, composed: true });
-}
 
 @customElement('compas-layout')
 export class CompasLayout extends LitElement {
@@ -59,8 +58,6 @@ export class CompasLayout extends LitElement {
   @property({ type: String }) docName = '';
   /** Index of the last [[`EditorAction`]] applied. */
   @property({ type: Number }) editCount = -1;
-  /** The currently active editor tab. */
-  @property({ type: Number }) activeTab = 0;
 
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
@@ -75,6 +72,7 @@ export class CompasLayout extends LitElement {
   @state() validated: Promise<void> = Promise.resolve();
 
   @state() shouldValidate = false;
+  @state() activeEditor: Plugin | undefined = this.calcActiveEditors()[0];
 
   @query('#menu') menuUI!: Drawer;
   @query('#menuContent') menuContent!: List;
@@ -259,9 +257,6 @@ export class CompasLayout extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.host.addEventListener('open-drawer', () => {
-      this.menuUI.open = true;
-    })
     this.host.addEventListener('close-drawer', async () => {
       this.menuUI.open = false;
     });
@@ -358,16 +353,7 @@ export class CompasLayout extends LitElement {
     const hasActionItem = me !== 'divider' && me.actionItem;
 
     if (isDivider(me)) { return html`<li divider padded role="separator"></li>`; }
-    if (hasActionItem){
-      return html``;
-    }
-
-    /*
-    if (me.kind === 'validator') {
-      console.log('rendering validator with data')
-      console.log(me)
-    }
-    */
+    if (hasActionItem){ return html``; }
     return html`
       <mwc-list-item
         class="${me.kind}"
@@ -497,17 +483,17 @@ export class CompasLayout extends LitElement {
     if(!hasActiveEditors){ return html``; }
 
     return html`
-      <mwc-tab-bar
-        @MDCTabBar:activated=${this.handleActivatedEditorTabByUser}
-        activeIndex=${this.activeTab}
+      <oscd-menu-tabs
+        .editors=${this.calcActiveEditors()}
+        .activeEditor=${this.activeEditor}
+        @oscd-editor-tab-activated=${this.handleEditorTabActivated}
       >
-        ${activeEditors}
-      </mwc-tab-bar>
-      ${renderEditorContent(this.editors, this.activeTab, this.doc)}
+      </oscd-menu-tabs>
+      ${renderEditorContent(this.doc, this.activeEditor, )}
     `;
 
-    function renderEditorContent(editors: Plugin[], activeTab: number, doc: XMLDocument | null){
-      const editor = editors[activeTab];
+    function renderEditorContent(doc: XMLDocument | null, activeEditor?: Plugin){
+      const editor = activeEditor;
       const requireDoc = editor?.requireDoc
       if(requireDoc && !doc) { return html`` }
 
@@ -518,22 +504,17 @@ export class CompasLayout extends LitElement {
     }
   }
 
-  private handleActivatedEditorTabByUser(e: CustomEvent): void {
-    const tabIndex = e.detail.index;
-    this.activateTab(tabIndex);
+  private handleEditorTabActivated(e: TabActivatedEvent){
+    this.activeEditor = e.detail.editor
   }
 
   private handleActivateEditorByEvent(e: CustomEvent<{name: string, src: string}>): void {
     const {name, src} = e.detail;
     const editors = this.calcActiveEditors()
-    const wantedEditorIndex = editors.findIndex(editor => editor.name === name || editor.src === src)
-    if(wantedEditorIndex < 0){ return; } // TODO: log error
+    const wantedEditor = editors.find(editor => editor.name === name || editor.src === src)
+    if(!wantedEditor){ return; } // TODO: log error
 
-    this.activateTab(wantedEditorIndex);
-  }
-
-  private activateTab(index: number){
-    this.activeTab = index;
+    this.activeEditor = wantedEditor;
   }
 
   private handleRunMenuByEvent(e: CustomEvent<{name: string}>): void {
@@ -546,7 +527,7 @@ export class CompasLayout extends LitElement {
       return;
     }
 
-    (menuContentElement as unknown as MenuPlugin).run()
+    (menuContentElement as unknown as MenuPlugin).run();
   }
 
   /**
