@@ -42,4 +42,4 @@ A high-level overview of how it’s organized will help you know where to look f
 
 ## CC-EULA license
 
-Some of the files in this repository are subject to the CC-EULA License. Please check the [disclaimer](./packages/openscd/public/xml/Disclaimer.md) to to see what his means
+Some of the files in this repository are subject to the CC-EULA License. Please check the [disclaimer](./packages/openscd/public/xml/Disclaimer.md) to to see what his means.

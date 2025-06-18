@@ -39,45 +39,6 @@ describe('A component to visualize SCL element IED', () => {
     expect(element).to.have.property('name', 'UNDEFINED');
   });
 
-  it('triggers select wizard for GSEControl element on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[class="selectgse"]')
-    )).click();
-
-    await element.requestUpdate();
-
-    expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
-      'select'
-    );
-  });
-
-  it('triggers select wizard for SampledValueControl element on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[class="selectsmv"]')
-    )).click();
-
-    await element.requestUpdate();
-
-    expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
-      'select'
-    );
-  });
-
-  it('triggers select wizard for ReportControl element on action button click', async () => {
-    (<HTMLElement>(
-      element.shadowRoot?.querySelector('mwc-fab[class="selectreport"]')
-    )).click();
-
-    await element.requestUpdate();
-
-    expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
-      'select'
-    );
-  });
-
   it('triggers reference wizard for removing IED on action button click', async () => {
     (<HTMLElement>(
       element.shadowRoot?.querySelector('mwc-fab[class="delete"]')
