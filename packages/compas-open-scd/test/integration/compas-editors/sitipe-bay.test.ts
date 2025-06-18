@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { stub } from 'sinon';
 
-import 'open-scd/test/unit/mock-editor.js';
 import { SitipeBay } from '../../../src/compas-editors/sitipe/sitipe-bay.js';
-import { MockEditor } from 'open-scd/test/unit/mock-editor.js';
+import '@openscd/open-scd/test/mock-editor-logger.js';
+import { MockEditorLogger } from '@openscd/open-scd/test/mock-editor-logger.js';
 
 describe('sitipe-bay-integration', () => {
   if (customElements.get('sitipe-bay') === undefined) {
@@ -11,7 +11,7 @@ describe('sitipe-bay-integration', () => {
   }
 
   let element: SitipeBay;
-  let parent: MockEditor;
+  let parent: MockEditorLogger;
   let validSCL: XMLDocument;
 
   let bayTypicals: unknown[];
@@ -56,13 +56,13 @@ describe('sitipe-bay-integration', () => {
     ];
 
     parent = await fixture(
-      html`<mock-editor .doc=${validSCL}
+      html`<mock-editor-logger .doc=${validSCL}
         ><sitipe-bay
           .doc=${validSCL}
           .bay=${bay}
           .bayTypicals=${bayTypicals}
         ></sitipe-bay
-      ></mock-editor>`
+      ></mock-editor-logger>`
     );
 
     element = parent.querySelector('sitipe-bay')!;

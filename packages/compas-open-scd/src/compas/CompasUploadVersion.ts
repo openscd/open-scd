@@ -6,14 +6,14 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-button';
 
 import {
-  newLogEvent,
-  newPendingStateEvent,
   newWizardEvent,
   Wizard,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
+import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
+import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 
-import 'open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/src/wizard-textfield.js';
 
 import { CompasExistsIn } from './CompasExistsIn.js';
 import { CompasSclDataService } from '../compas-services/CompasSclDataService.js';

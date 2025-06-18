@@ -1,8 +1,9 @@
 import {expect, fixture, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
-import { MockWizard } from 'open-scd/test/mock-wizard.js';
-import 'open-scd/test/mock-wizard.js';
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
+import '@openscd/open-scd/test/mock-wizard-editor.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 import {addVersionToCompasWizard, CompasUploadVersionElement} from "../../../src/compas/CompasUploadVersion.js";
 import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
@@ -70,11 +71,12 @@ describe('compas-upload-version', () => {
   })
 
   describe('existing document in compas through wizard', () => {
-    let wizardElement: MockWizard;
+    let wizardElement: MockWizardEditor;
 
     beforeEach(async () => {
-      wizardElement = await fixture(html `<mock-wizard></mock-wizard>`);
-      wizardElement.workflow.push(() => addVersionToCompasWizard({docId: docId, docName: docName}));
+      wizardElement = await fixture(html `<mock-wizard-editor></mock-wizard-editor>`);
+      const wizard = addVersionToCompasWizard({docId: docId, docName: docName});
+      wizardElement.dispatchEvent(newWizardEvent(wizard));
       await wizardElement.requestUpdate();
 
       element = wizardElement.wizardUI.dialog!

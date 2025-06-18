@@ -1,10 +1,11 @@
 import {expect, fixture, html} from "@open-wc/testing";
 
-import {MockWizard} from "open-scd/test/mock-wizard.js";
-import {fetchDoc} from "open-scd/test/unit/wizards/test-support.js";
-import {initializeNsdoc, Nsdoc} from "open-scd/src/foundation/nsdoc.js";
+import {MockWizardEditor} from "@openscd/open-scd/test/mock-wizard-editor.js";
+import {fetchDoc} from "@openscd/plugins/test/unit/wizards/test-support.js";
+import {initializeNsdoc, Nsdoc} from "@openscd/open-scd/src/foundation/nsdoc.js";
 
-import "open-scd/test/mock-wizard.js";
+import "@openscd/open-scd/test/mock-wizard-editor.js";
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
 import {LocamationLNodeListElement, locamationLNListWizard} from "../../../src/locamation/LocamationLNList.js";
 
@@ -21,14 +22,14 @@ describe('Wizards for Locamation Plugin to select the Logical Node - ', () => {
   });
 
   describe('starting screen as wizard - ', async () => {
-    let element: MockWizard;
+    let element: MockWizardEditor;
 
     beforeEach(async () => {
       lDevice = doc.querySelector('LDevice[inst="MU01"]')!
 
-      element = await fixture(html`<mock-wizard></mock-wizard>`);
+      element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
       const wizard = locamationLNListWizard(lDevice, nsdoc);
-      element.workflow.push(() => wizard);
+      element.dispatchEvent(newWizardEvent(wizard));
       await element.requestUpdate();
     });
 

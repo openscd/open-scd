@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
+        with:
+          submodules: 'true'
 
       - name: Cache Docker Register
         uses: actions/cache@v4
@@ -44,11 +46,10 @@ jobs:
 
       - name: Build application with npm
         run: |
-          cd packages/compas-open-scd
           npm ci
           npm run-script build
       - name: Build and push docker image to Docker Hub
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           # Set the context to use the packages/compas-open-scd directory and not execute it's own git checkout.
           context: packages/compas-open-scd

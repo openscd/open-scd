@@ -2,10 +2,12 @@ import { expect } from '@open-wc/testing';
 
 import {
   ComplexAction,
-  isSimple,
+  isSimple
+} from '@openscd/core/foundation/deprecated/editor.js';
+import {
   WizardActor,
   WizardInputElement,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 export function executeWizardComplexAction(
   wizardActor: WizardActor,

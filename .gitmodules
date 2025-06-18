@@ -1,0 +1,32 @@
+[submodule "packages/external-plugins/oscd-publisher"]
+	path = packages/external-plugins/oscd-publisher
+	url = https://github.com/openscd/oscd-publisher
+	branch = deploy
+[submodule "packages/external-plugins/oscd-plugins"]
+	path = packages/external-plugins/oscd-plugins
+	url = https://github.com/sprinteins/oscd-plugins
+	branch = gh-pages
+[submodule "packages/external-plugins/oscd-subscriber-later-binding"]
+	path = packages/external-plugins/oscd-subscriber-later-binding
+	url = https://github.com/danyill/oscd-subscriber-later-binding
+	branch = gh-pages
+[submodule "packages/external-plugins/oscd-template-generator"]
+	path = packages/external-plugins/oscd-template-generator
+	url = https://github.com/openscd/oscd-template-generator
+	branch = deploy
+[submodule "packages/external-plugins/scl-template-update"]
+	path = packages/external-plugins/scl-template-update
+	url = https://github.com/openscd/scl-template-update
+	branch = deploy
+[submodule "packages/external-plugins/oscd-designer"]
+	path = packages/external-plugins/oscd-designer
+	url = https://github.com/OpenEnergyTools/oscd-designer
+	branch = gh-pages
+[submodule "packages/external-plugins/scl-bay-template"]
+	path = packages/external-plugins/scl-bay-template
+	url = https://github.com/com-pas/scl-bay-template
+	branch = deploy
+[submodule "packages/external-plugins/scl-wizarding"]
+	path = packages/external-plugins/scl-wizarding
+	url = https://github.com/openenergytools/scl-wizarding
+	branch = deploy

@@ -1,14 +1,18 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import 'open-scd/test/unit/mock-logger.js';
-import { MockLogger } from 'open-scd/test/unit/mock-logger.js';
+import '@openscd/open-scd/test/unit/mock-logger.js';
 
-import { newIssueEvent } from 'open-scd/src/foundation.js';
+import { newIssueEvent } from '@openscd/core/foundation/deprecated/history.js';
+
+import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
+import { OscdHistory } from '@openscd/open-scd//src/addons/History.js';
 
 describe('HistoringElement', () => {
-  let element: MockLogger;
+  let mock: MockOpenSCD;
+  let element: OscdHistory;
   beforeEach(async () => {
-    element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
+    mock = <MockOpenSCD>await fixture(html`<mock-open-scd></mock-open-scd>`);
+    element = mock.historyAddon;
   });
 
   describe('with a CoMPAS issue coming in - CoMPAS validator', () => {

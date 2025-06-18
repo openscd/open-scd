@@ -11,7 +11,7 @@ import { translate } from 'lit-translate';
 import '@material/mwc-textfield';
 import '@material/mwc-button';
 
-import { newWizardEvent } from 'open-scd/src/foundation.js';
+import { newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
 import { Switch } from '@material/mwc-switch';
 

@@ -4,7 +4,7 @@ import '../compas/CompasOpen.js';
 
 import { DocRetrievedEvent } from '../compas/CompasOpen.js';
 
-import CompareIEDPlugin from 'open-scd/src/menu/CompareIED.js';
+import CompareIEDPlugin from '@openscd/plugins/src/menu/CompareIED.js';
 
 export default class CompasCompareIEDPlugin extends CompareIEDPlugin {
   /**

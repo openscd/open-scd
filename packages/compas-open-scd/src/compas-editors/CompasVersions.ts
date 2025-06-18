@@ -21,14 +21,15 @@ import '@material/mwc-list/mwc-check-list-item';
 import { Dialog } from '@material/mwc-dialog';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import 'open-scd/src/plain-compare-list.js';
+import '@openscd/open-scd/src/plain-compare-list.js';
+
+import { newLogEvent } from "@openscd/core/foundation/deprecated/history.js";
+import { newOpenDocEvent } from "@openscd/core/foundation/deprecated/open-event.js";
 
 import {
-  newLogEvent,
-  newOpenDocEvent,
   newWizardEvent,
   Wizard,
-} from 'open-scd/src/foundation.js';
+} from '@openscd/open-scd/src/foundation.js';
 
 import {
   CompasSclDataService,
