@@ -41,6 +41,10 @@ import {
 } from '@openscd/open-scd/src/plugin.events.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history.js';
 import packageJson from '../package.json';
+import { CompasSclDataService } from './compas-services/CompasSclDataService.js';
+import { createLogEvent } from './compas-services/foundation.js';
+
+const LNODE_LIB_DOC_ID = '3942f511-7d87-4482-bff9-056a98c6ce15';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
@@ -61,6 +65,7 @@ export class OpenSCD extends LitElement {
                 .docId=${this.docId}
                 .host=${this}
                 .editCount=${this.historyState.editCount}
+                .compasApi=${this.compasApi}
               >
                 <compas-layout
                   @add-external-plugin=${this.handleAddExternalPlugin}
@@ -73,6 +78,7 @@ export class OpenSCD extends LitElement {
                   .editCount=${this.historyState.editCount}
                   .historyState=${this.historyState}
                   .plugins=${this.storedPlugins}
+                  .compasApi=${this.compasApi}
                 >
                 </compas-layout>
               </oscd-editor>
@@ -125,6 +131,36 @@ export class OpenSCD extends LitElement {
     this.dispatchEvent(newOpenDocEvent(doc, docName));
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
+  }
+
+  private _lNodeLibrary: Document | null = null;
+  public compasApi: CompasApi;
+
+  constructor() {
+    super();
+    this.compasApi = {
+      lNodeLibrary: {
+        loadLNodeLibrary: async () => {
+          const doc = await this.loadLNodeLibrary();
+          return doc;
+        },
+        lNodeLibrary: () => this._lNodeLibrary,
+      },
+    };
+  }
+
+  private async loadLNodeLibrary(): Promise<Document | null> {
+    try {
+      const doc = await CompasSclDataService().getSclDocument(this, 'SSD', LNODE_LIB_DOC_ID);
+      if (doc instanceof Document) {
+        this._lNodeLibrary = doc;
+        return doc;
+      }
+      return null;
+    } catch (reason) {
+      createLogEvent(this, reason);
+      return null;
+    }
   }
 
   /**
@@ -428,6 +464,7 @@ export class OpenSCD extends LitElement {
             .nsdoc=${this.nsdoc}
             .docs=${this.docs}
             .locale=${this.locale}
+            .compasApi=${this.compasApi}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',
@@ -545,6 +582,14 @@ export function newSetPluginsEvent(selectedPlugins: Plugin[]): SetPluginsEvent {
     composed: true,
     detail: { selectedPlugins },
   });
+}
+
+
+export interface CompasApi {
+  lNodeLibrary: {
+    loadLNodeLibrary: () => Promise<Document | null>;
+    lNodeLibrary: () => Document | null;
+  };
 }
 
 /**
