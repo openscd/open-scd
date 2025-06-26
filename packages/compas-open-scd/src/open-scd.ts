@@ -45,7 +45,7 @@ import packageJson from '../package.json';
 import { CompasSclDataService } from './compas-services/CompasSclDataService.js';
 import { createLogEvent } from './compas-services/foundation.js';
 
-const LNODE_LIB_DOC_ID = '3942f511-7d87-4482-bff9-056a98c6ce15';
+const LNODE_LIB_DOC_ID = 'fc55c46d-c109-4ccd-bf66-9f1d0e135689';
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
