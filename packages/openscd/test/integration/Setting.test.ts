@@ -18,7 +18,7 @@ describe('Oscd-Settings', () => {
         <oscd-settings .host=${document}></oscd-settings>
       </oscd-history>`
     );
-    
+
     settings = logger.querySelector('oscd-settings')!;
   });
 
@@ -97,7 +97,7 @@ describe('Oscd-Settings', () => {
 
     expect(logger.log.length).to.be.equal(1);
     expect(logger.log[0].title).to.be.equal(
-      'The version of IEC 61850-7-3 NSD (2007B3) does not correlate ' +
+      'The version of IEC 61850-7-3 NSD (2007B5) does not correlate ' +
         'with the version of the corresponding NSDoc (wrong-version.nsdoc, 2007B4)'
     );
   });

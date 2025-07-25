@@ -529,7 +529,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with issues in the DataTy
 `;
 /* end snapshot ValidateTemplates OpenSCD integration test  with issues in the DataTypeTemplates section pushes issues to the diagnostics pane that look like the latest snapshot */
 
-snapshots["ValidateTemplates OpenSCD integration test  with schema version smaller \"2007B3\" looks like the latest snapshot"] = 
+snapshots["ValidateTemplates OpenSCD integration test  with schema version smaller \"2007B5\" looks like the latest snapshot"] = 
 `<mwc-dialog
   heading="Diagnostics"
   id="diagnostic"
@@ -551,7 +551,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
       role="separator"
     >
     </li>
-    <abbr title="Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+    <abbr title="Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B5
 ">
       <mwc-list-item
         aria-disabled="false"
@@ -559,7 +559,7 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
         tabindex="-1"
       >
         <span>
-          Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+          Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B5
         </span>
         <span slot="secondary">
         </span>
@@ -574,5 +574,5 @@ snapshots["ValidateTemplates OpenSCD integration test  with schema version small
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot ValidateTemplates OpenSCD integration test  with schema version smaller "2007B3" looks like the latest snapshot */
+/* end snapshot ValidateTemplates OpenSCD integration test  with schema version smaller "2007B5" looks like the latest snapshot */
 
