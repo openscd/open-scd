@@ -253,7 +253,7 @@ export class OscdSettings extends LitElement {
     if (!this.isEqual(nsdVersion, nsdocVersion)) {
       this.dispatchEvent(
         newLogEvent({
-          kind: 'error',
+          kind: 'warning',
           title: get('settings.invalidNsdocVersion', {
             id: id,
             filename: event.detail.filename,
@@ -262,7 +262,6 @@ export class OscdSettings extends LitElement {
           }),
         })
       );
-      return;
     }
 
     this.setSetting(id as keyof Settings, event.detail.nsdoc);
