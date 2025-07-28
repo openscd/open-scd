@@ -67,18 +67,18 @@ describe('Oscd-Settings', () => {
     settings.settingsUI.show();
     await settings.settingsUI.updateComplete;
 
-    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2-B-5.nsdoc').then(
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2-B-3.nsdoc').then(
       response => response.text()
     );
 
-    logger.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'IEC_61850-7-2-B-5.nsdoc'));
+    logger.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'IEC_61850-7-2-B-3.nsdoc'));
 
     await logger.requestUpdate();
     await logger.updateComplete;
 
     expect(logger.log.length).to.be.equal(1);
     expect(logger.log[0].title).to.be.equal(
-      "The version of IEC 61850-7-2 NSD (2007B3) does not correlate with the version of the corresponding NSDoc (IEC_61850-7-2-B-5.nsdoc, 2007B5)"
+      "The version of IEC 61850-7-2 NSD (2007B5) does not correlate with the version of the corresponding NSDoc (IEC_61850-7-2-B-3.nsdoc, 2007B3)"
     );
   });
 

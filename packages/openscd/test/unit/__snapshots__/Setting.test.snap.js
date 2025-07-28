@@ -974,7 +974,7 @@ snapshots["OSCD-Settings loads .nsdoc file with missmatched nsd version"] =
         IEC 61850-7-2
       </span>
       <span slot="secondary">
-        2007B5
+        2007B3
       </span>
       <mwc-icon
         slot="graphic"
