@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.40.0](https://github.com/openscd/open-scd/compare/v0.39.0...v0.40.0) (2025-07-31)
+
+
+### Features
+
+* Make layout parts overwriteable ([#1692](https://github.com/openscd/open-scd/issues/1692)) ([b3822d2](https://github.com/openscd/open-scd/commit/b3822d27416baff13b358fca50f6a7dfe0eee50c))
+
+
+### Bug Fixes
+
+* **communication-plugin:** Offer only valid connected aps as move targets ([#1685](https://github.com/openscd/open-scd/issues/1685)) ([bfd43ba](https://github.com/openscd/open-scd/commit/bfd43bab3e164d15f7aa2bafe5d0d428df9d10e7))
+* **Settings:** Allow missmatched nsdoc import ([#1690](https://github.com/openscd/open-scd/issues/1690)) ([287d0f0](https://github.com/openscd/open-scd/commit/287d0f070ca1deaa88148ce16c67aa51407f4000))
+
 ## [0.39.0](https://github.com/openscd/open-scd/compare/v0.38.1...v0.39.0) (2025-05-28)
 
 
