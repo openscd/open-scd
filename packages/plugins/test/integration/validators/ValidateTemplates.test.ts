@@ -27,7 +27,8 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId =
+        'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
@@ -52,7 +53,8 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId =
+        'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
@@ -68,7 +70,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
       await expect(parent.historyAddon.diagnosticUI).to.equalSnapshot();
     });
   });
-  describe('with schema version smaller "2007B3"', () => {
+  describe('with schema version smaller "2007B5"', () => {
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
@@ -80,7 +82,8 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
         ></mock-open-scd>
       `);
       element = parent.getActivePlugin();
-      element.pluginId = 'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
+      element.pluginId =
+        'http://localhost:8000/plugins/src/validators/ValidateTemplates.js';
 
       await element.validate();
       await parent.updateComplete;
@@ -128,7 +131,9 @@ const builtinPlugins: Plugin[] = [
   },
   {
     name: 'Subscriber Message Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberMessageBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/GooseSubscriberMessageBinding.js'
+    ),
     icon: 'link',
     default: false,
     kind: 'editor',
@@ -137,7 +142,9 @@ const builtinPlugins: Plugin[] = [
   },
   {
     name: 'Subscriber Data Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberDataBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/GooseSubscriberDataBinding.js'
+    ),
     icon: 'link',
     default: false,
     kind: 'editor',
@@ -146,7 +153,9 @@ const builtinPlugins: Plugin[] = [
   },
   {
     name: 'Subscriber Message Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
+    src: generatePluginPath(
+      'plugins/src/editors/SMVSubscriberMessageBinding.js'
+    ),
     icon: 'link',
     default: false,
     kind: 'editor',
@@ -363,5 +372,5 @@ const builtinPlugins: Plugin[] = [
 ];
 
 export function generatePluginPath(plugin: string): string {
-  return location.origin+location.pathname+plugin;
+  return location.origin + location.pathname + plugin;
 }

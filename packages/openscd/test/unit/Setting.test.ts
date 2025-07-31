@@ -75,7 +75,7 @@ describe('OSCD-Settings', () => {
     await element.settingsUI.updateComplete;
 
     const nsdocFile = await fetch(
-      '/test/testfiles/nsdoc/IEC_61850-7-2-B-5.nsdoc'
+      '/test/testfiles/nsdoc/IEC_61850-7-2-B-3.nsdoc'
     ).then(response => response.text());
 
     element.setSetting('IEC 61850-7-2', nsdocFile);

@@ -422,7 +422,7 @@ snapshots["OSCD-Settings saves chosen .nsdoc file and looks like latest snapshot
         IEC 61850-7-2
       </span>
       <span slot="secondary">
-        2007B3
+        2007B5
       </span>
       <mwc-icon
         slot="graphic"
@@ -974,7 +974,7 @@ snapshots["OSCD-Settings loads .nsdoc file with missmatched nsd version"] =
         IEC 61850-7-2
       </span>
       <span slot="secondary">
-        2007B5
+        2007B3
       </span>
       <mwc-icon
         slot="graphic"
