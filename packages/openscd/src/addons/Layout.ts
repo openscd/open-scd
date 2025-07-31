@@ -404,9 +404,25 @@ export class OscdLayout extends LitElement {
         slot="navigationIcon"
         @click=${() => (this.menuUI.open = true)}
       ></mwc-icon-button>
-      <div slot="title" id="title">${this.docName}</div>
-      ${this.menu.map(this.renderActionItem)}
+      ${this.renderTitle()}
+      ${this.renderActionItems()}
     </mwc-top-app-bar-fixed>`;
+  }
+
+  /**
+   * Renders the title section in the top bar
+   * Make sure to use slot="title" for the returned template
+   */
+  protected renderTitle(): TemplateResult {
+    return  html`<div slot="title" id="title">${this.docName}</div>`;
+  }
+
+  /**
+   * Renders the action items for the top bar
+   * Make sure to use slot="actionItems" for each element
+   */
+  protected renderActionItems(): TemplateResult {
+    return  html`${this.menu.map(this.renderActionItem)}`;
   }
 
   protected renderMenuContent(): TemplateResult {
