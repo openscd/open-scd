@@ -127,12 +127,12 @@ describe('ValidateTemplates', () => {
       );
     });
 
-    it('pushes only diag.missingnsd issue to diagnostics pane for SCL version < 2007B3', async () => {
+    it('pushes only diag.missingnsd issue to diagnostics pane for SCL version < 2007B5', async () => {
       element.doc.querySelector('SCL')?.setAttribute('version', '2003');
       await element.validate();
       expect(issueEvent).to.have.been.calledOnce;
       expect(issueEvent.args[0][0].detail.title).to.contain(
-        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3'
+        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B5'
       );
     });
 
@@ -142,7 +142,7 @@ describe('ValidateTemplates', () => {
       await element.validate();
       expect(issueEvent).to.have.been.calledOnce;
       expect(issueEvent.args[0][0].detail.title).to.contain(
-        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3'
+        'Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B5'
       );
     });
 

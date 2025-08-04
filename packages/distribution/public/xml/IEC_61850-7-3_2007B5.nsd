@@ -5,10 +5,15 @@
     id="IEC 61850-7-3"
     version="2007"
     revision="B"
-    release="3"
-    umlVersion="WG10built3"
-    umlDate="2019-10-02T00:00:00Z"
-    publicationStage="IS">
+    release="5"
+    umlVersion="WG10built12"
+    umlDate="2024-02-12"
+    publicationStage="IS"
+    appVersion="j61850DocBuilder 02.03 based on jCleanCim noNS beta9.3 (derived from jCleanCim 02-02)"
+    namespaceType="basic"
+    nsdVersion="2017"
+    nsdRevision="B"
+    nsdRelease="5">
    <Copyright>
          <Notice>
 			COPYRIGHT (c) IEC, www.iec.ch/tc57/supportdocuments. This version of this NSD is part of IEC_61850-7-3:2010 Edition 2.1; see the IEC_61850-7-3:2010 Edition 2.1 for full legal notices. In case of any differences between the here-below code and the IEC published content, the here-below definition supersedes the IEC publication; it may contain updates. See history files. The whole document has to be taken into account to have a full description of this code component.
@@ -17,9 +22,12 @@
          <License uri="www.iec.ch/CCv1" kind="Standard"/>
       </Copyright>
    <Changes version="2007"
-            revision="A"
-            tissues="690, 691, 692, 697, 698, 707, 709, 711, 722, 814, 816, 819, 832, 839, 846, 868, 887, 919, 924, 925, 926, 929, 953, 954, 962, 968, 996, 1078, 1079, 1122, 1127, 1184, 1187, 1189, 1220, 1233, 1240, 1242, 1247, 1253, 1265, 1270, 1311, 1372, 1387, 1388, 1403, 1430, 1438, 1578, 1581, 1598, 1602, 1623"/>
-   <DependsOn id="IEC 61850-7-2" version="2007" revision="B"/>
+            revision="B"
+            tissues="1716, 1730, 1783, 1785, 1807, 1829, 1840, 1851, 1852, 1889, 1900"/>
+   <DependsOn id="IEC 61850-7-2"
+              version="2007"
+              revision="B"
+              dependencyType="dependsOn"/>
    <Enumerations>
          <Enumeration name="AngleReferenceKind"
                    titleID="IEC61850_7_3.DAEnums::AngleReferenceKind.cl.title">
@@ -232,7 +240,7 @@
                   descID="IEC61850_7_3.DAEnums::MultiplierKind.n.desc"/>
             <Literal name="µ"
                   literalVal="-6"
-                  descID="IEC61850_7_3.DAEnums::MultiplierKind._micro.desc"/>
+                  descID="IEC61850_7_3.DAEnums::MultiplierKind.µ.desc"/>
             <Literal name="m"
                   literalVal="-3"
                   descID="IEC61850_7_3.DAEnums::MultiplierKind.m.desc"/>
@@ -385,7 +393,7 @@
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.Bq.desc"/>
             <Literal name="°C"
                   literalVal="23"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind._deg_C.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.°C.desc"/>
             <Literal name="Sv"
                   literalVal="24"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.Sv.desc"/>
@@ -436,31 +444,31 @@
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.Pa.desc"/>
             <Literal name="m²"
                   literalVal="41"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m².desc"/>
             <Literal name="m³"
                   literalVal="42"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_cube_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m³.desc"/>
             <Literal name="m/s"
                   literalVal="43"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.m_per_s.desc"/>
             <Literal name="m/s²"
                   literalVal="44"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_per_s_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_per_s².desc"/>
             <Literal name="m³/s"
                   literalVal="45"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_cube__per_s.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m³_per_s.desc"/>
             <Literal name="m/m³"
                   literalVal="46"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_per_m_cube_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_per_m³.desc"/>
             <Literal name="M"
                   literalVal="47"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.M.desc"/>
             <Literal name="kg/m³"
                   literalVal="48"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.kg_per_m_cube_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.kg_per_m³.desc"/>
             <Literal name="m²/s"
                   literalVal="49"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m_sq__per_s.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.m²_per_s.desc"/>
             <Literal name="W/m K"
                   literalVal="50"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.W_per_m_K.desc"/>
@@ -478,10 +486,10 @@
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.rad_per_s.desc"/>
             <Literal name="W/m²"
                   literalVal="55"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.W_per_m_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.W_per_m².desc"/>
             <Literal name="J/m²"
                   literalVal="56"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.J_per_m_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.J_per_m².desc"/>
             <Literal name="S/m"
                   literalVal="57"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.S_per_m.desc"/>
@@ -516,16 +524,16 @@
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.Vs.desc"/>
             <Literal name="V²"
                   literalVal="67"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.V_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.V².desc"/>
             <Literal name="As"
                   literalVal="68"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.As.desc"/>
             <Literal name="A²"
                   literalVal="69"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.A_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.A².desc"/>
             <Literal name="A²t"
                   literalVal="70"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.A_sq_t.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.A²t.desc"/>
             <Literal name="VAh"
                   literalVal="71"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.VAh.desc"/>
@@ -549,7 +557,7 @@
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.char_per_s.desc"/>
             <Literal name="kgm²"
                   literalVal="78"
-                  descID="IEC61850_7_3.DAEnums::SIUnitKind.kgm_sq_.desc"/>
+                  descID="IEC61850_7_3.DAEnums::SIUnitKind.kgm².desc"/>
             <Literal name="dB"
                   literalVal="79"
                   descID="IEC61850_7_3.DAEnums::SIUnitKind.dB.desc"/>
@@ -1429,7 +1437,8 @@
                         type="Timestamp"
                         dchg="true"
                         descID="IEC61850_7_3.CDCStatusInfo::BCR.strTm.desc"
-                        presCond="O"/>
+                        presCond="OF"
+                        presCondArgs="frVal"/>
             <DataAttribute name="frPd"
                         fc="CF"
                         type="INT32"
@@ -3541,7 +3550,8 @@
                         type="FLOAT32"
                         dchg="true"
                         descID="IEC61850_7_3.CDCControl::APC.dbRef.desc"
-                        presCond="M"/>
+                        presCond="MO"
+                        presCondArgs="db"/>
             <DataAttribute name="d"
                         fc="DC"
                         type="VisString255"
@@ -3730,7 +3740,8 @@
                         type="FLOAT32"
                         dchg="true"
                         descID="IEC61850_7_3.CDCControl::BAC.dbRef.desc"
-                        presCond="M"/>
+                        presCond="MO"
+                        presCondArgs="db"/>
             <DataAttribute name="d"
                         fc="DC"
                         type="VisString255"
@@ -5765,7 +5776,9 @@
                         descID="IEC61850_7_3.CoreAbstractCDCs::BasePrimitiveCDC.dataNs.desc"
                         presCond="MOdataNs"/>
          </CDC>
-         <CDC name="GTS" titleID="IEC61850_7_3.CDCServiceTracking::GTS.cl.title">
+         <CDC name="GTS"
+           titleID="IEC61850_7_3.CDCServiceTracking::GTS.cl.title"
+           typeKindParameterized="true">
             <DataAttribute name="objRef"
                         fc="SR"
                         type="ObjRef"
@@ -5826,7 +5839,7 @@
                         presCond="M"/>
             <DataAttribute name="dstAddress"
                         fc="SR"
-                        type="PhyComAddr"
+                        typeKind="SCSM"
                         descID="IEC61850_7_3.CDCServiceTracking::GTS.dstAddress.desc"
                         presCond="M"/>
             <DataAttribute name="d"
@@ -5850,7 +5863,9 @@
                         descID="IEC61850_7_3.CoreAbstractCDCs::BasePrimitiveCDC.dataNs.desc"
                         presCond="MOdataNs"/>
          </CDC>
-         <CDC name="MTS" titleID="IEC61850_7_3.CDCServiceTracking::MTS.cl.title">
+         <CDC name="MTS"
+           titleID="IEC61850_7_3.CDCServiceTracking::MTS.cl.title"
+           typeKindParameterized="true">
             <DataAttribute name="objRef"
                         fc="SR"
                         type="ObjRef"
@@ -5922,7 +5937,7 @@
                         presCond="M"/>
             <DataAttribute name="dstAddress"
                         fc="SR"
-                        type="PhyComAddr"
+                        typeKind="SCSM"
                         descID="IEC61850_7_3.CDCServiceTracking::MTS.dstAddress.desc"
                         presCond="M"/>
             <DataAttribute name="d"
