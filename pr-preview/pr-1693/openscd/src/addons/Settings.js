@@ -241,7 +241,7 @@ export let OscdSettings = class extends LitElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    registerTranslateConfig({loader, empty: (key) => key});
+    registerTranslateConfig({loader: this.languageConfig.loader, empty: (key) => key});
     use(this.settings.language);
     if (this.host) {
       this.host.addEventListener("oscd-settings", (evt) => {
@@ -263,7 +263,7 @@ export let OscdSettings = class extends LitElement {
             icon="language"
             label="${get("settings.language")}"
           >
-            ${Object.keys(languages).map((lang) => html`<mwc-list-item
+            ${Object.keys(this.languageConfig.languages).map((lang) => html`<mwc-list-item
                   graphic="icon"
                   value="${lang}"
                   ?selected=${lang === this.settings.language}
