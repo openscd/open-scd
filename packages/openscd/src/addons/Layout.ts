@@ -378,7 +378,7 @@ export class OscdLayout extends LitElement {
     `;
   }
 
-  private renderActionItem(me: MenuItem | 'divider'): TemplateResult {
+  protected renderActionItem(me: MenuItem | 'divider'): TemplateResult {
     if(me === 'divider' || !me.actionItem){ return html`` }
 
     return html`
