@@ -344,7 +344,7 @@ export class OscdSettings extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    registerTranslateConfig({ loader, empty: key => key });
+    registerTranslateConfig({ loader: this.languageConfig.loader, empty: key => key });
     use(this.settings.language);
 
     if (this.host) {
@@ -370,7 +370,7 @@ export class OscdSettings extends LitElement {
             icon="language"
             label="${get('settings.language')}"
           >
-            ${Object.keys(languages).map(
+            ${Object.keys(this.languageConfig.languages).map(
               lang =>
                 html`<mwc-list-item
                   graphic="icon"
