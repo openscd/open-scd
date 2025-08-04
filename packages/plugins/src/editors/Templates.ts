@@ -7,14 +7,9 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 
 import '@openscd/open-scd/src/filtered-list.js';
-import {
-  identity,
-  newWizardEvent,
-} from '@openscd/open-scd/src/foundation.js';
+import { identity, newWizardEvent } from '@openscd/open-scd/src/foundation.js';
 
-import {
-  createElement,
-} from '@openscd/xml';
+import { createElement } from '@openscd/xml';
 
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { styles } from './templates/foundation.js';
@@ -44,7 +39,7 @@ const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-const nsd74 = fetch('public/xml/IEC_61850-7-4_2007B3.nsd')
+const nsd74 = fetch('public/xml/IEC_61850-7-4_2007B5.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

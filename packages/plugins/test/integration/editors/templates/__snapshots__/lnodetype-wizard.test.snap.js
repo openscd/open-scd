@@ -976,7 +976,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
           LTRK
         </span>
         <span slot="meta">
-          23
+          25
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -2608,7 +2608,7 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
           RFLO
         </span>
         <span slot="meta">
-          24
+          26
         </span>
       </mwc-list-item>
       <mwc-list-item
