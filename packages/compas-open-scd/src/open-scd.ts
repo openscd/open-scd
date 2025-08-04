@@ -13,9 +13,9 @@ import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter
 import './addons/CompasSession.js';
 import './addons/CompasHistory.js';
 import './addons/CompasLayout.js';
-import './addons/CompasSettings.js';
 
 import '@openscd/open-scd/src/addons/Waiter.js';
+import '@openscd/open-scd/src/addons/Settings.js';
 import {
   HistoryState,
   historyStateEvent,
@@ -44,6 +44,7 @@ import { pluginTag } from '@openscd/open-scd/src/plugin-tag.js';
 import packageJson from '../package.json';
 import { CompasSclDataService } from './compas-services/CompasSclDataService.js';
 import { createLogEvent } from './compas-services/foundation.js';
+import { languages, loader } from './translations/loader.js';
 
 const LNODE_LIB_DOC_ID = 'fc55c46d-c109-4ccd-bf66-9f1d0e135689';
 
@@ -51,10 +52,15 @@ const LNODE_LIB_DOC_ID = 'fc55c46d-c109-4ccd-bf66-9f1d0e135689';
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends LitElement {
+  private languageConfig = { loader, languages };
   render(): TemplateResult {
     return html`<compas-session>
       <oscd-waiter>
-        <compas-settings-addon .host=${this} .nsdUploadButton=${false}>
+        <oscd-settings
+          .host=${this}
+          .nsdUploadButton=${false}
+          .languageConfig=${this.languageConfig}
+        >
           <oscd-wizards .host=${this}>
             <compas-history
               .host=${this}
@@ -85,7 +91,7 @@ export class OpenSCD extends LitElement {
               </oscd-editor>
             </compas-history>
           </oscd-wizards>
-        </compas-settings-addon>
+        </oscd-settings>
       </oscd-waiter>
     </compas-session>`;
   }
