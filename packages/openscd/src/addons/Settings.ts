@@ -7,7 +7,7 @@ import {
   LitElement,
   css,
 } from 'lit-element';
-import { get, registerTranslateConfig, use } from 'lit-translate';
+import { get, registerTranslateConfig, Strings, use } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -32,7 +32,7 @@ import {
   LoadNsdocEvent,
   newLoadNsdocEvent
 } from '@openscd/core/foundation/deprecated/settings.js';
-import { languages, loader } from '../translations/loader.js';
+import { Languages, languages, loader } from '../translations/loader.js';
 
 import '../WizardDivider.js';
 import { WizardDialog } from '../wizard-dialog.js';
@@ -44,6 +44,11 @@ import {
   iec6185081,
 } from '../foundation/nsd.js';
 import { initializeNsdoc, Nsdoc } from '../foundation/nsdoc.js';
+
+interface LanguageConfig {
+  loader(lang: string): Promise<Strings>;
+  languages: Languages;
+}
 
 export const defaults: Settings = {
   language: 'en',
@@ -83,6 +88,9 @@ export class OscdSettings extends LitElement {
 
   @property({ type: Boolean })
   nsdUploadButton = true;
+
+  @property({ type: Object })
+  languageConfig: LanguageConfig = { languages, loader };
 
   /**
    * Get the versions of the current OpenSCD NSD files.
@@ -333,15 +341,12 @@ export class OscdSettings extends LitElement {
     return new DOMParser().parseFromString(text, 'application/xml');
   }
 
-  constructor() {
-    super();
+  connectedCallback(): void {
+    super.connectedCallback();
 
     registerTranslateConfig({ loader, empty: key => key });
     use(this.settings.language);
-  }
 
-  connectedCallback(): void {
-    super.connectedCallback();
     if (this.host) {
       this.host!.addEventListener('oscd-settings', (evt: SettingsUIEvent) => {
         evt.detail.show ? this.settingsUI.show() : this.settingsUI.close();
