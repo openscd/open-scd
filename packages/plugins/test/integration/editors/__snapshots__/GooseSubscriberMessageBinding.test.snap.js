@@ -659,7 +659,7 @@ snapshots["GOOSE subscriber plugin in Publisher view with a selected GOOSE messa
 
 snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin itsself looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="Publisher | Subscriber">
+  <mwc-formfield label="subscription.goose.view.publisherView">
     <mwc-radio
       id="goosePublisherView"
       name="view"
@@ -667,7 +667,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view per default the plugin its
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="Subscriber | Publisher">
+  <mwc-formfield label="subscription.goose.view.subscriberView">
     <mwc-radio
       checked=""
       id="gooseSubscriberView"
@@ -1187,7 +1187,7 @@ snapshots["GOOSE subscriber plugin in Subscriber view with a selected IED for pa
 
 snapshots["in Publisher view per default the plugin itself looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="Publisher | Subscriber">
+  <mwc-formfield label="subscription.goose.view.publisherView">
     <mwc-radio
       checked=""
       id="goosePublisherView"
@@ -1196,7 +1196,7 @@ snapshots["in Publisher view per default the plugin itself looks like the latest
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="Subscriber | Publisher">
+  <mwc-formfield label="subscription.goose.view.subscriberView">
     <mwc-radio
       id="gooseSubscriberView"
       name="view"
