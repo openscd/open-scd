@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.41.0](https://github.com/openscd/open-scd/compare/v0.40.0...v0.41.0) (2025-08-04)
+
+
+### Features
+
+* update nsd files ([#1691](https://github.com/openscd/open-scd/issues/1691)) ([c437f5a](https://github.com/openscd/open-scd/commit/c437f5acaf5a45032cfae559ecf70de968913d45))
+
+
+### Bug Fixes
+
+* **Settings:** Make language loader configureable ([#1693](https://github.com/openscd/open-scd/issues/1693)) ([5205a9f](https://github.com/openscd/open-scd/commit/5205a9f751d8e9dbc0cb5b2630af39c31dc09460))
+
 ## [0.40.0](https://github.com/openscd/open-scd/compare/v0.39.0...v0.40.0) (2025-07-31)
 
 
