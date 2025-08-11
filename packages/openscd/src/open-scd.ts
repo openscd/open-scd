@@ -45,6 +45,7 @@ import type {
   Plugin as CorePlugin,
   EditCompletedEvent,
 } from '@openscd/core';
+import { OscdApi } from '@openscd/core';
 
 import { HistoryState, historyStateEvent } from './addons/History.js';
 
@@ -431,6 +432,7 @@ export class OpenSCD extends LitElement {
             .nsdoc=${this.nsdoc}
             .docs=${this.docs}
             .locale=${this.locale}
+            .oscdApi=${new OscdApi()}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',
