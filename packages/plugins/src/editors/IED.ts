@@ -26,26 +26,30 @@ import {
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { getIcon } from '@openscd/open-scd/src/icons/icons.js';
+import { OscdApi } from '@openscd/core';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
-
+  
   @property({ type: Number })
   editCount = -1;
-
+  
   /** All the nsdoc files that are being uploaded via the settings. */
   @property()
   nsdoc!: Nsdoc;
-
+  
+  @property()
+  oscdApi!: OscdApi;
+  
   @state()
   selectedIEDs: string[] = [];
-
+  
   @state()
   selectedLNClasses: string[] = [];
-
+  
   @state()
   private get iedList(): Element[] {
     return this.doc
@@ -61,26 +65,26 @@ export default class IedPlugin extends LitElement {
     const uniqueLNClassList: string[] = [];
     if (currentIed) {
       return Array.from(currentIed.querySelectorAll('LN0, LN'))
-        .filter(element => element.hasAttribute('lnClass'))
-        .filter(element => {
-          const lnClass = element.getAttribute('lnClass') ?? '';
-          if (uniqueLNClassList.includes(lnClass)) {
-            return false;
-          }
-          uniqueLNClassList.push(lnClass);
-          return true;
-        })
-        .sort((a, b) => {
-          const aLnClass = a.getAttribute('lnClass') ?? '';
-          const bLnClass = b.getAttribute('lnClass') ?? '';
-
-          return aLnClass.localeCompare(bLnClass);
-        })
-        .map(element => {
-          const lnClass = element.getAttribute('lnClass');
-          const label = this.nsdoc.getDataDescription(element).label;
-          return [lnClass, label];
-        }) as string[][];
+      .filter(element => element.hasAttribute('lnClass'))
+      .filter(element => {
+        const lnClass = element.getAttribute('lnClass') ?? '';
+        if (uniqueLNClassList.includes(lnClass)) {
+          return false;
+        }
+        uniqueLNClassList.push(lnClass);
+        return true;
+      })
+      .sort((a, b) => {
+        const aLnClass = a.getAttribute('lnClass') ?? '';
+        const bLnClass = b.getAttribute('lnClass') ?? '';
+        
+        return aLnClass.localeCompare(bLnClass);
+      })
+      .map(element => {
+        const lnClass = element.getAttribute('lnClass');
+        const label = this.nsdoc.getDataDescription(element).label;
+        return [lnClass, label];
+      }) as string[][];
     }
     return [];
   }
@@ -100,6 +104,16 @@ export default class IedPlugin extends LitElement {
   }
 
   lNClassListOpenedOnce = false;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.loadPluginState();
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.storePluginState();
+  }
 
   protected updated(_changedProperties: PropertyValues): void {
     super.updated(_changedProperties);
@@ -132,6 +146,23 @@ export default class IedPlugin extends LitElement {
     }
   }
 
+  private loadPluginState(): void {
+    const stateApi = this.oscdApi?.pluginState;
+    const selectedIEDs: string[] | null = (stateApi?.getState()?.selectedIEDs as string[]) ?? null;
+    
+    if (selectedIEDs) {
+      this.onSelectionChange(selectedIEDs);
+    }
+  }
+
+  private storePluginState(): void {
+    const stateApi = this.oscdApi?.pluginState;
+    
+    if (stateApi) {
+      stateApi.setState({ selectedIEDs: this.selectedIEDs });
+    }
+  }
+
   private calcSelectedLNClasses(): string[] {
     const somethingSelected = this.selectedLNClasses.length > 0;
     const lnClasses = this.lnClassList.map(lnClassInfo => lnClassInfo[0]);
@@ -147,6 +178,29 @@ export default class IedPlugin extends LitElement {
     return selectedLNClasses;
   }
 
+  private onSelectionChange(selectedIeds: string[]): void {
+    const equalArrays = <T>(first: T[], second: T[]): boolean => {
+      return (
+        first.length === second.length &&
+        first.every((val, index) => val === second[index])
+      );
+    };
+    
+    const selectionChanged = !equalArrays(
+      this.selectedIEDs,
+      selectedIeds
+    );
+    
+    if (!selectionChanged) {
+      return;
+    }
+    
+    this.lNClassListOpenedOnce = false;
+    this.selectedIEDs = selectedIeds;
+    this.selectedLNClasses = [];
+    this.requestUpdate('selectedIed');
+  }
+
   render(): TemplateResult {
     const iedList = this.iedList;
     if (iedList.length > 0) {
@@ -158,28 +212,7 @@ export default class IedPlugin extends LitElement {
             id="iedFilter"
             icon="developer_board"
             .header=${get('iededitor.iedSelector')}
-            @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
-              const equalArrays = <T>(first: T[], second: T[]): boolean => {
-                return (
-                  first.length === second.length &&
-                  first.every((val, index) => val === second[index])
-                );
-              };
-
-              const selectionChanged = !equalArrays(
-                this.selectedIEDs,
-                e.detail.selectedItems
-              );
-
-              if (!selectionChanged) {
-                return;
-              }
-
-              this.lNClassListOpenedOnce = false;
-              this.selectedIEDs = e.detail.selectedItems;
-              this.selectedLNClasses = [];
-              this.requestUpdate('selectedIed');
-            }}"
+            @selected-items-changed="${(e: SelectedItemsChangedEvent) => this.onSelectionChange(e.detail.selectedItems)}"
           >
             ${iedList.map(ied => {
               const name = getNameAttribute(ied);
