@@ -350,7 +350,7 @@ let OpenSCD = class OpenSCD extends LitElement {
             .nsdoc=${this.nsdoc}
             .docs=${this.docs}
             .locale=${this.locale}
-            .oscdApi=${new OscdApi()}
+            .oscdApi=${new OscdApi(tag)}
             class="${classMap({
                     plugin: true,
                     menu: plugin.kind === 'menu',
