@@ -33,6 +33,7 @@ export default class IedPlugin extends LitElement {
   constructor() {
     super(...arguments);
     this.editCount = -1;
+    this.oscdApi = null;
     this.selectedIEDs = [];
     this.selectedLNClasses = [];
     this.lNClassListOpenedOnce = false;
