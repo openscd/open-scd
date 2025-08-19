@@ -62,6 +62,14 @@ export default class IedPlugin extends LitElement {
         }
         return undefined;
     }
+    connectedCallback() {
+        super.connectedCallback();
+        this.loadPluginState();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.storePluginState();
+    }
     updated(_changedProperties) {
         super.updated(_changedProperties);
         // When the document is updated, we reset the selected IED if it no longer exists
@@ -85,6 +93,19 @@ export default class IedPlugin extends LitElement {
             }
         }
     }
+    loadPluginState() {
+        const stateApi = this.oscdApi?.pluginState;
+        const selectedIEDs = stateApi?.getState()?.selectedIEDs ?? null;
+        if (selectedIEDs) {
+            this.onSelectionChange(selectedIEDs);
+        }
+    }
+    storePluginState() {
+        const stateApi = this.oscdApi?.pluginState;
+        if (stateApi) {
+            stateApi.setState({ selectedIEDs: this.selectedIEDs });
+        }
+    }
     calcSelectedLNClasses() {
         const somethingSelected = this.selectedLNClasses.length > 0;
         const lnClasses = this.lnClassList.map(lnClassInfo => lnClassInfo[0]);
@@ -93,6 +114,20 @@ export default class IedPlugin extends LitElement {
             selectedLNClasses = lnClasses.filter(lnClass => this.selectedLNClasses.includes(lnClass));
         }
         return selectedLNClasses;
+    }
+    onSelectionChange(selectedIeds) {
+        const equalArrays = (first, second) => {
+            return (first.length === second.length &&
+                first.every((val, index) => val === second[index]));
+        };
+        const selectionChanged = !equalArrays(this.selectedIEDs, selectedIeds);
+        if (!selectionChanged) {
+            return;
+        }
+        this.lNClassListOpenedOnce = false;
+        this.selectedIEDs = selectedIeds;
+        this.selectedLNClasses = [];
+        this.requestUpdate('selectedIed');
     }
     render() {
         const iedList = this.iedList;
@@ -105,20 +140,7 @@ export default class IedPlugin extends LitElement {
             id="iedFilter"
             icon="developer_board"
             .header=${get('iededitor.iedSelector')}
-            @selected-items-changed="${(e) => {
-                const equalArrays = (first, second) => {
-                    return (first.length === second.length &&
-                        first.every((val, index) => val === second[index]));
-                };
-                const selectionChanged = !equalArrays(this.selectedIEDs, e.detail.selectedItems);
-                if (!selectionChanged) {
-                    return;
-                }
-                this.lNClassListOpenedOnce = false;
-                this.selectedIEDs = e.detail.selectedItems;
-                this.selectedLNClasses = [];
-                this.requestUpdate('selectedIed');
-            }}"
+            @selected-items-changed="${(e) => this.onSelectionChange(e.detail.selectedItems)}"
           >
             ${iedList.map(ied => {
                 const name = getNameAttribute(ied);
@@ -217,6 +239,9 @@ __decorate([
 __decorate([
     property()
 ], IedPlugin.prototype, "nsdoc", void 0);
+__decorate([
+    property()
+], IedPlugin.prototype, "oscdApi", void 0);
 __decorate([
     state()
 ], IedPlugin.prototype, "selectedIEDs", void 0);
