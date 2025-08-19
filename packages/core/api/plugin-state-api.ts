@@ -3,20 +3,35 @@ type PluginState = {
 }
 
 export class PluginStateApi {
-  private state: PluginState | null = null;
+  private static state: { [tag: string]: PluginState | null } = {};
+  private pluginTag: string;
+
+  constructor(tag: string) {
+    this.pluginTag = tag;
+  }
 
   public setState(state: PluginState): void {
-    this.state = state;
+    this.setPluginState(state);
   }
 
-  getState(): PluginState | null {
-    return this.state;
+  public getState(): PluginState | null {
+    return this.getPluginState();
   }
 
-  updateState(partialState: Partial<PluginState>): void {
-    this.state = {
-      ...this.state,
+  public updateState(partialState: Partial<PluginState>): void {
+    const pluginState = this.getPluginState();
+    const patchedState = {
+      ...pluginState,
       ...partialState
     };
+    this.setPluginState(patchedState);
+  }
+
+  private setPluginState(state: PluginState): void {
+    PluginStateApi.state[this.pluginTag] = state;
+  }
+
+  private getPluginState(): PluginState | null {
+    return PluginStateApi.state[this.pluginTag] ?? null;
   }
 }

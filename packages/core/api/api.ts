@@ -1,5 +1,9 @@
 import { PluginStateApi } from './plugin-state-api.js';
 
 export class OscdApi {
-  protected pluginState = new PluginStateApi();
+  public pluginState: PluginStateApi;
+
+  constructor(pluginTag: string) {
+    this.pluginState = new PluginStateApi(pluginTag);
+  }
 }
