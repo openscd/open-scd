@@ -10,7 +10,7 @@ export class PluginStateApi {
     this.pluginTag = tag;
   }
 
-  public setState(state: PluginState): void {
+  public setState(state: PluginState | null): void {
     this.setPluginState(state);
   }
 
@@ -27,7 +27,7 @@ export class PluginStateApi {
     this.setPluginState(patchedState);
   }
 
-  private setPluginState(state: PluginState): void {
+  private setPluginState(state: PluginState | null): void {
     PluginStateApi.state[this.pluginTag] = state;
   }
 

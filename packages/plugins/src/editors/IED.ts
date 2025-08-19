@@ -42,7 +42,7 @@ export default class IedPlugin extends LitElement {
   nsdoc!: Nsdoc;
   
   @property()
-  oscdApi!: OscdApi;
+  oscdApi: OscdApi | null = null;
   
   @state()
   selectedIEDs: string[] = [];
