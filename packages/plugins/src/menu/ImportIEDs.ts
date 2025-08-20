@@ -425,13 +425,13 @@ export default class ImportingIedPlugin extends LitElement {
 
     const dataTypeTemplateActions = addDataTypeTemplates(ied, this.doc);
     const communicationActions = addCommunicationElements(ied, this.doc);
-    const actions = communicationActions.concat(dataTypeTemplateActions);
-    actions.push({
+    const insertIed = {
       new: {
         parent: this.doc!.querySelector(':root')!,
         element: ied,
       },
-    });
+    };
+    const actions = [ ...communicationActions, insertIed, ...dataTypeTemplateActions ];
 
     this.dispatchEvent(
       newActionEvent({
