@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.42.0](https://github.com/openscd/open-scd/compare/v0.41.0...v0.42.0) (2025-08-20)
+
+
+### Features
+
+* Add oscd api with plugin state ([#1696](https://github.com/openscd/open-scd/issues/1696)) ([1c457cf](https://github.com/openscd/open-scd/commit/1c457cf02a404a61b7ff09553223091bc5edd1f6))
+
+
+### Bug Fixes
+
+* **Import IED:** Fix order of edits ([#1698](https://github.com/openscd/open-scd/issues/1698)) ([0831fa4](https://github.com/openscd/open-scd/commit/0831fa4e4cde55a21c261b1b4b8b5994868509b0))
+
 ## [0.41.0](https://github.com/openscd/open-scd/compare/v0.40.0...v0.41.0) (2025-08-04)
 
 
