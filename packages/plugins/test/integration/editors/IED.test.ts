@@ -17,6 +17,8 @@ import { LNContainer } from '../../../src/editors/ied/ln-container.js';
 import { DOContainer } from '../../../src/editors/ied/do-container.js';
 import { DAContainer } from '../../../src/editors/ied/da-container.js';
 import { MockOpenSCD } from '@openscd/open-scd/test/mock-open-scd.js';
+import { OscdApi } from '@openscd/core';
+import { PluginStateApi } from '../../../../core/dist/api/plugin-state-api.js';
 
 describe('IED Plugin', () => {
   if (customElements.get('ied-plugin') === undefined)
@@ -42,6 +44,7 @@ describe('IED Plugin', () => {
 
   describe('with a doc loaded', () => {
     let doc: XMLDocument;
+    let oscdApi: OscdApi;
 
     describe('containing no IEDs', () => {
       beforeEach(async () => {
@@ -106,9 +109,11 @@ describe('IED Plugin', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
         nsdoc = await initializeNsdoc();
+        oscdApi = new OscdApi('IED');
+        oscdApi.pluginState.setState(null);
         parent = await fixture(
           html`<mock-open-scd
-            ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}"></ied-plugin
+            ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}" .oscdApi=${oscdApi}></ied-plugin
           ></mock-open-scd>`
         );
         element = parent.getActivePlugin();
@@ -370,6 +375,28 @@ describe('IED Plugin', () => {
         primaryButton.click();
         await element.updateComplete;
       }
+
+      describe('load and store selected IEDs', () => {
+        it('should store selected IEDs on disconnected', async () => {
+          await selectIed('IED3');
+          element.disconnectedCallback();
+
+          const api = new OscdApi('IED');
+          expect(api.pluginState.getState()).to.deep.equal({ selectedIEDs: ['IED3'] });
+        });
+      });
+
+      describe('with stored plugin state', () => {
+        beforeEach(() => {
+          oscdApi.pluginState.setState({ selectedIEDs: ['IED3'] });
+        });
+
+        it('should load previously saved IED', () => {
+          element.connectedCallback();
+
+          expect(element.selectedIEDs).to.deep.equal(['IED3']);
+        });
+      });
     });
   });
 

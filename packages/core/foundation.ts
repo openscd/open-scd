@@ -66,3 +66,5 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
     [[]]
   );
 }
+
+export { OscdApi } from './api/api.js';
