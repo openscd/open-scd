@@ -30,6 +30,7 @@ export default ({
     "**/.github/**",
     "**/.idea/**",
     "**/web-test-runner.config.mjs",
+    "**/oscd-plugins/auto-doc/**/*",
   ],
   workspaceRoot: "../../",
   mount: {
