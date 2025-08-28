@@ -97,7 +97,7 @@ export const officialPlugins = [
   },
   {
     name: 'Communication Explorer',
-    src: '/external-plugins/oscd-plugins/communication-explorer/0.0.31/index.js',
+    src: '/external-plugins/oscd-plugins/communication-explorer/0.0.32/index.js',
     icon: 'lan',
     activeByDefault: true,
     kind: 'editor',
