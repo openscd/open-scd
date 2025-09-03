@@ -85,7 +85,7 @@ snapshots["Oscd-Settings upload .nsdoc file using event and looks like latest sn
         IEC 61850-7-2
       </span>
       <span slot="secondary">
-        2007B3
+        2007B5
       </span>
       <mwc-icon
         slot="graphic"

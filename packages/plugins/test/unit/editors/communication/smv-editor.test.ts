@@ -56,4 +56,22 @@ describe('Editor web component for SMV element', () => {
     expect(actionEvent).to.have.been.calledOnce;
     expect(actionEvent.args[0][0].detail.action).to.satisfy(isDelete);
   });
+
+  it('dispatches request-smv-move event on move button click', async () => {
+    const moveEventSpy = spy();
+    window.addEventListener('request-smv-move', moveEventSpy);
+
+    (<HTMLElement>(
+      element.shadowRoot?.querySelector('mwc-fab[icon="forward"]')
+    )).click();
+
+    await element.requestUpdate();
+
+    expect(moveEventSpy).to.have.been.calledOnce;
+
+    const eventDetail = moveEventSpy.args[0][0].detail;
+    expect(eventDetail).to.have.property('element', element.element);
+
+    window.removeEventListener('request-gse-move', moveEventSpy);
+  });
 });

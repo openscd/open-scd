@@ -60,7 +60,14 @@
       "initial-version": "0.33.0",
       "include-component-in-tag": true,
       "include-v-in-tag": true,
-      "tag-separator": "@"
+      "tag-separator": "@",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "packages/openscd/package.json",
+          "jsonpath": "$.version"
+        }
+      ]
     },
     "packages/core": {
       "component": "core",
@@ -73,10 +80,24 @@
       "initial-version": "0.1.0",
       "include-component-in-tag": true,
       "include-v-in-tag": true,
-      "tag-separator": "@"
+      "tag-separator": "@",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "packages/core/package.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "bootstrap-sha": "e780fb7605cd828740492061a26d3fca21275976",
-  "release-type": "node"
+  "release-type": "node",
+  "extra-files": [
+    {
+      "type": "json",
+      "path": "packages/distribution/manifest.json",
+      "jsonpath": "$.version"
+    }
+  ]
 }

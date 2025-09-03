@@ -36,15 +36,13 @@ export default class ValidateTemplates extends LitElement {
   }
 
   async validate(): Promise<void> {
-    const promises: Promise<void>[] = [];
-
     const [version, revision, release] = [
       this.doc.documentElement.getAttribute('version') ?? '',
       this.doc.documentElement.getAttribute('revision') ?? '',
       this.doc.documentElement.getAttribute('release') ?? '',
     ];
 
-    if (!(version === '2007' && revision === 'B' && Number(release) > 3)) {
+    if (!(version === '2007' && revision === 'B' && Number(release) >= 5)) {
       this.dispatchEvent(
         newIssueEvent({
           validatorId: this.pluginId,

@@ -46,14 +46,6 @@ export const officialPlugins: PluginConfig[] = [
     requireDoc: true,
   },
   {
-    name: 'Subscriber Later Binding (GOOSE)',
-    src: generatePluginPath('plugins/src/editors/GooseSubscriberLaterBinding.js'),
-    icon: 'link',
-    activeByDefault: true,
-    kind: 'editor',
-    requireDoc: true,
-  },
-  {
     name: 'Subscriber Message Binding (SMV)',
     src: generatePluginPath('plugins/src/editors/SMVSubscriberMessageBinding.js'),
     icon: 'link',
@@ -70,12 +62,12 @@ export const officialPlugins: PluginConfig[] = [
     requireDoc: true,
   },
   {
-    name: 'Subscriber Later Binding (SMV)',
-    src: generatePluginPath('plugins/src/editors/SMVSubscriberLaterBinding.js'),
+    name: 'Subscriber Later Binding (SMV/GOOSE)',
+    src: generatePluginPath('external-plugins/oscd-subscriber-later-binding/oscd-subscriber-later-binding.js'),
     icon: 'link',
     activeByDefault: true,
     kind: 'editor',
-    requireDoc: true,
+    requireDoc: true
   },
   {
     name: 'Communication',
@@ -103,7 +95,7 @@ export const officialPlugins: PluginConfig[] = [
   },
   {
     name: 'Publisher',
-    src: generatePluginPath('plugins/src/editors/Publisher.js'),
+    src: generatePluginPath('external-plugins/oscd-publisher/oscd-publisher.js'),
     icon: 'publish',
     activeByDefault: false,
     kind: 'editor',

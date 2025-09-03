@@ -1,5 +1,49 @@
 # Changelog
 
+## [0.41.0](https://github.com/openscd/open-scd/compare/v0.40.0...v0.41.0) (2025-08-04)
+
+
+### Features
+
+* update nsd files ([#1691](https://github.com/openscd/open-scd/issues/1691)) ([c437f5a](https://github.com/openscd/open-scd/commit/c437f5acaf5a45032cfae559ecf70de968913d45))
+
+
+### Bug Fixes
+
+* **Settings:** Make language loader configureable ([#1693](https://github.com/openscd/open-scd/issues/1693)) ([5205a9f](https://github.com/openscd/open-scd/commit/5205a9f751d8e9dbc0cb5b2630af39c31dc09460))
+
+## [0.40.0](https://github.com/openscd/open-scd/compare/v0.39.0...v0.40.0) (2025-07-31)
+
+
+### Features
+
+* Make layout parts overwriteable ([#1692](https://github.com/openscd/open-scd/issues/1692)) ([b3822d2](https://github.com/openscd/open-scd/commit/b3822d27416baff13b358fca50f6a7dfe0eee50c))
+
+
+### Bug Fixes
+
+* **communication-plugin:** Offer only valid connected aps as move targets ([#1685](https://github.com/openscd/open-scd/issues/1685)) ([bfd43ba](https://github.com/openscd/open-scd/commit/bfd43bab3e164d15f7aa2bafe5d0d428df9d10e7))
+* **Settings:** Allow missmatched nsdoc import ([#1690](https://github.com/openscd/open-scd/issues/1690)) ([287d0f0](https://github.com/openscd/open-scd/commit/287d0f070ca1deaa88148ce16c67aa51407f4000))
+
+## [0.39.0](https://github.com/openscd/open-scd/compare/v0.38.1...v0.39.0) (2025-05-28)
+
+
+### Features
+
+* add commit lint to OpenSCD ([#1676](https://github.com/openscd/open-scd/issues/1676)) ([fffd1a7](https://github.com/openscd/open-scd/commit/fffd1a766f175044f78f34b0d833079dba34e085))
+* add subscriber later binding plugin ([#1664](https://github.com/openscd/open-scd/issues/1664)) ([26f6900](https://github.com/openscd/open-scd/commit/26f690007cb5e7fe42b22f7fc46f18035d934008))
+* move gse smv between connectedAPs ([#1680](https://github.com/openscd/open-scd/issues/1680)) ([da8324e](https://github.com/openscd/open-scd/commit/da8324e08483a3b45dc7436d7c2e22381fa3c9e8))
+* remove communication from the substation editor and use oscd-publisher plugin ([#1650](https://github.com/openscd/open-scd/issues/1650)) ([c850088](https://github.com/openscd/open-scd/commit/c8500880bfdffd87cf014a5ad1d9fcef89a5ba41))
+
+
+### Bug Fixes
+
+* change pattern definition of tIDNaming to non-whitespace characters ([#1670](https://github.com/openscd/open-scd/issues/1670)) ([5476bd0](https://github.com/openscd/open-scd/commit/5476bd08711ae94341802db0636dcfd0e231cd41))
+* Fix handle activate editor ([#1651](https://github.com/openscd/open-scd/issues/1651)) ([3847944](https://github.com/openscd/open-scd/commit/384794420292a9e5192eac937d907238a6113120))
+* modify start script to clear snowpack cache ([#1654](https://github.com/openscd/open-scd/issues/1654)) ([ff699e3](https://github.com/openscd/open-scd/commit/ff699e357442593f07bf9665473b1fbc499606b0))
+* Move menu item content outside drawer ([#1683](https://github.com/openscd/open-scd/issues/1683)) ([15b2872](https://github.com/openscd/open-scd/commit/15b287240a015ab49590d6a4ab094f9180a16917))
+* update deprecated ubuntu image in pr-preview workflow ([#1665](https://github.com/openscd/open-scd/issues/1665)) ([f9f5e45](https://github.com/openscd/open-scd/commit/f9f5e450dee98fe3c5192f50d8ecb302be666705))
+
 ## [0.38.1](https://github.com/openscd/open-scd/compare/v0.38.0...v0.38.1) (2025-03-05)
 
 

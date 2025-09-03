@@ -18,7 +18,7 @@ describe('Oscd-Settings', () => {
         <oscd-settings .host=${document}></oscd-settings>
       </oscd-history>`
     );
-    
+
     settings = logger.querySelector('oscd-settings')!;
   });
 
@@ -63,6 +63,25 @@ describe('Oscd-Settings', () => {
     );
   });
 
+  it('upload .nsdoc file with missmatched nsd version using event and log event fired', async () => {
+    settings.settingsUI.show();
+    await settings.settingsUI.updateComplete;
+
+    const nsdocFile = await fetch('/test/testfiles/nsdoc/IEC_61850-7-2-B-3.nsdoc').then(
+      response => response.text()
+    );
+
+    logger.dispatchEvent(newLoadNsdocEvent(nsdocFile, 'IEC_61850-7-2-B-3.nsdoc'));
+
+    await logger.requestUpdate();
+    await logger.updateComplete;
+
+    expect(logger.log.length).to.be.equal(1);
+    expect(logger.log[0].title).to.be.equal(
+      "The version of IEC 61850-7-2 NSD (2007B5) does not correlate with the version of the corresponding NSDoc (IEC_61850-7-2-B-3.nsdoc, 2007B3)"
+    );
+  });
+
   it('upload .nsdoc file with wrong version using event and log event fired', async () => {
     settings.settingsUI.show();
     await settings.settingsUI.updateComplete;
@@ -78,7 +97,7 @@ describe('Oscd-Settings', () => {
 
     expect(logger.log.length).to.be.equal(1);
     expect(logger.log[0].title).to.be.equal(
-      'The version of IEC 61850-7-3 NSD (2007B3) does not correlate ' +
+      'The version of IEC 61850-7-3 NSD (2007B5) does not correlate ' +
         'with the version of the corresponding NSDoc (wrong-version.nsdoc, 2007B4)'
     );
   });

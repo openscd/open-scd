@@ -2,7 +2,17 @@ import { Strings } from 'lit-translate';
 import { de } from './de.js';
 import { en } from './en.js';
 import { Language } from '@openscd/core/foundation/deprecated/settings.js';
-export const languages = { en, de };
+
+export interface TranslationObject {
+  [key: string]: string | TranslationObject;
+}
+
+export interface Languages {
+  de: TranslationObject;
+  en: TranslationObject;
+}
+
+export const languages: Languages = { en, de };
 
 export type Translations = typeof en;
 

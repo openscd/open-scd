@@ -6,6 +6,7 @@ import '../../src/addons/Settings.js';
 import { OscdSettings, defaults } from '../../src/addons/Settings.js';
 
 import { Button } from '@material/mwc-button';
+import { LogEvent } from '@openscd/core/foundation/deprecated/history.js';
 
 describe('OSCD-Settings', () => {
   let element: OscdSettings;
@@ -66,6 +67,23 @@ describe('OSCD-Settings', () => {
     await element.requestUpdate();
     expect(element.settingsUI.querySelector('section[id="shownsdbutton"]')).to
       .be.null;
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('loads .nsdoc file with missmatched nsd version', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+
+    const nsdocFile = await fetch(
+      '/test/testfiles/nsdoc/IEC_61850-7-2-B-3.nsdoc'
+    ).then(response => response.text());
+
+    element.setSetting('IEC 61850-7-2', nsdocFile);
+
+    await element.requestUpdate();
+    await element.updateComplete
+
+    expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
     await expect(element).shadowDom.to.equalSnapshot();
   });
 

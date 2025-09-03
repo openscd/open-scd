@@ -1127,7 +1127,7 @@ snapshots["Sampled Values Plugin in Subscriber view when selecting an IED and su
 
 snapshots["in Publisher view initially the plugin looks like the latest snapshot"] = 
 `<div>
-  <mwc-formfield label="Publisher | Subscriber">
+  <mwc-formfield label="subscription.smv.view.publisherView">
     <mwc-radio
       checked=""
       id="smvPublisherView"
@@ -1136,7 +1136,7 @@ snapshots["in Publisher view initially the plugin looks like the latest snapshot
     >
     </mwc-radio>
   </mwc-formfield>
-  <mwc-formfield label="Subscriber | Publisher">
+  <mwc-formfield label="subscription.smv.view.subscriberView">
     <mwc-radio
       id="smvSubscriberView"
       name="view"
