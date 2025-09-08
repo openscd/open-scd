@@ -1,7 +1,7 @@
-FROM bitnami/nginx:1.29.1
-COPY build/. /app/
+FROM public.ecr.aws/nginx/nginx
+COPY build/. /usr/share/nginx/html
 
-VOLUME /opt/bitnami/nginx/conf/server_blocks/
-VOLUME /app/public/cim
-VOLUME /app/public/conf
-VOLUME /app/public/nsdoc
+VOLUME /etc/nginx/
+VOLUME /usr/share/nginx/html/public/cim
+VOLUME /usr/share/nginx/html/public/conf
+VOLUME /usr/share/nginx/html/public/nsdoc
