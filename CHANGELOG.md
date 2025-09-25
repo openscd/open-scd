@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.42.0](https://github.com/openscd/open-scd/compare/v0.41.0...v0.42.0) (2025-09-15)
+
+
+### Features
+
+* Add oscd api with plugin state ([#1696](https://github.com/openscd/open-scd/issues/1696)) ([1c457cf](https://github.com/openscd/open-scd/commit/1c457cf02a404a61b7ff09553223091bc5edd1f6))
+
+
+### Bug Fixes
+
+* Connected AP wizard element order ([#1703](https://github.com/openscd/open-scd/issues/1703)) ([cd3b39a](https://github.com/openscd/open-scd/commit/cd3b39ad45b6ddfc5d8c3641a5c120dd95bb5dd6))
+* **Import IED:** Fix order of edits ([#1698](https://github.com/openscd/open-scd/issues/1698)) ([0831fa4](https://github.com/openscd/open-scd/commit/0831fa4e4cde55a21c261b1b4b8b5994868509b0))
+* Settings addon translations ([cd3b39a](https://github.com/openscd/open-scd/commit/cd3b39ad45b6ddfc5d8c3641a5c120dd95bb5dd6))
+
 ## [0.41.0](https://github.com/openscd/open-scd/compare/v0.40.0...v0.41.0) (2025-08-04)
 
 
