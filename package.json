@@ -8,11 +8,11 @@
   ],
   "scripts": {
     "clean": "lerna run clean",
-    "build": "npx nx run-many -t build --all",
+    "build": "NODE_OPTIONS=--no-experimental-require-module npx nx run-many -t build --all",
     "doc": "lerna run doc",
     "test": "npx nx run-many -t test --all --parallel=false",
     "graph": "npx nx graph",
-    "start": "npx rimraf packages/distribution/node_modules/.cache/snowpack/build/lit@2.8.0 && lerna run start",
+    "start": "npx rimraf packages/distribution/node_modules/.cache/snowpack/build/lit@2.8.0 && NODE_OPTIONS=--no-experimental-require-module lerna run start",
     "serve": "nx run @openscd/distribution:serve"
   },
   "repository": {
