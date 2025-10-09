@@ -8,7 +8,7 @@ import {
   PropertyValues,
   TemplateResult,
 } from 'lit-element';
-import { get } from 'lit-translate';
+import { translate } from 'lit-translate';
 import { nothing } from 'lit-html';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
@@ -288,16 +288,18 @@ export default class IedPlugin extends LitElement {
     const iedList = this.iedList;
     if (iedList.length === 0) {
       return html`<h1>
-        <span style="color: var(--base1)">${get('iededitor.missing')}</span>
+        <span style="color: var(--base1)"
+          >${translate('iededitor.missing')}</span
+        >
       </h1>`;
     }
     return html`<section>
       <div class="header">
-        <h1>${get('filters')}:</h1>
+        <h1>${translate('filters')}:</h1>
         <oscd-filter-button
           id="iedFilter"
           icon="developer_board"
-          .header=${get('iededitor.iedSelector')}
+          .header=${translate('iededitor.iedSelector')}
           @selected-items-changed="${(e: SelectedItemsChangedEvent) =>
             this.onSelectionChange(e.detail.selectedItems)}"
         >
@@ -323,7 +325,7 @@ export default class IedPlugin extends LitElement {
         <oscd-filter-button
           id="lnClassesFilter"
           multi="true"
-          .header="${get('iededitor.lnFilter')}"
+          .header="${translate('iededitor.lnFilter')}"
           @selected-items-changed="${(e: SelectedItemsChangedEvent) => {
             this.selectedLNClasses = e.detail.selectedItems;
             this.requestUpdate('selectedIed');
@@ -362,7 +364,7 @@ export default class IedPlugin extends LitElement {
         icon="add"
         @click=${() => this.createIedDialog.show()}
       >
-        ${get('iededitor.createIed')}
+        ${translate('iededitor.createIed')}
       </mwc-button>
       ${this.renderIEDList()}
       <create-ied-dialog

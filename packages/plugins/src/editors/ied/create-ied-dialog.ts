@@ -8,7 +8,7 @@ import {
   query,
   customElement,
 } from 'lit-element';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import { Dialog } from '@material/mwc-dialog';
 import '@material/mwc-button';
@@ -79,12 +79,12 @@ export class CreateIedDialog extends LitElement {
     return html`
       <mwc-dialog
         id="createIedDialog"
-        heading=${get('iededitor.createIed')}
+        heading=${translate('iededitor.createIed')}
         @closed=${this.close}
       >
         <div class="dialog-content">
           <mwc-textfield
-            label=${get('iededitor.createDialog.iedName')}
+            label=${translate('iededitor.createDialog.iedName')}
             .value=${this.newIedName}
             .validationMessage=${errorMessage}
             .validityTransform=${(value: string) => {
@@ -104,7 +104,7 @@ export class CreateIedDialog extends LitElement {
           ></mwc-textfield>
         </div>
         <mwc-button slot="secondaryAction" @click=${this.close}>
-          ${get('cancel')}
+          ${translate('cancel')}
         </mwc-button>
         <mwc-button
           slot="primaryAction"
@@ -112,7 +112,7 @@ export class CreateIedDialog extends LitElement {
           ?disabled=${!isNameValid}
           raised
         >
-          ${get('create')}
+          ${translate('create')}
         </mwc-button>
       </mwc-dialog>
     `;
