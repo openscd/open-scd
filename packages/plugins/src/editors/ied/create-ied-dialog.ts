@@ -99,7 +99,6 @@ export class CreateIedDialog extends LitElement {
               this.newIedName = (e.target as HTMLInputElement).value;
             }}
             required
-            outlined
             style="width: 100%; margin-bottom: 16px;"
           ></mwc-textfield>
         </div>
@@ -110,7 +109,6 @@ export class CreateIedDialog extends LitElement {
           slot="primaryAction"
           @click=${this.handleCreate}
           ?disabled=${!isNameValid}
-          raised
         >
           ${translate('create')}
         </mwc-button>
