@@ -3,7 +3,9 @@ import { expect } from '@open-wc/testing';
 import {
   findDOTypeElement,
   findElement,
-  findLogicaNodeElement,
+  findLLN0LNodeType,
+  findLogicalNodeElement,
+  createIEDStructure,
   getInstanceDAElement,
   getValueElements,
 } from '../../../../src/editors/ied/foundation.js';
@@ -48,7 +50,7 @@ describe('ied-foundation', async () => {
       )!;
       const ancestors = getAncestorsFromDA(daElement, 'Dummy.XCBR1.Pos');
 
-      const lnElement = findLogicaNodeElement(ancestors);
+      const lnElement = findLogicalNodeElement(ancestors);
       expect(lnElement).to.be.not.null;
       expect(lnElement?.tagName).to.be.equal('LN');
     });
@@ -59,13 +61,13 @@ describe('ied-foundation', async () => {
       )!;
       const ancestors = getAncestorsFromDO(doElement);
 
-      const lnElement = findLogicaNodeElement(ancestors);
+      const lnElement = findLogicalNodeElement(ancestors);
       expect(lnElement).to.be.not.null;
       expect(lnElement?.tagName).to.be.equal('LN0');
     });
 
     it('will not find LN(0) Element in list', async () => {
-      const lnElement = findLogicaNodeElement([]);
+      const lnElement = findLogicalNodeElement([]);
       expect(lnElement).to.be.null;
     });
   });
@@ -166,6 +168,70 @@ describe('ied-foundation', async () => {
 
       const dai = getInstanceDAElement(null, da!);
       expect(dai).to.be.null;
+    });
+  });
+
+  describe('findLLN0LNodeType', async () => {
+    it('will find existing LLN0 LNodeType in document', async () => {
+      const lln0Type = findLLN0LNodeType(validSCL);
+      expect(lln0Type).to.be.not.null;
+      expect(lln0Type?.tagName).to.be.equal('LNodeType');
+      expect(lln0Type?.getAttribute('lnClass')).to.be.equal('LLN0');
+      expect(lln0Type?.getAttribute('id')).to.be.equal('Dummy.LLN0');
+    });
+
+    it('will return null if no LLN0 LNodeType exists', async () => {
+      const docWithoutLLN0 = new DOMParser().parseFromString(
+        `<SCL xmlns="http://www.iec.ch/61850/2003/SCL">
+          <DataTypeTemplates>
+            <LNodeType id="SomeOtherType" lnClass="XCBR"/>
+          </DataTypeTemplates>
+        </SCL>`,
+        'application/xml'
+      );
+
+      const lln0Type = findLLN0LNodeType(docWithoutLLN0);
+      expect(lln0Type).to.be.null;
+    });
+  });
+
+  describe('createIEDStructure', async () => {
+    let testDoc: XMLDocument;
+
+    beforeEach(() => {
+      testDoc = new DOMParser().parseFromString(
+        `<SCL xmlns="http://www.iec.ch/61850/2003/SCL"></SCL>`,
+        'application/xml'
+      );
+    });
+
+    it('creates a basic IED structure with required elements', async () => {
+      const ied = createIEDStructure(testDoc, 'TestIED', 'LLN0_Type');
+
+      expect(ied).to.be.not.null;
+      expect(ied.tagName).to.be.equal('IED');
+      expect(ied.getAttribute('name')).to.be.equal('TestIED');
+      expect(ied.getAttribute('manufacturer')).to.be.equal('OpenSCD');
+
+      const accessPoint = ied.querySelector('AccessPoint');
+      expect(accessPoint).to.be.not.null;
+      expect(accessPoint?.getAttribute('name')).to.be.equal('AP1');
+
+      const server = accessPoint?.querySelector('Server');
+      expect(server).to.be.not.null;
+
+      const authentication = server?.querySelector('Authentication');
+      expect(authentication).to.be.not.null;
+
+      const lDevice = server?.querySelector('LDevice');
+      expect(lDevice).to.be.not.null;
+      expect(lDevice?.getAttribute('inst')).to.be.equal('LD1');
+
+      const ln0 = lDevice?.querySelector('LN0');
+      expect(ln0).to.be.not.null;
+      expect(ln0?.getAttribute('lnClass')).to.be.equal('LLN0');
+      expect(ln0?.getAttribute('inst')).to.be.equal('');
+      expect(ln0?.getAttribute('lnType')).to.be.equal('LLN0_Type');
     });
   });
 });

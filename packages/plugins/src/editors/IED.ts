@@ -19,7 +19,11 @@ import './ied/ied-container.js';
 import './ied/element-path.js';
 import './ied/create-ied-dialog.js';
 
-import { insertSelectedLNodeType } from '@openenergytools/scl-lib/dist/tDataTypeTemplates/insertSelectedLNodeType.js';
+import {
+  findLLN0LNodeType,
+  createLLN0LNodeType,
+  createIEDStructure,
+} from './ied/foundation.js';
 import {
   compareNames,
   getDescriptionAttribute,
@@ -29,7 +33,6 @@ import { SelectedItemsChangedEvent } from '@openscd/open-scd/src/oscd-filter-but
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import { getIcon } from '@openscd/open-scd/src/icons/icons.js';
 import { OscdApi, newEditEventV2, InsertV2 } from '@openscd/core';
-import { createElement } from '@openscd/xml';
 import { CreateIedDialog } from './ied/create-ied-dialog.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
@@ -121,67 +124,15 @@ export default class IedPlugin extends LitElement {
     this.storePluginState();
   }
 
-  private findLLN0(): Element | null {
-    return this.doc.querySelector(
-      'DataTypeTemplates > LNodeType[lnClass="LLN0"]'
-    );
-  }
-
-  private createLLN0LNodeType(): InsertV2[] {
-    const selection = {
-      Beh: {
-        stVal: {
-          on: {},
-          blocked: {},
-          test: {},
-          'test/blocked': {},
-          off: {},
-        },
-        q: {},
-        t: {},
-      },
-    };
-
-    const logicalnode = {
-      class: 'LLN0',
-      id: 'PlaceholderLLN0',
-    };
-
-    return insertSelectedLNodeType(this.doc, selection, logicalnode);
-  }
-
   private createVirtualIED(iedName: string): void {
     const inserts: InsertV2[] = [];
 
-    const existingLLN0 = this.findLLN0();
-    const lnType = existingLLN0?.getAttribute('id') || 'PlaceholderLLN0';
+    const existingLLN0 = findLLN0LNodeType(this.doc);
+    const lnTypeId = existingLLN0?.getAttribute('id') || 'PlaceholderLLN0';
 
-    const ied = createElement(this.doc, 'IED', {
-      name: iedName,
-      manufacturer: 'OpenSCD',
-    });
-
-    const accessPoint = createElement(this.doc, 'AccessPoint', { name: 'AP1' });
-    ied.appendChild(accessPoint);
-
-    const server = createElement(this.doc, 'Server', {});
-    accessPoint.appendChild(server);
-
-    const authentication = createElement(this.doc, 'Authentication', {});
-    server.appendChild(authentication);
-
-    const lDevice = createElement(this.doc, 'LDevice', { inst: 'LD1' });
-    server.appendChild(lDevice);
-
-    const ln0 = createElement(this.doc, 'LN0', {
-      lnClass: 'LLN0',
-      inst: '',
-      lnType: lnType,
-    });
-    lDevice.appendChild(ln0);
+    const ied = createIEDStructure(this.doc, iedName, lnTypeId);
 
     const dataTypeTemplates = this.doc.querySelector('DataTypeTemplates');
-
     inserts.push({
       parent: this.doc.querySelector('SCL')!,
       node: ied,
@@ -189,7 +140,7 @@ export default class IedPlugin extends LitElement {
     });
 
     if (!existingLLN0) {
-      const lnodeTypeInserts = this.createLLN0LNodeType();
+      const lnodeTypeInserts = createLLN0LNodeType(this.doc, lnTypeId);
       inserts.push(...lnodeTypeInserts);
     }
 

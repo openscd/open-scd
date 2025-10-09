@@ -28,6 +28,10 @@ export class CreateIedDialog extends LitElement {
   @state()
   private newIedName = '';
 
+  get open() {
+    return this.dialog?.open ?? false;
+  }
+
   private isIedNameValid(name: string): boolean {
     const trimmedName = name.trim();
     return (
