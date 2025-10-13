@@ -29,6 +29,7 @@
     "@material/mwc-switch": "0.22.1",
     "@material/mwc-textarea": "0.22.1",
     "@material/mwc-textfield": "0.22.1",
+    "@openenergytools/scl-lib": "^1.8.0",
     "@openscd/core": "*",
     "@openscd/open-scd": "*",
     "@openscd/wizards": "*",
