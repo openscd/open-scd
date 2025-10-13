@@ -102,20 +102,6 @@ export function createLLN0LNodeType(doc: XMLDocument, id: string): InsertV2[] {
       q: {},
       t: {},
     },
-    Health: {
-      stVal: {
-        Ok: {},
-        Warning: {},
-        Alarm: {},
-      },
-      q: {},
-      t: {},
-    },
-    NamPlt: {
-      vendor: {},
-      swRev: {},
-      d: {},
-    },
   };
 
   const logicalnode = {
