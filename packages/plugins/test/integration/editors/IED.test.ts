@@ -113,7 +113,11 @@ describe('IED Plugin', () => {
         oscdApi.pluginState.setState(null);
         parent = await fixture(
           html`<mock-open-scd
-            ><ied-plugin .doc="${doc}" .nsdoc="${nsdoc}" .oscdApi=${oscdApi}></ied-plugin
+            ><ied-plugin
+              .doc="${doc}"
+              .nsdoc="${nsdoc}"
+              .oscdApi=${oscdApi}
+            ></ied-plugin
           ></mock-open-scd>`
         );
         element = parent.getActivePlugin();
@@ -382,7 +386,9 @@ describe('IED Plugin', () => {
           element.disconnectedCallback();
 
           const api = new OscdApi('IED');
-          expect(api.pluginState.getState()).to.deep.equal({ selectedIEDs: ['IED3'] });
+          expect(api.pluginState.getState()).to.deep.equal({
+            selectedIEDs: ['IED3'],
+          });
         });
       });
 
@@ -395,6 +401,56 @@ describe('IED Plugin', () => {
           element.connectedCallback();
 
           expect(element.selectedIEDs).to.deep.equal(['IED3']);
+        });
+      });
+
+      describe('virtual IED creation', () => {
+        it('should render create IED button', () => {
+          const createButton =
+            element.shadowRoot!.querySelector('.add-ied-button');
+          expect(createButton).to.exist;
+          expect(createButton!.textContent).to.include('Create Virtual IED');
+        });
+
+        it('should show create IED dialog when button is clicked', async () => {
+          const createButton = element.shadowRoot!.querySelector(
+            '.add-ied-button'
+          ) as HTMLElement;
+          const dialog =
+            element.shadowRoot!.querySelector('create-ied-dialog')!;
+
+          let dialogShowCalled = false;
+          (dialog as any).show = () => {
+            dialogShowCalled = true;
+          };
+
+          createButton.click();
+          await element.updateComplete;
+
+          expect(dialogShowCalled).to.be.true;
+        });
+
+        it('should create virtual IED when confirmed through dialog', async () => {
+          let editEventDetail: any = null;
+          element.addEventListener('oscd-edit-v2', (event: Event) => {
+            editEventDetail = (event as CustomEvent).detail;
+          });
+
+          const dialog = element.shadowRoot!.querySelector(
+            'create-ied-dialog'
+          ) as any;
+
+          const onConfirm = dialog.onConfirm;
+          onConfirm('TestVirtualIED');
+
+          await element.updateComplete;
+
+          expect(editEventDetail).to.exist;
+          expect(editEventDetail.edit).to.be.an('array');
+          expect(editEventDetail.edit.length).to.be.greaterThan(0);
+
+          expect(element.selectedIEDs).to.deep.equal(['TestVirtualIED']);
+          expect(element.selectedLNClasses).to.deep.equal([]);
         });
       });
     });

@@ -5,6 +5,9 @@ import {
   getNameAttribute,
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { createElement } from '@openscd/xml';
+import { InsertV2 } from '@openscd/core';
+import { insertSelectedLNodeType } from '@openenergytools/scl-lib/dist/tDataTypeTemplates/insertSelectedLNodeType.js';
 
 /** Base class for all containers inside the IED Editor. */
 export class Container extends LitElement {
@@ -63,12 +66,91 @@ export function findElement(
  * @param ancestors - The list of elements to search in for an LN or LN0 element.
  * @returns The LN0/LN Element found or null if not found.
  */
-export function findLogicaNodeElement(ancestors: Element[]): Element | null {
+export function findLogicalNodeElement(ancestors: Element[]): Element | null {
   let element = findElement(ancestors, 'LN0');
   if (!element) {
     element = findElement(ancestors, 'LN');
   }
   return element;
+}
+
+/**
+ * Find an existing LLN0 LNodeType in the document.
+ * @param doc - The XML document to search in.
+ * @returns The LLN0 LNodeType element or null if not found.
+ */
+export function findLLN0LNodeType(doc: XMLDocument): Element | null {
+  return doc.querySelector('DataTypeTemplates > LNodeType[lnClass="LLN0"]');
+}
+
+/**
+ * Create a minimal LLN0 LNodeType with essential data objects.
+ * @param doc - The XML document to create the LNodeType in.
+ * @param id - Optional ID for the LNodeType, defaults to 'LLN0_OpenSCD'.
+ * @returns Array of InsertV2 operations to create the LNodeType and dependencies.
+ */
+export function createLLN0LNodeType(doc: XMLDocument, id: string): InsertV2[] {
+  const selection = {
+    Beh: {
+      stVal: {
+        on: {},
+        blocked: {},
+        test: {},
+        'test/blocked': {},
+        off: {},
+      },
+      q: {},
+      t: {},
+    },
+  };
+
+  const logicalnode = {
+    class: 'LLN0',
+    id,
+  };
+
+  return insertSelectedLNodeType(doc, selection, logicalnode);
+}
+
+/**
+ * Create a basic IED structure with the specified name.
+ * @param doc - The XML document to create the IED in.
+ * @param iedName - The name for the new IED.
+ * @param lnTypeId - The LNodeType ID to use for the LN0.
+ * @param manufacturer - Optional manufacturer name, defaults to 'OpenSCD'.
+ * @returns The created IED element.
+ */
+export function createIEDStructure(
+  doc: XMLDocument,
+  iedName: string,
+  lnTypeId: string,
+  manufacturer: string = 'OpenSCD'
+): Element {
+  const ied = createElement(doc, 'IED', {
+    name: iedName,
+    manufacturer,
+  });
+
+  const accessPoint = createElement(doc, 'AccessPoint', { name: 'AP1' });
+  ied.appendChild(accessPoint);
+
+  const server = createElement(doc, 'Server', {});
+  accessPoint.appendChild(server);
+
+  const authentication = createElement(doc, 'Authentication', {});
+  server.appendChild(authentication);
+
+  const lDevice = createElement(doc, 'LDevice', { inst: 'LD1' });
+  server.appendChild(lDevice);
+
+  const ln0 = createElement(doc, 'LN0', {
+    lnClass: 'LLN0',
+    inst: '',
+    lnType: lnTypeId,
+  });
+  lDevice.appendChild(ln0);
+
+  return ied;
 }
 
 /**

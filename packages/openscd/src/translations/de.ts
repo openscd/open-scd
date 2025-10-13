@@ -229,6 +229,7 @@ export const de: Translations = {
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
     settings: 'Services für IED or AccessPoint',
+    createIed: 'Virtuelles IED erstellen',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
@@ -247,6 +248,11 @@ export const de: Translations = {
       daFc: 'DA Functional Constraint',
       daBType: 'DA Typ',
       daValue: 'DA Wert',
+    },
+    createDialog: {
+      iedName: 'IED Name',
+      nameFormatError: 'IED Name darf keine Leerzeichen enthalten',
+      nameUniqueError: 'IED Name ist bereits vergeben',
     },
   },
   ied: {
