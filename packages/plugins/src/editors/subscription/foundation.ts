@@ -690,7 +690,11 @@ export function canCreateValidExtRef(
     'lnInst',
     'doName',
   ].map(attr => fcda.getAttribute(attr));
-  if (!iedName || !ldInst || !lnClass || !lnInst || !doName) {
+
+  // lnInst is only required for ln that are not ln0
+  const hasValidLnInst = lnClass === 'LLN0' || !!lnInst;
+
+  if (!iedName || !ldInst || !lnClass || !hasValidLnInst || !doName) {
     return false;
   }
 
