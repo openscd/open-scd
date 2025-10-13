@@ -3,24 +3,31 @@ import {
   customElement,
   html,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import '@openscd/open-scd/src/action-pane.js';
 import './access-point-container.js';
+import './add-access-point-dialog.js';
 
 import { wizards } from '../../wizards/wizard-library.js';
-import { Container } from './foundation.js';
+import { Container, createAccessPoint, createServerAt } from './foundation.js';
 import {
   getDescriptionAttribute,
   getNameAttribute,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
 import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
+import { newEditEventV2, InsertV2 } from '@openscd/core';
 import { removeIEDWizard } from '../../wizards/ied.js';
 import { editServicesWizard } from '../../wizards/services.js';
+import {
+  AddAccessPointDialog,
+  AccessPointCreationData,
+} from './add-access-point-dialog.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
@@ -28,9 +35,38 @@ export class IedContainer extends Container {
   @property()
   selectedLNClasses: string[] = [];
 
+  @query('add-access-point-dialog')
+  addAccessPointDialog!: AddAccessPointDialog;
+
   private openEditWizard(): void {
     const wizard = wizards['IED'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private createAccessPoint(data: AccessPointCreationData): void {
+    const inserts: InsertV2[] = [];
+    const accessPoint = createAccessPoint(this.doc, data.name);
+
+    inserts.push({
+      parent: this.element,
+      node: accessPoint,
+      reference: null,
+    });
+
+    if (data.createServerAt && data.serverAtApName) {
+      const serverAt = createServerAt(
+        this.doc,
+        data.serverAtApName,
+        data.serverAtDesc
+      );
+      inserts.push({
+        parent: accessPoint,
+        node: serverAt,
+        reference: null,
+      });
+    }
+
+    this.dispatchEvent(newEditEventV2(inserts));
   }
 
   private renderServicesIcon(): TemplateResult {
@@ -40,7 +76,7 @@ export class IedContainer extends Container {
       return html``;
     }
 
-    return html` <abbr slot="action" title="${get('iededitor.settings')}">
+    return html` <abbr slot="action" title="${translate('iededitor.settings')}">
       <mwc-icon-button
         icon="settings"
         @click=${() => this.openSettingsWizard(services)}
@@ -77,13 +113,19 @@ export class IedContainer extends Container {
   render(): TemplateResult {
     return html` <action-pane .label="${this.header()}">
       <mwc-icon slot="icon">developer_board</mwc-icon>
-      <abbr slot="action" title="${get('remove')}">
+      <abbr slot="action" title="${translate('iededitor.addAccessPoint')}">
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.addAccessPointDialog.show()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeIED()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="action" title="${get('edit')}">
+      <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
@@ -100,6 +142,12 @@ export class IedContainer extends Container {
           .ancestors=${[this.element]}
         ></access-point-container>`
       )}
+      <add-access-point-dialog
+        .doc=${this.doc}
+        .ied=${this.element}
+        .onConfirm=${(data: AccessPointCreationData) =>
+          this.createAccessPoint(data)}
+      ></add-access-point-dialog>
     </action-pane>`;
   }
 

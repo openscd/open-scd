@@ -227,6 +227,7 @@ export const en = {
     toggleChildElements: 'Toggle child elements',
     settings: 'Show Services the IED/AccessPoint provides',
     createIed: 'Create Virtual IED',
+    addAccessPoint: 'Add AccessPoint',
     wizard: {
       daTitle: 'Show DA Info',
       doTitle: 'Show DO Info',
@@ -247,9 +248,21 @@ export const en = {
       daValue: 'Data attribute value',
     },
     createDialog: {
-      iedName: 'IED Name',
+      iedName: 'IED name',
       nameFormatError: 'IED name cannot contain spaces',
       nameUniqueError: 'IED name already exists',
+    },
+    addAccessPointDialog: {
+      title: 'Add AccessPoint',
+      nameHelper: 'AccessPoint name',
+      descHelper: 'AccessPoint description',
+      apName: 'AccessPoint name',
+      createServerAt: 'Add ServerAt',
+      selectAccessPoint: 'Select AccessPoint',
+      serverAtDesc: 'ServerAt description',
+      nameFormatError: 'AccessPoint name cannot contain spaces',
+      nameUniqueError: 'AccessPoint name already exists',
+      nameTooLongError: 'AccessPoint name is too long',
     },
   },
   ied: {

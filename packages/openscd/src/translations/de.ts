@@ -230,6 +230,7 @@ export const de: Translations = {
     toggleChildElements: 'Kindelemente umschalten',
     settings: 'Services für IED or AccessPoint',
     createIed: 'Virtuelles IED erstellen',
+    addAccessPoint: 'AccessPoint hinzufügen',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
@@ -253,6 +254,18 @@ export const de: Translations = {
       iedName: 'IED Name',
       nameFormatError: 'IED Name darf keine Leerzeichen enthalten',
       nameUniqueError: 'IED Name ist bereits vergeben',
+    },
+    addAccessPointDialog: {
+      title: 'AccessPoint hinzufügen',
+      nameHelper: 'AccessPoint Name',
+      descHelper: 'AccessPoint Beschreibung',
+      apName: 'AccessPoint Name',
+      createServerAt: 'ServerAt hinzufügen',
+      selectAccessPoint: 'AccessPoint auswählen',
+      serverAtDesc: 'ServerAt Beschreibung',
+      nameFormatError: 'AccessPoint Name darf keine Leerzeichen enthalten',
+      nameUniqueError: 'AccessPoint Name ist bereits vergeben',
+      nameTooLongError: 'AccessPoint Name ist zu lang',
     },
   },
   ied: {
