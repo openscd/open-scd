@@ -83,20 +83,6 @@ export function createLLN0LNodeType(doc, id) {
             q: {},
             t: {},
         },
-        Health: {
-            stVal: {
-                Ok: {},
-                Warning: {},
-                Alarm: {},
-            },
-            q: {},
-            t: {},
-        },
-        NamPlt: {
-            vendor: {},
-            swRev: {},
-            d: {},
-        },
     };
     const logicalnode = {
         class: 'LLN0',
