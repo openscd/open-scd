@@ -121,7 +121,6 @@ export function createLLN0LNodeType(doc: XMLDocument, id: string): InsertV2[] {
   const logicalnode = {
     class: 'LLN0',
     id,
-    desc: 'OpenSCD auto-generated LLN0',
   };
 
   return insertSelectedLNodeType(doc, selection, logicalnode);
