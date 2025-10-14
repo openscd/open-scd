@@ -282,6 +282,17 @@ export function newFullElementPathEvent(
   });
 }
 
+/**
+ * Get all LDevice inst values from a Server element.
+ * @param server - The Server element to search in.
+ * @returns Array of LDevice inst values.
+ */
+export function getLDeviceInsts(server: Element): string[] {
+  return Array.from(server.querySelectorAll(':scope > LDevice')).map(
+    ld => ld.getAttribute('inst') || ''
+  );
+}
+
 declare global {
   interface ElementEventMap {
     ['full-element-path']: FullElementPathEvent;

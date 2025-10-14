@@ -264,6 +264,14 @@ export const en = {
       nameUniqueError: 'AccessPoint name already exists',
       nameTooLongError: 'AccessPoint name is too long',
     },
+    addLDeviceDialog: {
+      title: 'Add LDevice',
+      inst: 'LDevice inst',
+      desc: 'LDevice description',
+      instFormatError: 'Invalid inst',
+      instUniqueError: 'LDevice inst already exists',
+      instTooLongError: 'LDevice inst is too long',
+    },
   },
   ied: {
     wizard: {

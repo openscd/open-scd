@@ -267,6 +267,14 @@ export const de: Translations = {
       nameUniqueError: 'AccessPoint Name ist bereits vergeben',
       nameTooLongError: 'AccessPoint Name ist zu lang',
     },
+    addLDeviceDialog: {
+      title: 'LDevice hinzufügen',
+      inst: 'LDevice inst',
+      desc: 'LDevice Beschreibung',
+      instFormatError: 'LDevice inst darf keine Leerzeichen enthalten',
+      instUniqueError: 'LDevice inst ist bereits vergeben',
+      instTooLongError: 'LDevice inst ist zu lang',
+    },
   },
   ied: {
     wizard: {

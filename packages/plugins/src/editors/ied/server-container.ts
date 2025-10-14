@@ -3,6 +3,7 @@ import {
   html,
   property,
   PropertyValues,
+  query,
   state,
   TemplateResult,
 } from 'lit-element';
@@ -12,13 +13,24 @@ import '@openscd/open-scd/src/action-pane.js';
 import './ldevice-container.js';
 import { serverIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import { getDescriptionAttribute } from '@openscd/open-scd/src/foundation.js';
-import { Container } from './foundation.js';
+import {
+  Container,
+  findLLN0LNodeType,
+  createLLN0LNodeType,
+} from './foundation.js';
+import { createElement } from '@openscd/xml';
+import { newEditEventV2 } from '@openscd/core';
+import './add-ldevice-dialog.js';
+import { AddLDeviceDialog, LDeviceData } from './add-ldevice-dialog.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
 @customElement('server-container')
 export class ServerContainer extends Container {
   @property()
   selectedLNClasses: string[] = [];
+
+  @query('add-ldevice-dialog')
+  addAccessPointDialog!: AddLDeviceDialog;
 
   private header(): TemplateResult {
     const desc = getDescriptionAttribute(this.element);
@@ -51,9 +63,39 @@ export class ServerContainer extends Container {
     );
   }
 
+  private handleAddLDevice(data: LDeviceData) {
+    const inserts: any[] = [];
+    let lln0Type = findLLN0LNodeType(this.doc);
+    let lnTypeId = lln0Type?.getAttribute('id') || 'PlaceholderLLN0';
+
+    if (!lln0Type) {
+      const lnodeTypeInserts = createLLN0LNodeType(this.doc, lnTypeId);
+      inserts.push(...lnodeTypeInserts);
+    }
+    const lDevice = createElement(this.doc, 'LDevice', {
+      inst: data.inst,
+    });
+
+    const ln0 = createElement(this.doc, 'LN0', {
+      lnClass: 'LLN0',
+      inst: '',
+      lnType: lnTypeId,
+    });
+
+    lDevice.appendChild(ln0);
+    inserts.push({ parent: this.element, node: lDevice, reference: null });
+    this.dispatchEvent(newEditEventV2(inserts));
+  }
+
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${serverIcon}</mwc-icon>
+      <abbr slot="action" title="Add LDevice">
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.addAccessPointDialog.show()}
+        ></mwc-icon-button>
+      </abbr>
       ${this.lDeviceElements.map(
         server =>
           html`<ldevice-container
@@ -65,6 +107,11 @@ export class ServerContainer extends Container {
             .ancestors=${[...this.ancestors, this.element]}
           ></ldevice-container>`
       )}
+      <add-ldevice-dialog
+        .inst=""
+        .server=${this.element}
+        .onConfirm=${(data: LDeviceData) => this.handleAddLDevice(data)}
+      ></add-ldevice-dialog>
     </action-pane>`;
   }
 }
