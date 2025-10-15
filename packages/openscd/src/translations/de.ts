@@ -275,6 +275,12 @@ export const de: Translations = {
       instUniqueError: 'LDevice inst ist bereits vergeben',
       instTooLongError: 'LDevice inst ist zu lang',
     },
+    addLnDialog: {
+      title: 'LN hinzufügen',
+      amount: 'Menge',
+      filter: 'Logical Node Types filtern',
+      noResults: 'Keine Logical Node Types gefunden',
+    },
   },
   ied: {
     wizard: {

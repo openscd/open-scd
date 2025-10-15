@@ -8,6 +8,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+import { translate } from 'lit-translate';
 
 import '@openscd/open-scd/src/action-pane.js';
 import './ldevice-container.js';
@@ -90,7 +91,10 @@ export class ServerContainer extends Container {
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${serverIcon}</mwc-icon>
-      <abbr slot="action" title="Add LDevice">
+      <abbr
+        slot="action"
+        title=${translate('iededitor.addLDeviceDialog.title')}
+      >
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.addAccessPointDialog.show()}
@@ -108,7 +112,6 @@ export class ServerContainer extends Container {
           ></ldevice-container>`
       )}
       <add-ldevice-dialog
-        .inst=""
         .server=${this.element}
         .onConfirm=${(data: LDeviceData) => this.handleAddLDevice(data)}
       ></add-ldevice-dialog>

@@ -272,6 +272,12 @@ export const en = {
       instUniqueError: 'LDevice inst already exists',
       instTooLongError: 'LDevice inst is too long',
     },
+    addLnDialog: {
+      title: 'Add LN',
+      amount: 'Amount',
+      filter: 'Filter Logical Node Types',
+      noResults: 'No Logical Node Types found',
+    },
   },
   ied: {
     wizard: {

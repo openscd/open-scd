@@ -1,5 +1,6 @@
 import {
   css,
+  customElement,
   html,
   LitElement,
   property,
@@ -21,6 +22,7 @@ export interface LDeviceData {
 }
 
 /** Dialog for adding a new LDevice to a Server. */
+@customElement('add-ldevice-dialog')
 export class AddLDeviceDialog extends LitElement {
   @property({ type: Boolean })
   open = false;
@@ -133,5 +135,3 @@ export class AddLDeviceDialog extends LitElement {
     }
   `;
 }
-
-customElements.define('add-ldevice-dialog', AddLDeviceDialog);

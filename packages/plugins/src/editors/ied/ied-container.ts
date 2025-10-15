@@ -113,12 +113,6 @@ export class IedContainer extends Container {
   render(): TemplateResult {
     return html` <action-pane .label="${this.header()}">
       <mwc-icon slot="icon">developer_board</mwc-icon>
-      <abbr slot="action" title="${translate('iededitor.addAccessPoint')}">
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.addAccessPointDialog.show()}
-        ></mwc-icon-button>
-      </abbr>
       <abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"
@@ -132,6 +126,12 @@ export class IedContainer extends Container {
         ></mwc-icon-button>
       </abbr>
       ${this.renderServicesIcon()}
+      <abbr slot="action" title="${translate('iededitor.addAccessPoint')}">
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.addAccessPointDialog.show()}
+        ></mwc-icon-button>
+      </abbr>
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .editCount=${this.editCount}

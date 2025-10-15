@@ -293,6 +293,15 @@ export function getLDeviceInsts(server: Element): string[] {
   );
 }
 
+/**
+ * Get LNodeType elements from DataTypeTemplates in the document.
+ * @param doc - The XML document to search in.
+ * @returns Array of LNodeType elements.
+ */
+export function getLNodeTypes(doc: XMLDocument): Element[] {
+  return Array.from(doc.querySelectorAll('DataTypeTemplates > LNodeType'));
+}
+
 declare global {
   interface ElementEventMap {
     ['full-element-path']: FullElementPathEvent;
