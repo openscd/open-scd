@@ -28,8 +28,13 @@ describe('add-access-point-dialog', () => {
     );
   });
 
-  it('should show and hide dialog', async () => {
+  it('looks like the latest snapshot', async () => {
+    element.show();
     await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('should show and hide dialog', async () => {
     element.show();
     await element.updateComplete;
     expect(element.dialog.open).to.be.true;

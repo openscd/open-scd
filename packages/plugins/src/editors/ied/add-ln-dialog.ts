@@ -148,6 +148,7 @@ export class AddLnDialog extends LitElement {
             label=${translate('iededitor.addLnDialog.amount')}
             type="number"
             min="1"
+            data-testid="amount"
             .value=${this.amount}
             @input=${(e: Event) => {
               e.stopPropagation();
@@ -170,6 +171,7 @@ export class AddLnDialog extends LitElement {
           slot="primaryAction"
           icon="add"
           trailingIcon
+          data-testid="add-ln-button"
           @click=${this.handleCreate}
           ?disabled=${!this.lnType || this.amount < 1 || this.amount % 1 != 0}
         >
