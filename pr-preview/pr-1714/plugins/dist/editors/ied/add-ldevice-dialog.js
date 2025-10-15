@@ -9,7 +9,6 @@ import { getLDeviceInsts } from './foundation.js';
 let AddLDeviceDialog = class AddLDeviceDialog extends LitElement {
     constructor() {
         super(...arguments);
-        this.open = false;
         this.inst = '';
     }
     connectedCallback() {
@@ -104,9 +103,6 @@ AddLDeviceDialog.styles = css `
       box-sizing: border-box;
     }
   `;
-__decorate([
-    property({ type: Boolean })
-], AddLDeviceDialog.prototype, "open", void 0);
 __decorate([
     property()
 ], AddLDeviceDialog.prototype, "server", void 0);

@@ -4,12 +4,11 @@ Dialog for adding a new LDevice to a Server.
 
 ## Properties
 
-| Property    | Attribute   | Type                          | Default |
-|-------------|-------------|-------------------------------|---------|
-| `dialog`    |             | `Dialog`                      |         |
-| `onConfirm` | `onConfirm` | `(data: LDeviceData) => void` |         |
-| `open`      | `open`      | `boolean`                     | false   |
-| `server`    | `server`    | `Element`                     |         |
+| Property    | Attribute   | Type                          |
+|-------------|-------------|-------------------------------|
+| `dialog`    |             | `Dialog`                      |
+| `onConfirm` | `onConfirm` | `(data: LDeviceData) => void` |
+| `server`    | `server`    | `Element`                     |
 
 ## Methods
 
