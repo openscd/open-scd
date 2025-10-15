@@ -24,6 +24,7 @@ snapshots["add-ln-dialog looks like the latest snapshot"] =
             mwc-list-item=""
             style="cursor: pointer;"
             tabindex="0"
+            title="PlaceholderLLN0"
             type="button"
             value="PlaceholderLLN0"
           >
