@@ -89,55 +89,46 @@ export let AddAccessPointDialog = class extends LitElement {
       return get("iededitor.addAccessPointDialog.nameUniqueError");
     return "";
   }
+  renderServerAtSection() {
+    return html`
+      <mwc-formfield
+        label=${translate("iededitor.addAccessPointDialog.createServerAt")}
+      >
+        <mwc-switch
+          ?selected=${this.createServerAt}
+          ?checked=${this.createServerAt}
+          @change=${(e) => {
+      this.createServerAt = e.target.checked;
+      this.serverAtApName = this.createServerAt ? this.accessPointsWithServer[0] : "";
+    }}
+        ></mwc-switch>
+      </mwc-formfield>
+      ${this.createServerAt ? html`
+            <mwc-select
+              label=${translate("iededitor.addAccessPointDialog.selectAccessPoint")}
+              .value=${this.serverAtApName}
+              @change=${(e) => {
+      e.stopPropagation();
+      this.serverAtApName = e.target.value;
+    }}
+              @click=${(e) => e.stopPropagation()}
+              @closed=${(e) => e.stopPropagation()}
+              style="width: 100%; margin-bottom: 16px;"
+            >
+              ${this.accessPointsWithServer.map((ap) => html`<mwc-list-item value=${ap}>${ap}</mwc-list-item>`)}
+            </mwc-select>
+            <mwc-textfield
+              label=${translate("iededitor.addAccessPointDialog.serverAtDesc")}
+              .value=${this.serverAtDesc}
+              @input=${(e) => {
+      this.serverAtDesc = e.target.value;
+    }}
+              style="width: 100%; margin-bottom: 16px;"
+            ></mwc-textfield>
+          ` : ""}
+    `;
+  }
   render() {
-    const accessPointsWithServer = this.accessPointsWithServer;
-    let serverAtSection = html``;
-    if (accessPointsWithServer.length > 0) {
-      if (this.createServerAt && (!this.serverAtApName || !accessPointsWithServer.includes(this.serverAtApName))) {
-        this.serverAtApName = accessPointsWithServer[0];
-      }
-      serverAtSection = html`
-        <mwc-formfield
-          label=${translate("iededitor.addAccessPointDialog.createServerAt")}
-        >
-          <mwc-switch
-            ?selected=${this.createServerAt}
-            ?checked=${this.createServerAt}
-            @change=${(e) => {
-        this.createServerAt = e.target.checked;
-        if (this.createServerAt && (!this.serverAtApName || !accessPointsWithServer.includes(this.serverAtApName))) {
-          this.serverAtApName = accessPointsWithServer[0];
-        }
-        if (!this.createServerAt)
-          this.serverAtApName = "";
-      }}
-          ></mwc-switch>
-        </mwc-formfield>
-        ${this.createServerAt ? html`
-              <mwc-select
-                label=${translate("iededitor.addAccessPointDialog.selectAccessPoint")}
-                .value=${this.serverAtApName}
-                @change=${(e) => {
-        e.stopPropagation();
-        this.serverAtApName = e.target.value;
-      }}
-                @click=${(e) => e.stopPropagation()}
-                @closed=${(e) => e.stopPropagation()}
-                style="width: 100%; margin-bottom: 16px;"
-              >
-                ${accessPointsWithServer.map((ap) => html`<mwc-list-item value=${ap}>${ap}</mwc-list-item>`)}
-              </mwc-select>
-              <mwc-textfield
-                label=${translate("iededitor.addAccessPointDialog.serverAtDesc")}
-                .value=${this.serverAtDesc}
-                @input=${(e) => {
-        this.serverAtDesc = e.target.value;
-      }}
-                style="width: 100%; margin-bottom: 16px;"
-              ></mwc-textfield>
-            ` : ""}
-      `;
-    }
     return html`
       <mwc-dialog
         id="createAccessPointDialog"
@@ -168,7 +159,7 @@ export let AddAccessPointDialog = class extends LitElement {
       this.apName = e.target.value;
     }}
           ></mwc-textfield>
-          ${serverAtSection}
+          ${this.renderServerAtSection()}
         </div>
         <mwc-button
           slot="secondaryAction"
@@ -182,7 +173,8 @@ export let AddAccessPointDialog = class extends LitElement {
           icon="add"
           trailingIcon
           @click=${this.handleCreate}
-          ?disabled=${!this.apNameField || !this.apNameField.validity.valid || this.createServerAt && !this.serverAtApName}
+          data-testid="add-access-point-button"
+          ?disabled=${!this.apName || !this.apNameField.validity.valid || this.createServerAt && !this.serverAtApName}
         >
           ${translate("add")}
         </mwc-button>
