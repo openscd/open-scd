@@ -14,6 +14,13 @@ snapshots["ldevice-container LDevice Element with LN Elements and all LN Element
   </abbr>
   <abbr
     slot="action"
+    title="[iededitor.addLnDialog.title]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[iededitor.toggleChildElements]"
   >
     <mwc-icon-button-toggle
@@ -44,6 +51,8 @@ snapshots["ldevice-container LDevice Element with LN Elements and all LN Element
     <ln-container>
     </ln-container>
   </div>
+  <add-ln-dialog>
+  </add-ln-dialog>
 </action-pane>
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and all LN Elements displayed looks like the latest snapshot */
@@ -61,6 +70,13 @@ snapshots["ldevice-container LDevice Element with LN Elements and some LN Elemen
   </abbr>
   <abbr
     slot="action"
+    title="[iededitor.addLnDialog.title]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
     title="[iededitor.toggleChildElements]"
   >
     <mwc-icon-button-toggle
@@ -81,6 +97,8 @@ snapshots["ldevice-container LDevice Element with LN Elements and some LN Elemen
     <ln-container>
     </ln-container>
   </div>
+  <add-ln-dialog>
+  </add-ln-dialog>
 </action-pane>
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and some LN Elements displayed looks like the latest snapshot */
@@ -96,8 +114,17 @@ snapshots["ldevice-container LDevice Element with LN Elements and no LN Elements
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[iededitor.addLnDialog.title]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
   <div id="lnContainer">
   </div>
+  <add-ln-dialog>
+  </add-ln-dialog>
 </action-pane>
 `;
 /* end snapshot ldevice-container LDevice Element with LN Elements and no LN Elements displayed looks like the latest snapshot */
@@ -113,8 +140,17 @@ snapshots["ldevice-container LDevice Element without LN Element looks like the l
     <mwc-icon-button icon="edit">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[iededitor.addLnDialog.title]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
   <div id="lnContainer">
   </div>
+  <add-ln-dialog>
+  </add-ln-dialog>
 </action-pane>
 `;
 /* end snapshot ldevice-container LDevice Element without LN Element looks like the latest snapshot */
