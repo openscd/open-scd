@@ -148,11 +148,10 @@ export class AddLnDialog extends LitElement {
             label=${translate('iededitor.addLnDialog.amount')}
             type="number"
             min="1"
-            .value=${String(this.amount)}
+            .value=${this.amount}
             @input=${(e: Event) => {
               e.stopPropagation();
-              const v = Number((e.target as HTMLInputElement).value);
-              this.amount = isNaN(v) || v < 1 ? 1 : v;
+              this.amount = Number((e.target as HTMLInputElement).value);
             }}
             @click=${(e: Event) => e.stopPropagation()}
             @mousedown=${(e: Event) => e.stopPropagation()}
@@ -172,7 +171,7 @@ export class AddLnDialog extends LitElement {
           icon="add"
           trailingIcon
           @click=${this.handleCreate}
-          ?disabled=${!this.lnType || this.amount < 1}
+          ?disabled=${!this.lnType || this.amount < 1 || this.amount % 1 != 0}
         >
           ${translate('add')}
         </mwc-button>

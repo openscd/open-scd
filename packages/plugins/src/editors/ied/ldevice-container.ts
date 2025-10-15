@@ -12,6 +12,10 @@ import { nothing } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+
+import { newEditEventV2 } from '@openscd/core';
+import { createElement } from '@openscd/xml';
+import { logicalDeviceIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import {
   getDescriptionAttribute,
   getInstanceAttribute,
@@ -19,19 +23,15 @@ import {
   getLdNameAttribute,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
-import { newEditEventV2 } from '@openscd/core';
-import { createElement } from '@openscd/xml';
-
-import { logicalDeviceIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
-
-import '@openscd/open-scd/src/action-pane.js';
-import './ln-container.js';
-import './add-ln-dialog.js';
-import { AddLnDialog, LNData } from './add-ln-dialog.js';
 
 import { wizards } from '../../wizards/wizard-library.js';
 import { Container } from './foundation.js';
 import { lnInstGenerator } from '@openenergytools/scl-lib/dist/generator/lnInstGenerator.js';
+import { AddLnDialog, LNData } from './add-ln-dialog.js';
+
+import '@openscd/open-scd/src/action-pane.js';
+import './ln-container.js';
+import './add-ln-dialog.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
@@ -85,10 +85,7 @@ export class LDeviceContainer extends Container {
   }
 
   private handleAddLN(data: LNData) {
-    const lDevice = this.element;
-    if (!lDevice) return;
-
-    const getInst = lnInstGenerator(lDevice, 'LN');
+    const getInst = lnInstGenerator(this.element, 'LN');
     const inserts = [];
 
     for (let i = 0; i < data.amount; i++) {
@@ -99,7 +96,7 @@ export class LDeviceContainer extends Container {
         lnType: data.lnType,
         inst,
       });
-      inserts.push({ parent: lDevice, node: ln, reference: null });
+      inserts.push({ parent: this.element, node: ln, reference: null });
     }
 
     this.dispatchEvent(newEditEventV2(inserts));

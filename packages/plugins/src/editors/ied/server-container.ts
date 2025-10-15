@@ -10,19 +10,21 @@ import {
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import '@openscd/open-scd/src/action-pane.js';
-import './ldevice-container.js';
 import { serverIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import { getDescriptionAttribute } from '@openscd/open-scd/src/foundation.js';
+import { createElement } from '@openscd/xml';
+import { newEditEventV2 } from '@openscd/core';
+
 import {
   Container,
   findLLN0LNodeType,
   createLLN0LNodeType,
 } from './foundation.js';
-import { createElement } from '@openscd/xml';
-import { newEditEventV2 } from '@openscd/core';
-import './add-ldevice-dialog.js';
 import { AddLDeviceDialog, LDeviceData } from './add-ldevice-dialog.js';
+
+import '@openscd/open-scd/src/action-pane.js';
+import './ldevice-container.js';
+import './add-ldevice-dialog.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
 @customElement('server-container')
@@ -66,8 +68,8 @@ export class ServerContainer extends Container {
 
   private handleAddLDevice(data: LDeviceData) {
     const inserts: any[] = [];
-    let lln0Type = findLLN0LNodeType(this.doc);
-    let lnTypeId = lln0Type?.getAttribute('id') || 'PlaceholderLLN0';
+    const lln0Type = findLLN0LNodeType(this.doc);
+    const lnTypeId = lln0Type?.getAttribute('id') || 'PlaceholderLLN0';
 
     if (!lln0Type) {
       const lnodeTypeInserts = createLLN0LNodeType(this.doc, lnTypeId);
