@@ -88,7 +88,7 @@ export class AddLnDialog extends LitElement {
 
   private isPrefixValid(prefix: string): boolean {
     if (prefix === '') return true;
-    if (prefix.length > 11) return false;
+    if (prefix.length > 8) return false;
     return /^[A-Za-z][0-9A-Za-z_]*$/.test(prefix);
   }
 
@@ -162,7 +162,7 @@ export class AddLnDialog extends LitElement {
           <mwc-textfield
             label="${translate('iededitor.addLnDialog.prefix')}"
             type="text"
-            maxlength="11"
+            maxlength="8"
             .value=${this.prefix}
             @input=${(e: Event) => {
               e.stopPropagation();

@@ -40,7 +40,7 @@ snapshots["add-ln-dialog looks like the latest snapshot"] =
     <mwc-textfield
       data-testid="prefix"
       label="[iededitor.addLnDialog.prefix]"
-      maxlength="11"
+      maxlength="8"
       pattern="[A-Za-z][0-9A-Za-z_]*"
       style="width: 100%; margin-top: 12px;"
       type="text"
