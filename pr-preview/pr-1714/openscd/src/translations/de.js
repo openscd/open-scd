@@ -267,6 +267,7 @@ export const de = {
     addLnDialog: {
       title: "LN hinzufügen",
       amount: "Menge",
+      prefix: "Prefix",
       filter: "Logical Node Types filtern",
       noResults: "Keine Logical Node Types gefunden"
     }

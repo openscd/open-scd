@@ -12,6 +12,7 @@ Dialog for adding a new LN to a LDevice.
 | `filterText` |             | `string`                 | ""      |
 | `lnType`     |             | `string`                 | ""      |
 | `onConfirm`  | `onConfirm` | `(data: LNData) => void` |         |
+| `prefix`     |             | `string`                 | ""      |
 
 ## Methods
 

@@ -31,6 +31,7 @@ export let AddLnDialog = class extends LitElement {
     this.lnType = "";
     this.amount = 1;
     this.filterText = "";
+    this.prefix = "";
   }
   get lNodeTypes() {
     if (!this.doc)
@@ -51,20 +52,30 @@ export let AddLnDialog = class extends LitElement {
     this.lnType = "";
     this.amount = 1;
     this.filterText = "";
+    this.prefix = "";
     this.dialog.show();
   }
   close() {
     this.dialog.close();
   }
+  isPrefixValid(prefix) {
+    if (prefix === "")
+      return true;
+    if (prefix.length > 11)
+      return false;
+    return /^[A-Za-z][0-9A-Za-z_]*$/.test(prefix);
+  }
   handleCreate() {
     const selectedType = this.lNodeTypes.find((t) => t.id === this.lnType);
     if (!selectedType)
       return;
-    this.onConfirm({
+    const data = {
       lnType: selectedType.id,
       lnClass: selectedType.lnClass,
-      amount: this.amount
-    });
+      amount: this.amount,
+      ...this.prefix && {prefix: this.prefix}
+    };
+    this.onConfirm(data);
     this.close();
   }
   render() {
@@ -115,6 +126,19 @@ export let AddLnDialog = class extends LitElement {
             </div>
           </div>
           <mwc-textfield
+            label="${translate("iededitor.addLnDialog.prefix")}"
+            type="text"
+            maxlength="11"
+            .value=${this.prefix}
+            @input=${(e) => {
+      e.stopPropagation();
+      this.prefix = e.target.value;
+    }}
+            pattern="[A-Za-z][0-9A-Za-z_]*"
+            style="width: 100%; margin-top: 12px;"
+            data-testid="prefix"
+          ></mwc-textfield>
+          <mwc-textfield
             label=${translate("iededitor.addLnDialog.amount")}
             type="number"
             min="1"
@@ -143,7 +167,7 @@ export let AddLnDialog = class extends LitElement {
           trailingIcon
           data-testid="add-ln-button"
           @click=${this.handleCreate}
-          ?disabled=${!this.lnType || this.amount < 1 || this.amount % 1 != 0}
+          ?disabled=${!this.lnType || this.amount < 1 || this.amount % 1 != 0 || !this.isPrefixValid(this.prefix)}
         >
           ${translate("add")}
         </mwc-button>
@@ -226,6 +250,9 @@ __decorate([
 __decorate([
   state()
 ], AddLnDialog.prototype, "filterText", 2);
+__decorate([
+  state()
+], AddLnDialog.prototype, "prefix", 2);
 AddLnDialog = __decorate([
   customElement("add-ln-dialog")
 ], AddLnDialog);
