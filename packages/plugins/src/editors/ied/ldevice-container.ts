@@ -91,11 +91,13 @@ export class LDeviceContainer extends Container {
     for (let i = 0; i < data.amount; i++) {
       const inst = getInst(data.lnClass);
       if (!inst) break;
-      const ln = createElement(this.doc, 'LN', {
+      const lnAttrs = {
         lnClass: data.lnClass,
         lnType: data.lnType,
-        inst,
-      });
+        inst: inst,
+        ...(data.prefix ? { prefix: data.prefix } : {}),
+      };
+      const ln = createElement(this.doc, 'LN', lnAttrs);
       inserts.push({ parent: this.element, node: ln, reference: null });
     }
 

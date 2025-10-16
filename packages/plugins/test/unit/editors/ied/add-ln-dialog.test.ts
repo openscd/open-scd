@@ -60,6 +60,14 @@ describe('add-ln-dialog', () => {
       await element.updateComplete;
     }
 
+    const prefixInput = element.shadowRoot?.querySelector(
+      '[data-testid="prefix"]'
+    );
+    (prefixInput as HTMLInputElement).value = 'MyPrefix';
+    (prefixInput as HTMLInputElement).dispatchEvent(
+      new Event('input', { bubbles: true, composed: true })
+    );
+
     const amountInput = element.shadowRoot?.querySelector(
       '[data-testid="amount"]'
     );
@@ -67,6 +75,7 @@ describe('add-ln-dialog', () => {
     (amountInput as HTMLInputElement).dispatchEvent(
       new Event('input', { bubbles: true, composed: true })
     );
+
     await element.updateComplete;
     const addButton = element.shadowRoot?.querySelector(
       '[data-testid="add-ln-button"]'
@@ -78,6 +87,7 @@ describe('add-ln-dialog', () => {
     expect(onConfirmSpy.firstCall.args[0]).to.deep.include({
       lnType: 'PlaceholderLLN0',
       lnClass: 'LLN0',
+      prefix: 'MyPrefix',
       amount: 3,
     });
   });

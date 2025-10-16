@@ -275,6 +275,7 @@ export const en = {
     addLnDialog: {
       title: 'Add LN',
       amount: 'Amount',
+      prefix: 'Prefix',
       filter: 'Filter Logical Node Types',
       noResults: 'No Logical Node Types found',
     },

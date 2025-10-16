@@ -23,6 +23,7 @@ export interface LNData {
   lnType: string;
   lnClass: string;
   amount: number;
+  prefix?: string;
 }
 
 /** Dialog for adding a new LN to a LDevice. */
@@ -45,6 +46,9 @@ export class AddLnDialog extends LitElement {
 
   @state()
   filterText = '';
+
+  @state()
+  prefix: string = '';
 
   private get lNodeTypes(): Array<{
     id: string;
@@ -74,6 +78,7 @@ export class AddLnDialog extends LitElement {
     this.lnType = '';
     this.amount = 1;
     this.filterText = '';
+    this.prefix = '';
     this.dialog.show();
   }
 
@@ -81,14 +86,23 @@ export class AddLnDialog extends LitElement {
     this.dialog.close();
   }
 
+  private isPrefixValid(prefix: string): boolean {
+    if (prefix === '') return true;
+    if (prefix.length > 11) return false;
+    return /^[A-Za-z][0-9A-Za-z_]*$/.test(prefix);
+  }
+
   private handleCreate(): void {
     const selectedType = this.lNodeTypes.find(t => t.id === this.lnType);
     if (!selectedType) return;
-    this.onConfirm({
+    const data: LNData = {
       lnType: selectedType.id,
       lnClass: selectedType.lnClass,
       amount: this.amount,
-    });
+      ...(this.prefix && { prefix: this.prefix }),
+    };
+
+    this.onConfirm(data);
     this.close();
   }
 
@@ -146,6 +160,19 @@ export class AddLnDialog extends LitElement {
             </div>
           </div>
           <mwc-textfield
+            label="${translate('iededitor.addLnDialog.prefix')}"
+            type="text"
+            maxlength="11"
+            .value=${this.prefix}
+            @input=${(e: Event) => {
+              e.stopPropagation();
+              this.prefix = (e.target as HTMLInputElement).value;
+            }}
+            pattern="[A-Za-z][0-9A-Za-z_]*"
+            style="width: 100%; margin-top: 12px;"
+            data-testid="prefix"
+          ></mwc-textfield>
+          <mwc-textfield
             label=${translate('iededitor.addLnDialog.amount')}
             type="number"
             min="1"
@@ -174,13 +201,17 @@ export class AddLnDialog extends LitElement {
           trailingIcon
           data-testid="add-ln-button"
           @click=${this.handleCreate}
-          ?disabled=${!this.lnType || this.amount < 1 || this.amount % 1 != 0}
+          ?disabled=${!this.lnType ||
+          this.amount < 1 ||
+          this.amount % 1 != 0 ||
+          !this.isPrefixValid(this.prefix)}
         >
           ${translate('add')}
         </mwc-button>
       </mwc-dialog>
     `;
   }
+
   static styles = css`
     .dialog-content {
       margin-top: 16px;
