@@ -105,6 +105,7 @@ export let AddLnDialog = class extends LitElement {
                           value=${t.id}
                           dialogAction="none"
                           style="cursor: pointer;"
+                          title="${t.id}"
                         >
                           <span class="ln-list-id">${t.id}</span>
                           <span class="ln-list-desc">${t.desc || ""}</span>
@@ -153,7 +154,7 @@ export let AddLnDialog = class extends LitElement {
 AddLnDialog.styles = css`
     .dialog-content {
       margin-top: 16px;
-      width: 320px;
+      width: 400px;
       max-width: 100vw;
       box-sizing: border-box;
     }
