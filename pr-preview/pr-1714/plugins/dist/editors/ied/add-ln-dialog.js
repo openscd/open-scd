@@ -46,7 +46,7 @@ let AddLnDialog = class AddLnDialog extends LitElement {
     isPrefixValid(prefix) {
         if (prefix === '')
             return true;
-        if (prefix.length > 11)
+        if (prefix.length > 8)
             return false;
         return /^[A-Za-z][0-9A-Za-z_]*$/.test(prefix);
     }
@@ -115,7 +115,7 @@ let AddLnDialog = class AddLnDialog extends LitElement {
           <mwc-textfield
             label="${translate('iededitor.addLnDialog.prefix')}"
             type="text"
-            maxlength="11"
+            maxlength="8"
             .value=${this.prefix}
             @input=${(e) => {
             e.stopPropagation();
