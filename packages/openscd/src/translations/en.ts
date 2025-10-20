@@ -285,6 +285,7 @@ export const en = {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
+      manufacturerHelper: 'IED manufacturer',
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',

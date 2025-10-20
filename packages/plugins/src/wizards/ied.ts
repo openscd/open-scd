@@ -15,11 +15,11 @@ import {
   WizardInputElement,
   WizardMenuActor,
 } from '@openscd/open-scd/src/foundation.js';
-import { 
+import {
   ComplexAction,
   Delete,
   EditorAction,
-  newActionEvent
+  newActionEvent,
 } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 
@@ -72,9 +72,10 @@ export function renderIEDWizard(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="manufacturer"
-      .maybeValue=${manufacturer || '-'}
-      readOnly
-      disabled
+      .maybeValue=${manufacturer}
+      nullable
+      helper="${get('ied.wizard.manufacturerHelper')}"
+      pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="configVersion"

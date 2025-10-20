@@ -288,6 +288,7 @@ export const de: Translations = {
     wizard: {
       nameHelper: 'Name des IED',
       descHelper: 'Beschreibung des IED',
+      manufacturerHelper: 'Hersteller des IED',
       title: {
         edit: 'IED bearbeiten',
         delete: 'IED mit Abhängigkeiten entfernen',
