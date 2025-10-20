@@ -74,10 +74,7 @@ export class AddAccessPointDialog extends LitElement {
   }
 
   public show(): void {
-    this.apName = '';
-    this.createServerAt = false;
-    this.serverAtApName = '';
-    this.serverAtDesc = '';
+    this.reset();
     this.dialog.show();
   }
 

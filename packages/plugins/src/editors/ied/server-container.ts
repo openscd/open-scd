@@ -81,7 +81,6 @@ export class ServerContainer extends Container {
 
     const ln0 = createElement(this.doc, 'LN0', {
       lnClass: 'LLN0',
-      inst: '',
       lnType: lnTypeId,
     });
 
