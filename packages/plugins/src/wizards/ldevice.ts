@@ -29,7 +29,8 @@ export function renderLdeviceWizard(
   ldName: string | null,
   readOnly: boolean,
   desc: string | null,
-  ldInst: string | null
+  inst: string | null,
+  reservedInst: string[]
 ): TemplateResult[] {
   return [
     readOnly
@@ -58,10 +59,11 @@ export function renderLdeviceWizard(
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,
     html`<wizard-textfield
-      label="ldInst"
-      .maybeValue=${ldInst}
-      readOnly
-      disabled
+      label="inst"
+      .maybeValue=${inst}
+      helper="${get('ldevice.wizard.instHelper')}"
+      pattern="${patterns.normalizedString}"
+      .reservedValues=${reservedInst}
     ></wizard-textfield>`,
   ];
 }
@@ -75,10 +77,21 @@ function ldNameIsAllowed(element: Element): boolean {
   return false;
 }
 
+function reservedInstLDevice(currentElement: Element): string[] {
+  const ied = currentElement.closest('IED');
+  if (!ied) return [];
+
+  return Array.from(
+    ied.querySelectorAll(':scope > AccessPoint > Server > LDevice')
+  )
+    .map(ld => ld.getAttribute('inst') ?? '')
+    .filter(name => name !== currentElement.getAttribute('inst'));
+}
+
 function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const ldAttrs: Record<string, string | null> = {};
-    const ldKeys = ['ldName', 'desc'];
+    const ldKeys = ['ldName', 'desc', 'inst'];
     ldKeys.forEach(key => {
       ldAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
@@ -110,7 +123,8 @@ export function editLDeviceWizard(element: Element): Wizard {
         element.getAttribute('ldName'),
         !ldNameIsAllowed(element),
         element.getAttribute('desc'),
-        element.getAttribute('inst')
+        element.getAttribute('inst'),
+        reservedInstLDevice(element)
       ),
     },
   ];

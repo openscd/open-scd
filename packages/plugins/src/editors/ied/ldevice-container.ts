@@ -23,6 +23,7 @@ import {
   getLdNameAttribute,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 
 import { wizards } from '../../wizards/wizard-library.js';
 import { Container } from './foundation.js';
@@ -104,11 +105,25 @@ export class LDeviceContainer extends Container {
     this.dispatchEvent(newEditEventV2(inserts));
   }
 
+  private removeLDevice(): void {
+    this.dispatchEvent(
+      newActionEvent({
+        old: { parent: this.element.parentElement!, element: this.element },
+      })
+    );
+  }
+
   render(): TemplateResult {
     const lnElements = this.lnElements;
 
     return html`<action-pane .label="${this.header()}">
       <mwc-icon slot="icon">${logicalDeviceIcon}</mwc-icon>
+      <mwc-icon-button
+        slot="action"
+        icon="delete"
+        title="${translate('remove')}"
+        @click=${() => this.removeLDevice()}
+      ></mwc-icon-button>
       <abbr slot="action" title="${get('edit')}">
         <mwc-icon-button
           icon="edit"

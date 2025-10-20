@@ -314,6 +314,7 @@ export const en = {
       nameHelper: 'Logical device name',
       noNameSupportHelper: "IED doesn't support Functional Naming",
       descHelper: 'Logical device description',
+      instHelper: 'Logical device inst',
       title: {
         edit: 'Edit logical device',
       },
