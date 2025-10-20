@@ -29,10 +29,7 @@ let AddAccessPointDialog = class AddAccessPointDialog extends LitElement {
         return getAccessPointsWithServer(this.ied);
     }
     show() {
-        this.apName = '';
-        this.createServerAt = false;
-        this.serverAtApName = '';
-        this.serverAtDesc = '';
+        this.reset();
         this.dialog.show();
     }
     reset() {
