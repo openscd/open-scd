@@ -27,6 +27,7 @@ snapshots["add-ldevice-dialog looks like the latest snapshot"] =
     [close]
   </mwc-button>
   <mwc-button
+    disabled=""
     icon="add"
     slot="primaryAction"
     trailingicon=""

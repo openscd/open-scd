@@ -41,8 +41,12 @@ describe('add-ldevice-dialog', () => {
 
   describe('LDevice inst validation', () => {
     it('should reject empty names', () => {
-      expect(element['getInstError']('')).to.equal('');
-      expect(element['getInstError']('   ')).to.equal('');
+      expect(element['getInstError']('')).to.equal(
+        '[iededitor.addLDeviceDialog.instRequiredError]'
+      );
+      expect(element['getInstError']('   ')).to.equal(
+        '[iededitor.addLDeviceDialog.instRequiredError]'
+      );
     });
 
     it('should reject names with wrong pattern', () => {
