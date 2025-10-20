@@ -281,6 +281,18 @@ export const en = {
       noResults: 'No Logical Node Types found',
     },
   },
+  accesspoint: {
+    wizard: {
+      nameHelper: 'AccessPoint name',
+      descHelper: 'AccessPoint description',
+      title: {
+        add: 'Add AccessPoint',
+        edit: 'Edit AccessPoint',
+        delete: 'Remove AccessPoint with references',
+        references: 'References to be removed',
+      },
+    },
+  },
   ied: {
     wizard: {
       nameHelper: 'IED name',

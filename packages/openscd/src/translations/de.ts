@@ -284,6 +284,18 @@ export const de: Translations = {
       noResults: 'Keine Logical Node Types gefunden',
     },
   },
+  accesspoint: {
+    wizard: {
+      nameHelper: 'AccessPoint Name',
+      descHelper: 'AccessPoint Beschreibung',
+      title: {
+        add: 'AccessPoint hinzufügen',
+        edit: 'AccessPoint bearbeiten',
+        delete: 'AccessPoint mit Abhängigkeiten entfernen',
+        references: 'Gelöschte Abhängikeiten',
+      },
+    },
+  },
   ied: {
     wizard: {
       nameHelper: 'Name des IED',
