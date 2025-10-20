@@ -50,6 +50,12 @@ export class AddLnDialog extends LitElement {
   @state()
   prefix: string = '';
 
+  private tipVisible = false;
+  private pendingFrame = 0;
+  private lastX = 0;
+  private lastY = 0;
+  private tooltipOffset = 12;
+
   private get lNodeTypes(): Array<{
     id: string;
     lnClass: string;
@@ -106,6 +112,80 @@ export class AddLnDialog extends LitElement {
     this.close();
   }
 
+  private onListItemEnter(e: MouseEvent, id: string): void {
+    const target = e.currentTarget as HTMLElement;
+    const idSpan = target.querySelector('[data-ln-id]') as HTMLElement;
+
+    const isOverflowing = idSpan.scrollWidth > idSpan.clientWidth;
+    if (!isOverflowing) return;
+
+    const tip = this.shadowRoot?.querySelector(
+      '.custom-tooltip'
+    ) as HTMLElement | null;
+    if (!tip) return;
+    tip.textContent = id;
+    tip.hidden = false;
+    this.tipVisible = true;
+    this.lastX = (e as MouseEvent).clientX + this.tooltipOffset;
+    this.lastY = (e as MouseEvent).clientY + this.tooltipOffset;
+    this.schedulePositionUpdate();
+  }
+
+  private onListItemMove(e: MouseEvent): void {
+    if (!this.tipVisible) return;
+    this.lastX = e.clientX + this.tooltipOffset;
+    this.lastY = e.clientY + this.tooltipOffset;
+    this.schedulePositionUpdate();
+  }
+
+  private onListItemLeave(): void {
+    const tip = this.shadowRoot?.querySelector(
+      '.custom-tooltip'
+    ) as HTMLElement | null;
+    if (tip) {
+      tip.hidden = true;
+      tip.textContent = '';
+    }
+    this.tipVisible = false;
+    if (this.pendingFrame) {
+      cancelAnimationFrame(this.pendingFrame);
+      this.pendingFrame = 0;
+    }
+  }
+
+  private schedulePositionUpdate(): void {
+    if (this.pendingFrame) return;
+    this.pendingFrame = requestAnimationFrame(() => {
+      this.pendingFrame = 0;
+      const tip = this.shadowRoot?.querySelector(
+        '.custom-tooltip'
+      ) as HTMLElement | null;
+      if (!tip || !this.tipVisible) return;
+
+      const tipRect = tip.getBoundingClientRect();
+      let x = this.lastX;
+      let y = this.lastY;
+      const offset = this.tooltipOffset;
+
+      const innerW = window.innerWidth;
+      const innerH = window.innerHeight;
+
+      if (x + tipRect.width + offset > innerW) {
+        x = this.lastX - tipRect.width - offset;
+      }
+      if (x < offset) x = offset;
+
+      if (y + tipRect.height + offset > innerH) {
+        y = this.lastY - tipRect.height - offset;
+      }
+      if (y < offset) y = offset;
+
+      tip.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(
+        y
+      )}px, 0)`;
+    });
+  }
+
   render(): TemplateResult {
     return html`
       <mwc-dialog
@@ -149,9 +229,13 @@ export class AddLnDialog extends LitElement {
                           value=${t.id}
                           dialogAction="none"
                           style="cursor: pointer;"
-                          title="${t.id}"
+                          @mouseenter=${(e: MouseEvent) =>
+                            this.onListItemEnter(e, t.id)}
+                          @mousemove=${(e: MouseEvent) =>
+                            this.onListItemMove(e)}
+                          @mouseleave=${() => this.onListItemLeave()}
                         >
-                          <span class="ln-list-id">${t.id}</span>
+                          <span class="ln-list-id" data-ln-id>${t.id}</span>
                           <span class="ln-list-desc">${t.desc || ''}</span>
                         </mwc-list-item>
                       `
@@ -208,6 +292,12 @@ export class AddLnDialog extends LitElement {
         >
           ${translate('add')}
         </mwc-button>
+        <div
+          class="custom-tooltip"
+          style="left: 0; top: 0; transform: translate3d(0,0,0);"
+          role="tooltip"
+          hidden
+        ></div>
       </mwc-dialog>
     `;
   }
@@ -257,6 +347,9 @@ export class AddLnDialog extends LitElement {
       font-size: 1em;
       line-height: 1.2;
       color: var(--mdc-theme-on-surface, #222);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .ln-list-desc {
@@ -267,6 +360,28 @@ export class AddLnDialog extends LitElement {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .custom-tooltip {
+      position: fixed;
+      pointer-events: none;
+      background: rgba(20, 20, 20, 0.95);
+      color: rgba(240, 240, 240, 0.98);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      z-index: 6000;
+      max-width: 60vw;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      left: 0;
+      top: 0;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    .custom-tooltip[hidden] {
+      display: none;
     }
   `;
 }
