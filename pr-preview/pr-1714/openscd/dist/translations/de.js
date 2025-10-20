@@ -260,6 +260,7 @@ export const de = {
             title: 'LDevice hinzufügen',
             inst: 'LDevice inst',
             desc: 'LDevice Beschreibung',
+            instRequiredError: 'LDevice inst ist erforderlich',
             instFormatError: 'LDevice inst darf keine Leerzeichen enthalten',
             instUniqueError: 'LDevice inst ist bereits vergeben',
             instTooLongError: 'LDevice inst ist zu lang',

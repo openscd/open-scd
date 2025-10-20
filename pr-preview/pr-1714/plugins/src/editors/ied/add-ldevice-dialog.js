@@ -51,7 +51,7 @@ export let AddLDeviceDialog = class extends LitElement {
   getInstError(value) {
     const trimmed = value.trim();
     if (!trimmed)
-      return "";
+      return get("iededitor.addLDeviceDialog.instRequiredError");
     if (!/^[A-Za-z0-9][0-9A-Za-z_]*$/.test(trimmed))
       return get("iededitor.addLDeviceDialog.instFormatError");
     if (trimmed.length > 64)

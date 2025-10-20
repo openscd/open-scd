@@ -13,6 +13,7 @@ Dialog for adding a new LN to a LDevice.
 | `lnType`     |             | `string`                 | ""      |
 | `onConfirm`  | `onConfirm` | `(data: LNData) => void` |         |
 | `prefix`     |             | `string`                 | ""      |
+| `tooltip`    |             | `OscdTooltip`            |         |
 
 ## Methods
 

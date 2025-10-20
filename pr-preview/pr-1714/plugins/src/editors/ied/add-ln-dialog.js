@@ -24,6 +24,7 @@ import "../../../../_snowpack/pkg/@material/mwc-textfield.js";
 import "../../../../_snowpack/pkg/@material/mwc-button.js";
 import "../../../../_snowpack/pkg/@material/mwc-select.js";
 import "../../../../_snowpack/pkg/@material/mwc-list/mwc-list-item.js";
+import "../../components/tooltip.js";
 import {getLNodeTypes} from "./foundation.js";
 export let AddLnDialog = class extends LitElement {
   constructor() {
@@ -32,11 +33,6 @@ export let AddLnDialog = class extends LitElement {
     this.amount = 1;
     this.filterText = "";
     this.prefix = "";
-    this.tipVisible = false;
-    this.pendingFrame = 0;
-    this.lastX = 0;
-    this.lastY = 0;
-    this.tooltipOffset = 12;
   }
   get lNodeTypes() {
     if (!this.doc)
@@ -87,63 +83,19 @@ export let AddLnDialog = class extends LitElement {
     const target = e.currentTarget;
     const idSpan = target.querySelector("[data-ln-id]");
     const isOverflowing = idSpan.scrollWidth > idSpan.clientWidth;
-    if (!isOverflowing)
+    if (!isOverflowing || !this.tooltip)
       return;
-    const tip = this.shadowRoot?.querySelector(".custom-tooltip");
-    if (!tip)
-      return;
-    tip.textContent = id;
-    tip.hidden = false;
-    this.tipVisible = true;
-    this.lastX = e.clientX + this.tooltipOffset;
-    this.lastY = e.clientY + this.tooltipOffset;
-    this.schedulePositionUpdate();
+    this.tooltip.show(id, e.clientX, e.clientY);
   }
   onListItemMove(e) {
-    if (!this.tipVisible)
+    if (!this.tooltip || !this.tooltip.visible)
       return;
-    this.lastX = e.clientX + this.tooltipOffset;
-    this.lastY = e.clientY + this.tooltipOffset;
-    this.schedulePositionUpdate();
+    this.tooltip.updatePosition(e.clientX, e.clientY);
   }
   onListItemLeave() {
-    const tip = this.shadowRoot?.querySelector(".custom-tooltip");
-    if (tip) {
-      tip.hidden = true;
-      tip.textContent = "";
+    if (this.tooltip) {
+      this.tooltip.hide();
     }
-    this.tipVisible = false;
-    if (this.pendingFrame) {
-      cancelAnimationFrame(this.pendingFrame);
-      this.pendingFrame = 0;
-    }
-  }
-  schedulePositionUpdate() {
-    if (this.pendingFrame)
-      return;
-    this.pendingFrame = requestAnimationFrame(() => {
-      this.pendingFrame = 0;
-      const tip = this.shadowRoot?.querySelector(".custom-tooltip");
-      if (!tip || !this.tipVisible)
-        return;
-      const tipRect = tip.getBoundingClientRect();
-      let x = this.lastX;
-      let y = this.lastY;
-      const offset = this.tooltipOffset;
-      const innerW = window.innerWidth;
-      const innerH = window.innerHeight;
-      if (x + tipRect.width + offset > innerW) {
-        x = this.lastX - tipRect.width - offset;
-      }
-      if (x < offset)
-        x = offset;
-      if (y + tipRect.height + offset > innerH) {
-        y = this.lastY - tipRect.height - offset;
-      }
-      if (y < offset)
-        y = offset;
-      tip.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
-    });
   }
   render() {
     return html`
@@ -240,12 +192,7 @@ export let AddLnDialog = class extends LitElement {
         >
           ${translate("add")}
         </mwc-button>
-        <div
-          class="custom-tooltip"
-          style="left: 0; top: 0; transform: translate3d(0,0,0);"
-          role="tooltip"
-          hidden
-        ></div>
+        <oscd-tooltip-4c6027dd role="tooltip"></oscd-tooltip-4c6027dd>
       </mwc-dialog>
     `;
   }
@@ -309,28 +256,6 @@ AddLnDialog.styles = css`
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    .custom-tooltip {
-      position: fixed;
-      pointer-events: none;
-      background: rgba(20, 20, 20, 0.95);
-      color: rgba(240, 240, 240, 0.98);
-      padding: 6px 8px;
-      border-radius: 4px;
-      font-size: 0.85em;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-      z-index: 6000;
-      max-width: 60vw;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      left: 0;
-      top: 0;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
-    }
-
-    .custom-tooltip[hidden] {
-      display: none;
-    }
   `;
 __decorate([
   property({attribute: false})
@@ -341,6 +266,9 @@ __decorate([
 __decorate([
   query("#addLnDialog")
 ], AddLnDialog.prototype, "dialog", 2);
+__decorate([
+  query("oscd-tooltip-4c6027dd")
+], AddLnDialog.prototype, "tooltip", 2);
 __decorate([
   state()
 ], AddLnDialog.prototype, "lnType", 2);

@@ -260,6 +260,7 @@ export const en = {
       title: "Add LDevice",
       inst: "LDevice inst",
       desc: "LDevice description",
+      instRequiredError: "LDevice inst is required",
       instFormatError: "Invalid inst",
       instUniqueError: "LDevice inst already exists",
       instTooLongError: "LDevice inst is too long"
