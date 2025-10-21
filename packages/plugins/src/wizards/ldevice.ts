@@ -61,7 +61,9 @@ export function renderLdeviceWizard(
     html`<wizard-textfield
       label="inst"
       .maybeValue=${inst}
+      required
       helper="${get('ldevice.wizard.instHelper')}"
+      validationMessage="${get('textfield.required')}"
       pattern="${patterns.normalizedString}"
       .reservedValues=${reservedInst}
     ></wizard-textfield>`,
@@ -91,7 +93,7 @@ function reservedInstLDevice(currentElement: Element): string[] {
 function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): SimpleAction[] => {
     const ldAttrs: Record<string, string | null> = {};
-    const ldKeys = ['ldName', 'desc', 'inst'];
+    const ldKeys = ['desc', 'inst'];
     ldKeys.forEach(key => {
       ldAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });

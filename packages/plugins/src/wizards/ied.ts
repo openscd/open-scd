@@ -73,7 +73,6 @@ export function renderIEDWizard(
     html`<wizard-textfield
       label="manufacturer"
       .maybeValue=${manufacturer}
-      nullable
       helper="${get('ied.wizard.manufacturerHelper')}"
       pattern="${patterns.normalizedString}"
     ></wizard-textfield>`,

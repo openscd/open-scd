@@ -12,7 +12,6 @@ import {
 import { cloneElement } from '@openscd/xml';
 
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
-import { patterns } from './foundation/limits.js';
 
 export function renderLNWizard(
   lnType: string | null,
@@ -38,7 +37,6 @@ export function renderLNWizard(
     html`<wizard-textfield
       label="prefix"
       nullable
-      readonly
       .maybeValue=${prefix}
       helper="${get('ln.wizard.prefixHelper')}"
     ></wizard-textfield>`,
@@ -52,7 +50,6 @@ export function renderLNWizard(
     html`<wizard-textfield
       label="inst"
       .maybeValue=${inst}
-      readonly
       helper="${get('ln.wizard.instHelper')}"
     ></wizard-textfield>`,
   ];
@@ -78,7 +75,6 @@ function updateAction(element: Element): WizardActor {
     return [];
   };
 }
-
 
 export function editLNWizard(element: Element): Wizard {
   return [
