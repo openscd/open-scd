@@ -5,6 +5,18 @@ snapshots["access-point-container with Server Elements looks like the latest sna
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
+  <mwc-icon-button
+    icon="edit"
+    slot="action"
+    title="[edit]"
+  >
+  </mwc-icon-button>
   <server-container>
   </server-container>
   <div id="lnContainer">
@@ -17,6 +29,18 @@ snapshots["access-point-container with LN Elements and all LN Classes displayed 
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
+  <mwc-icon-button
+    icon="edit"
+    slot="action"
+    title="[edit]"
+  >
+  </mwc-icon-button>
   <div id="lnContainer">
     <ln-container>
     </ln-container>
@@ -43,6 +67,18 @@ snapshots["access-point-container with LN Elements and some LN Classes hidden lo
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
+  <mwc-icon-button
+    icon="edit"
+    slot="action"
+    title="[edit]"
+  >
+  </mwc-icon-button>
   <div id="lnContainer">
     <ln-container>
     </ln-container>
@@ -61,6 +97,18 @@ snapshots["access-point-container with LN Elements and all LN Classes hidden loo
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
+  <mwc-icon-button
+    icon="edit"
+    slot="action"
+    title="[edit]"
+  >
+  </mwc-icon-button>
   <div id="lnContainer">
   </div>
 </action-pane>

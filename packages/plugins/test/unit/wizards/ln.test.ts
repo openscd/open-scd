@@ -7,8 +7,6 @@ import { WizardInputElement } from '@openscd/open-scd/src/foundation.js';
 import { fetchDoc, setWizardTextFieldValue } from './test-support.js';
 import { WizardTextField } from '@openscd/open-scd/src/wizard-textfield.js';
 
-
-
 describe('ln wizards', () => {
   let doc: XMLDocument;
   let element: OscdWizards;
@@ -21,12 +19,7 @@ describe('ln wizards', () => {
     lnClass: 'LN-class',
     inst: '1',
   };
-  const readonlyFields = [
-    'lnType',
-    'prefix',
-    'lnClass',
-    'inst'
-  ];
+  const readonlyFields = ['lnType', 'lnClass'];
 
   const ln = <Element>(
     new DOMParser().parseFromString(
@@ -52,16 +45,16 @@ describe('ln wizards', () => {
     it(`contains a wizard-textfield with a non-empty "${key}" value`, async () => {
       expect(
         (<WizardInputElement[]>inputs).find(
-          (textField) => textField.label === key
+          textField => textField.label === key
         )?.value
       ).to.equal(value);
     });
   });
 
-  readonlyFields.forEach((field) => {
+  readonlyFields.forEach(field => {
     it(`is a readonly field ${field}`, async () => {
       const input = (<WizardInputElement[]>inputs).find(
-        (textField) => textField.label === field
+        textField => textField.label === field
       ) as WizardTextField;
 
       expect(input.readOnly).to.be.true;
