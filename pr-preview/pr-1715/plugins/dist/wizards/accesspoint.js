@@ -89,13 +89,8 @@ function reservedNamesAccessPoint(currentElement) {
 }
 function removeAccessPointAndReferences(element) {
     return (inputs, wizard) => {
-        // Close Edit Wizard, if open.
         wizard.dispatchEvent(newWizardEvent());
-        // Get Delete Actions for other elements that also need to be removed
         const referencesDeleteActions = deleteReferences(element);
-        // Use the ExtRef Elements to check if after removing the ExtRef there are empty Inputs that can also be removed.
-        const extRefsDeleteActions = referencesDeleteActions.filter(deleteAction => deleteAction.old.element.tagName === 'ExtRef');
-        // Create Complex Action to remove AccessPoint and all references.
         const name = element.getAttribute('name') ?? 'Unknown';
         const complexAction = {
             actions: [],

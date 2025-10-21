@@ -92,7 +92,6 @@ function removeAccessPointAndReferences(element) {
   return (inputs, wizard) => {
     wizard.dispatchEvent(newWizardEvent());
     const referencesDeleteActions = deleteReferences(element);
-    const extRefsDeleteActions = referencesDeleteActions.filter((deleteAction) => deleteAction.old.element.tagName === "ExtRef");
     const name = element.getAttribute("name") ?? "Unknown";
     const complexAction = {
       actions: [],
