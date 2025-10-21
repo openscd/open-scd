@@ -154,6 +154,60 @@ export function createIEDStructure(
 }
 
 /**
+ * Create an AccessPoint element for an IED.
+ * @param doc - The XML document to create the AccessPoint in.
+ * @param name - The name for the new AccessPoint.
+ * @returns The created AccessPoint element.
+ */
+export function createAccessPoint(doc: XMLDocument, name: string): Element {
+  return createElement(doc, 'AccessPoint', { name });
+}
+
+/**
+ * Create a ServerAt element pointing to an existing AccessPoint.
+ * @param doc - The XML document to create the ServerAt in.
+ * @param apName - The name of the AccessPoint that contains the Server to reference.
+ * @param desc - Optional description for the ServerAt element.
+ * @returns The created ServerAt element.
+ */
+export function createServerAt(
+  doc: XMLDocument,
+  apName: string,
+  desc?: string
+): Element {
+  const attributes: Record<string, string> = { apName };
+
+  if (desc) {
+    attributes.desc = desc;
+  }
+
+  return createElement(doc, 'ServerAt', attributes);
+}
+
+/**
+ * Get all existing AccessPoint names from the current IED.
+ * @param ied - The IED element to search in.
+ * @returns Array of AccessPoint names.
+ */
+export function getExistingAccessPointNames(ied: Element): string[] {
+  return Array.from(ied.querySelectorAll(':scope > AccessPoint'))
+    .map(ap => ap.getAttribute('name'))
+    .filter((name): name is string => name !== null);
+}
+
+/**
+ * Get AccessPoint names that contain a Server element (can be referenced by ServerAt).
+ * @param ied - The IED element to search in.
+ * @returns Array of AccessPoint names that have Server elements.
+ */
+export function getAccessPointsWithServer(ied: Element): string[] {
+  return Array.from(ied.querySelectorAll(':scope > AccessPoint'))
+    .filter(ap => ap.querySelector(':scope > Server'))
+    .map(ap => ap.getAttribute('name'))
+    .filter((name): name is string => name !== null);
+}
+
+/**
  * With the passed DO Element retrieve the type attribute and search for the DOType in the DataType Templates section.
  * @param element - The DO Element.
  * @returns The DOType element found in the DataType Templates section or null if it not exists.
@@ -226,6 +280,26 @@ export function newFullElementPathEvent(
     ...eventInitDict,
     detail: { elementNames, ...eventInitDict?.detail },
   });
+}
+
+/**
+ * Get all LDevice inst values from a Server element.
+ * @param server - The Server element to search in.
+ * @returns Array of LDevice inst values.
+ */
+export function getLDeviceInsts(server: Element): string[] {
+  return Array.from(server.querySelectorAll(':scope > LDevice')).map(
+    ld => ld.getAttribute('inst') || ''
+  );
+}
+
+/**
+ * Get LNodeType elements from DataTypeTemplates in the document.
+ * @param doc - The XML document to search in.
+ * @returns Array of LNodeType elements.
+ */
+export function getLNodeTypes(doc: XMLDocument): Element[] {
+  return Array.from(doc.querySelectorAll('DataTypeTemplates > LNodeType'));
 }
 
 declare global {
