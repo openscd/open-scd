@@ -1,0 +1,64 @@
+<title>oscd-subscriber-later-binding Demo</title>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+  rel="stylesheet"
+/>
+<open-scd
+  plugins='{
+  "menu": 
+  [
+    {"name": "Open File", "translations": {"de": "Datei öffnen"}, "icon": "folder_open", "active": true, "src": "https://openscd.github.io/oscd-open/oscd-open.js"}, 
+    {"name": "Save File", "translations": {"de": "Datei speichern"}, "icon": "save", "active": true, "src": "https://openscd.github.io/oscd-save/oscd-save.js"},
+    {"name": "LB Siemens", "icon": "autorenew", "active": true, "src": "https://danyill.github.io/oscd-subscriber-lb-siemens/oscd-subscriber-lb-siemens.js"},
+    {"name": "LB SEL", "icon": "autorenew", "active": true, "src": "https://danyill.github.io/oscd-subscriber-lb-sel/oscd-subscriber-lb-sel.js"},
+    {"name": "LB NR Electric", "icon": "autorenew", "active": true, "src": "https://danyill.github.io/oscd-subscriber-lb-nr/oscd-subscriber-lb-nr.js"}
+  ],
+  "editor": 
+  [
+    {"name": "Subscriber Later Binding", "translations": {"de": "Späte Bindung des Abonnenten", "pt": "Associação Tardia de Assinante"}, "icon": "link", "active": true, "requireDoc": true, "src": "oscd-subscriber-later-binding.js"}
+  ]
+}'
+></open-scd>
+
+<script>
+  const _customElementsDefine = window.customElements.define;
+  window.customElements.define = (name, cl, conf) => {
+    if (!customElements.get(name)) {
+      try {
+        _customElementsDefine.call(window.customElements, name, cl, conf);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+  };
+</script>
+
+<script type="module">
+  import 'https://omicronenergyoss.github.io/open-scd-core/open-scd.js';
+  //   import 'open-scd-core/open-scd.js'
+
+  const editor = document.querySelector('open-scd');
+  const params = new URL(document.location).searchParams;
+  for (const [name, value] of params) {
+    editor.setAttribute(name, value);
+  }
+</script>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    --mdc-icon-font: 'Material Symbols Outlined';
+  }
+
+  body {
+    background: white;
+  }
+</style>
