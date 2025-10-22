@@ -87,7 +87,7 @@ function reservedNamesAccessPoint(currentElement) {
         .map(ap => ap.getAttribute('name') ?? '')
         .filter(name => name !== currentElement.getAttribute('name'));
 }
-function removeAccessPointAndReferences(element) {
+export function removeAccessPointAndReferences(element) {
     return (inputs, wizard) => {
         wizard.dispatchEvent(newWizardEvent());
         const referencesDeleteActions = deleteReferences(element);

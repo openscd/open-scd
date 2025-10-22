@@ -88,7 +88,7 @@ function reservedNamesAccessPoint(currentElement) {
     return [];
   return Array.from(ied.querySelectorAll(":scope > AccessPoint")).filter(isPublic).map((ap) => ap.getAttribute("name") ?? "").filter((name) => name !== currentElement.getAttribute("name"));
 }
-function removeAccessPointAndReferences(element) {
+export function removeAccessPointAndReferences(element) {
   return (inputs, wizard) => {
     wizard.dispatchEvent(newWizardEvent());
     const referencesDeleteActions = deleteReferences(element);
