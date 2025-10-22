@@ -9,10 +9,13 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
+import { newEditEventV2 } from '@openscd/core';
+import { createElement } from '@openscd/xml';
+import { logicalDeviceIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
 import {
   getDescriptionAttribute,
   getInstanceAttribute,
@@ -20,13 +23,15 @@ import {
   getLdNameAttribute,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
-import { logicalDeviceIcon } from '@openscd/open-scd/src/icons/ied-icons.js';
-
-import '@openscd/open-scd/src/action-pane.js';
-import './ln-container.js';
 
 import { wizards } from '../../wizards/wizard-library.js';
 import { Container } from './foundation.js';
+import { lnInstGenerator } from '@openenergytools/scl-lib/dist/generator/lnInstGenerator.js';
+import { AddLnDialog, LNData } from './add-ln-dialog.js';
+
+import '@openscd/open-scd/src/action-pane.js';
+import './ln-container.js';
+import './add-ln-dialog.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
@@ -36,6 +41,9 @@ export class LDeviceContainer extends Container {
 
   @query('#toggleButton')
   toggleButton!: IconButtonToggle | undefined;
+
+  @query('add-ln-dialog')
+  addLnDialog!: AddLnDialog;
 
   private openEditWizard(): void {
     const wizard = wizards['LDevice'].edit(this.element);
@@ -76,6 +84,26 @@ export class LDeviceContainer extends Container {
     );
   }
 
+  private handleAddLN(data: LNData) {
+    const getInst = lnInstGenerator(this.element, 'LN');
+    const inserts = [];
+
+    for (let i = 0; i < data.amount; i++) {
+      const inst = getInst(data.lnClass);
+      if (!inst) break;
+      const lnAttrs = {
+        lnClass: data.lnClass,
+        lnType: data.lnType,
+        inst: inst,
+        ...(data.prefix ? { prefix: data.prefix } : {}),
+      };
+      const ln = createElement(this.doc, 'LN', lnAttrs);
+      inserts.push({ parent: this.element, node: ln, reference: null });
+    }
+
+    this.dispatchEvent(newEditEventV2(inserts));
+  }
+
   render(): TemplateResult {
     const lnElements = this.lnElements;
 
@@ -85,6 +113,12 @@ export class LDeviceContainer extends Container {
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title=${translate('iededitor.addLnDialog.title')}>
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.addLnDialog.show()}
         ></mwc-icon-button>
       </abbr>
       ${lnElements.length > 0
@@ -114,6 +148,10 @@ export class LDeviceContainer extends Container {
             )
           : nothing}
       </div>
+      <add-ln-dialog
+        .doc=${this.doc}
+        .onConfirm=${(data: LNData) => this.handleAddLN(data)}
+      ></add-ln-dialog>
     </action-pane>`;
   }
 

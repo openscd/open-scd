@@ -98,16 +98,22 @@ export class CreateIedDialog extends LitElement {
                 customError: error !== '',
               };
             }}
+            required
             autoValidate
+            helper=${translate('iededitor.createDialog.iedName')}
+            dialogInitialFocus
+            style="width: 100%; margin-bottom: 16px;"
             @input=${(e: Event) => {
               this.newIedName = (e.target as HTMLInputElement).value;
             }}
-            required
-            style="width: 100%; margin-bottom: 16px;"
           ></mwc-textfield>
         </div>
-        <mwc-button slot="secondaryAction" @click=${this.close}>
-          ${translate('cancel')}
+        <mwc-button
+          slot="secondaryAction"
+          @click=${this.close}
+          style="--mdc-theme-primary: var(--mdc-theme-error)"
+        >
+          ${translate('close')}
         </mwc-button>
         <mwc-button
           slot="primaryAction"
