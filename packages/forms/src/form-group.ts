@@ -1,0 +1,50 @@
+import { Form, Validator, FormValue } from "./types/types.js"
+
+export class FormGroup {
+  private form: Form;
+
+  constructor(form: Form) {
+    this.form = form;
+  }
+
+  public validate(): boolean {
+    const formValue = this.getFormValue();
+    let hasError = false;
+
+    for (const [fieldKey, fieldDefinition] of Object.entries(this.form)) {
+      const validators = this.toArray(fieldDefinition.validators);
+
+      const value = formValue[fieldKey];
+
+      const errors = validators
+        .map(v => v(value, formValue))
+        .filter(e => !!e);
+
+      if (errors.length > 0) {
+        fieldDefinition.formField.error = true;
+        fieldDefinition.formField.errorText = errors[0];
+
+        hasError = true;
+      }
+    }
+
+    return hasError;
+  }
+
+  private getFormValue(): FormValue {
+    const formValue: FormValue = {};
+
+    Object.keys(this.form).forEach(key => formValue[key] = this.form[key].formField.value);
+
+    return formValue;
+  }
+
+  private toArray(validators: Validator | Validator[] | undefined): Validator[] {
+    if (!validators) {
+      return [];
+    }
+
+    return Array.isArray(validators) ? validators : [ validators ];
+  }
+
+}

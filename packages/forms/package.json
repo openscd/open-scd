@@ -1,0 +1,25 @@
+{
+  "name": "@openscd/forms",
+  "version": "0.0.1",
+  "description": "The forms package OpenSCD",
+  "author": "Open-SCD",
+  "license": "Apache-2.0",
+  "packageManager": "npm@8.12.2",
+  "type": "module",
+  "browser": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/**"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "rimraf .tsbuildinfo dist",
+    "build": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
