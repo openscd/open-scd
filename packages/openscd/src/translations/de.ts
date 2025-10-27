@@ -284,10 +284,23 @@ export const de: Translations = {
       noResults: 'Keine Logical Node Types gefunden',
     },
   },
+  accesspoint: {
+    wizard: {
+      nameHelper: 'AccessPoint Name',
+      descHelper: 'AccessPoint Beschreibung',
+      title: {
+        add: 'AccessPoint hinzufügen',
+        edit: 'AccessPoint bearbeiten',
+        delete: 'AccessPoint mit Abhängigkeiten entfernen',
+        references: 'Gelöschte Abhängikeiten',
+      },
+    },
+  },
   ied: {
     wizard: {
       nameHelper: 'Name des IED',
       descHelper: 'Beschreibung des IED',
+      manufacturerHelper: 'Hersteller des IED',
       title: {
         edit: 'IED bearbeiten',
         delete: 'IED mit Abhängigkeiten entfernen',
@@ -304,6 +317,7 @@ export const de: Translations = {
       nameHelper: 'Name des Logisches Gerät',
       noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
       descHelper: 'Beschreibung des Logisches Gerät',
+      instHelper: 'Instanz des Logisches Gerät',
       title: {
         edit: 'Logisches Gerät bearbeiten',
       },

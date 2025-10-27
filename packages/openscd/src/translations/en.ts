@@ -281,10 +281,23 @@ export const en = {
       noResults: 'No Logical Node Types found',
     },
   },
+  accesspoint: {
+    wizard: {
+      nameHelper: 'AccessPoint name',
+      descHelper: 'AccessPoint description',
+      title: {
+        add: 'Add AccessPoint',
+        edit: 'Edit AccessPoint',
+        delete: 'Remove AccessPoint with references',
+        references: 'References to be removed',
+      },
+    },
+  },
   ied: {
     wizard: {
       nameHelper: 'IED name',
       descHelper: 'IED description',
+      manufacturerHelper: 'IED manufacturer',
       title: {
         edit: 'Edit IED',
         delete: 'Remove IED with references',
@@ -301,6 +314,7 @@ export const en = {
       nameHelper: 'Logical device name',
       noNameSupportHelper: "IED doesn't support Functional Naming",
       descHelper: 'Logical device description',
+      instHelper: 'Logical device inst',
       title: {
         edit: 'Edit logical device',
       },

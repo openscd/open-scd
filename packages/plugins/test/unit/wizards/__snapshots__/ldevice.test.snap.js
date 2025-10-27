@@ -26,9 +26,11 @@ snapshots["Wizards for SCL element LDevice Allowing/Disallowing ldName editing l
     >
     </wizard-textfield>
     <wizard-textfield
-      disabled=""
-      label="ldInst"
-      readonly=""
+      helper="[ldevice.wizard.instHelper]"
+      label="inst"
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
+      required=""
+      validationmessage="[textfield.required]"
     >
     </wizard-textfield>
   </div>

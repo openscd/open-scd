@@ -1,7 +1,9 @@
 import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-list/mwc-list-item';
 import '@openscd/open-scd/src/wizard-textfield.js';
+import '@openscd/open-scd/src/wizard-select.js';
 import {
   getValue,
   Wizard,
@@ -14,20 +16,31 @@ import { cloneElement } from '@openscd/xml';
 import { SimpleAction } from '@openscd/core/foundation/deprecated/editor.js';
 import { patterns } from './foundation/limits.js';
 
+function getLNodeTypeOptions(element: Element): string[] {
+  const doc = element.ownerDocument;
+  const lNodeTypes = Array.from(
+    doc.querySelectorAll('DataTypeTemplates > LNodeType[lnClass="LLN0"]')
+  );
+  return lNodeTypes.map(lnt => lnt.getAttribute('id')!).filter(id => id);
+}
+
 export function renderLN0Wizard(
+  lnodeTypeIds: string[],
   lnType: string | null,
   desc: string | null,
   lnClass: string | null,
   inst: string | null
 ): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<wizard-select
       label="lnType"
       .maybeValue=${lnType}
-      readonly
       required
       helper="${get('ln0.wizard.lnTypeHelper')}"
-    ></wizard-textfield>`,
+      >${lnodeTypeIds.map(
+        id => html`<mwc-list-item value="${id}">${id}</mwc-list-item>`
+      )}</wizard-select
+    >`,
     html`<wizard-textfield
       label="desc"
       .maybeValue=${desc}
@@ -71,8 +84,9 @@ function updateAction(element: Element): WizardActor {
   };
 }
 
-
 export function editLN0Wizard(element: Element): Wizard {
+  const lnodeTypeIds = getLNodeTypeOptions(element);
+
   return [
     {
       title: get('ln0.wizard.title.edit'),
@@ -83,6 +97,7 @@ export function editLN0Wizard(element: Element): Wizard {
         action: updateAction(element),
       },
       content: renderLN0Wizard(
+        lnodeTypeIds,
         element.getAttribute('lnType'),
         element.getAttribute('desc'),
         element.getAttribute('lnClass'),

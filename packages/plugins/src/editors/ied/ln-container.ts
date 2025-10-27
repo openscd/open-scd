@@ -1,13 +1,14 @@
 import { customElement, html, query, TemplateResult } from 'lit-element';
 import { nothing } from 'lit-html';
 import { until } from 'lit-html/directives/until';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   getInstanceAttribute,
   getNameAttribute,
   newWizardEvent,
 } from '@openscd/open-scd/src/foundation.js';
+import { newActionEvent } from '@openscd/core/foundation/deprecated/editor.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '@openscd/open-scd/src/action-pane.js';
@@ -65,30 +66,44 @@ export class LNContainer extends Container {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  private removeElement(): void {
+    if (this.element.tagName === 'LN') {
+      this.dispatchEvent(
+        newActionEvent({
+          old: { parent: this.element.parentElement!, element: this.element },
+        })
+      );
+    }
+  }
+
   render(): TemplateResult {
     const doElements = this.getDOElements();
 
     return html`<action-pane .label="${until(this.header())}">
       ${doElements.length > 0
-        ? html`<abbr slot="action">
-          <mwc-icon-button
-            slot="action"
-            mini
-            icon="edit"
-            @click="${() => this.openEditWizard()}}"
-          ></mwc-icon-button>
-        </abbr>
-        <abbr
-            slot="action"
-            title="${get('iededitor.toggleChildElements')}"
-          >
-            <mwc-icon-button-toggle
-              id="toggleButton"
-              onIcon="keyboard_arrow_up"
-              offIcon="keyboard_arrow_down"
-              @click=${() => this.requestUpdate()}
-            ></mwc-icon-button-toggle>
-          </abbr>`
+        ? html`${this.element.tagName === 'LN'
+              ? html`<mwc-icon-button
+                  slot="action"
+                  icon="delete"
+                  title="${translate('remove')}"
+                  @click=${() => this.removeElement()}
+                ></mwc-icon-button>`
+              : nothing}<abbr slot="action">
+              <mwc-icon-button
+                slot="action"
+                mini
+                icon="edit"
+                @click="${() => this.openEditWizard()}}"
+              ></mwc-icon-button>
+            </abbr>
+            <abbr slot="action" title="${get('iededitor.toggleChildElements')}">
+              <mwc-icon-button-toggle
+                id="toggleButton"
+                onIcon="keyboard_arrow_up"
+                offIcon="keyboard_arrow_down"
+                @click=${() => this.requestUpdate()}
+              ></mwc-icon-button-toggle>
+            </abbr>`
         : nothing}
       ${this.toggleButton?.on
         ? doElements.map(

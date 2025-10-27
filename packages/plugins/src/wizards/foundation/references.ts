@@ -2,11 +2,14 @@ import {
   getNameAttribute,
   isPublic,
 } from '@openscd/open-scd/src/foundation.js';
-import {
-  Delete,
-  Replace
-} from '@openscd/core/foundation/deprecated/editor';
-const referenceInfoTags = ['IED', 'Substation', 'VoltageLevel', 'Bay'] as const;
+import { Delete, Replace } from '@openscd/core/foundation/deprecated/editor';
+const referenceInfoTags = [
+  'IED',
+  'AccessPoint',
+  'Substation',
+  'VoltageLevel',
+  'Bay',
+] as const;
 type ReferencesInfoTag = (typeof referenceInfoTags)[number];
 
 type FilterFunction = (
@@ -64,6 +67,12 @@ const referenceInfos: Record<
     {
       attributeName: null,
       filter: simpleTextContentFilter(`LN > DOI > DAI > Val`),
+    },
+  ],
+  AccessPoint: [
+    {
+      attributeName: 'apName',
+      filter: simpleAttributeFilter(`ServerAt`),
     },
   ],
   Substation: [

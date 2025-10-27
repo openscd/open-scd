@@ -5,6 +5,12 @@ snapshots["ldevice-container LDevice Element with LN Elements and all LN Element
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr
     slot="action"
     title="[edit]"
@@ -61,6 +67,12 @@ snapshots["ldevice-container LDevice Element with LN Elements and some LN Elemen
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr
     slot="action"
     title="[edit]"
@@ -107,6 +119,12 @@ snapshots["ldevice-container LDevice Element with LN Elements and no LN Elements
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr
     slot="action"
     title="[edit]"
@@ -133,6 +151,12 @@ snapshots["ldevice-container LDevice Element without LN Element looks like the l
 `<action-pane tabindex="0">
   <mwc-icon slot="icon">
   </mwc-icon>
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr
     slot="action"
     title="[edit]"
