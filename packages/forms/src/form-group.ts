@@ -1,7 +1,12 @@
-import { Form, Validator, FormValue } from "./types/types.js"
+import { Form, Validator, FormValue, FormErrors } from "./types/types.js"
 
 export class FormGroup {
   private form: Form;
+  private _errors: FormErrors = {};
+
+  public get errors(): FormErrors {
+    return this._errors;
+  }
 
   constructor(form: Form) {
     this.form = form;
@@ -16,9 +21,11 @@ export class FormGroup {
 
       const value = formValue[fieldKey];
 
-      const errors = validators
+      const errors: string[] = validators
         .map(v => v(value, formValue))
-        .filter(e => !!e);
+        .filter(e => e !== null) as string[];
+
+      this.errors[fieldKey] = errors;
 
       if (errors.length > 0) {
         fieldDefinition.formField.error = true;
