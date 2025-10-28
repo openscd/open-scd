@@ -32,10 +32,13 @@ export class FormGroup {
         fieldDefinition.formField.errorText = errors[0];
 
         hasError = true;
+      } else {
+        fieldDefinition.formField.error = false;
+        fieldDefinition.formField.errorText = null;
       }
     }
 
-    return hasError;
+    return !hasError;
   }
 
   private getFormValue(): FormValue {
