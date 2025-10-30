@@ -1,15 +1,7 @@
 import {
-  EditV2,
   EditEventV2,
   OpenEvent,
-  newEditCompletedEvent,
   newEditEvent,
-  handleEditV2,
-  isInsertV2,
-  isRemoveV2,
-  isSetAttributesV2,
-  isSetTextContentV2,
-  isComplexV2,
   newEditEventV2,
   XMLEditor
 } from '@openscd/core';
@@ -32,17 +24,12 @@ import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation
 import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
 
 import {
-  AttributeValue,
   Edit,
   EditEvent,
-  Insert,
   isComplex,
   isInsert,
-  isNamespaced,
   isRemove,
   isUpdate,
-  Remove,
-  Update,
 } from '@openscd/core';
 
 import { convertEditActiontoV1 } from './editor/edit-action-to-v1-converter.js';
@@ -64,28 +51,6 @@ export class OscdEditor extends LitElement {
     type: Object,
   })
   host!: HTMLElement;
-
-  private getLogText(edit: EditV2): { title: string, message?: string } {
-    if (isInsertV2(edit)) {
-      const name = edit.node instanceof Element ?
-        edit.node.tagName :
-        get('editing.node');
-      return { title: get('editing.created', { name }) };
-    } else if (isSetAttributesV2(edit) || isSetTextContentV2(edit)) {
-      const name = edit.element.tagName;
-      return { title: get('editing.updated', { name }) };
-    } else if (isRemoveV2(edit)) {
-      const name = edit.node instanceof Element ?
-        edit.node.tagName :
-        get('editing.node');
-      return { title: get('editing.deleted', { name }) };
-    } else if (isComplexV2(edit)) {
-      const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
-      return { title: get('editing.complex'), message };
-    }
-
-    return { title: '' };
-  }
 
   private onAction(event: EditorActionEvent<EditorAction>) {
     const edit = convertEditActiontoV1(event.detail.action);

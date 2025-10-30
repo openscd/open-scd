@@ -439,6 +439,7 @@ export class OpenSCD extends LitElement {
             .docs=${this.docs}
             .locale=${this.locale}
             .oscdApi=${new OscdApi(tag)}
+            .editor=${this.editor}
             class="${classMap({
               plugin: true,
               menu: plugin.kind === 'menu',

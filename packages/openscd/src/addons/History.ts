@@ -175,6 +175,8 @@ export class OscdHistory extends LitElement {
 
   private onReset() {
     this.log = [];
+    this.editor.reset();
+    this.updateHistory();
   }
 
   private onInfo(detail: InfoDetail) {
