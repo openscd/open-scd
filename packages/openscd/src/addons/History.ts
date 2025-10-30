@@ -38,29 +38,15 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { EditV2, isComplexV2, newEditEventV2, XMLEditor } from '@openscd/core';
+import { XMLEditor } from '@openscd/core';
 
 import { getLogText } from './history/get-log-text.js';
-
-export const historyStateEvent =  'history-state';
-export interface HistoryState {
-  editCount: number;
-  canUndo: boolean;
-  canRedo: boolean;
-}
-export type HistoryStateEvent = CustomEvent<HistoryState>;
 
 interface HistoryItem {
   title: string;
   message?: string;
   time: Date | null;
   isActive: boolean;
-}
-
-declare global {
-  interface ElementEventMap {
-    [historyStateEvent]: HistoryStateEvent;
-  }
 }
 
 const icons = {
@@ -140,14 +126,6 @@ export function newEmptyIssuesEvent(
   });
 }
 
-export function newUndoEvent(): CustomEvent {
-  return new CustomEvent('undo', { bubbles: true, composed: true });
-}
-
-export function newRedoEvent(): CustomEvent {
-  return new CustomEvent('redo', { bubbles: true, composed: true });
-}
-
 @customElement('oscd-history')
 export class OscdHistory extends LitElement {
   /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
@@ -217,7 +195,6 @@ export class OscdHistory extends LitElement {
 
   private setEditCount(count: number): void {
     this.editCount = count;
-    // this.dispatchHistoryStateEvent();
   }
 
   private onInfo(detail: InfoDetail) {

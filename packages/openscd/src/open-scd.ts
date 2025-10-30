@@ -47,8 +47,6 @@ import type {
 } from '@openscd/core';
 import { OscdApi, XMLEditor } from '@openscd/core';
 
-import { HistoryState, historyStateEvent } from './addons/History.js';
-
 import { InstalledOfficialPlugin, MenuPosition, PluginKind, Plugin } from "./plugin.js"
 import { ConfigurePluginEvent, ConfigurePluginDetail, newConfigurePluginEvent } from './plugin.events.js';
 import { newLogEvent } from '@openscd/core/foundation/deprecated/history';
@@ -65,13 +63,17 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history .host=${this} .editCount=${this.historyState.editCount} .editor=${this.editor}>
+          <oscd-history
+            .host=${this}
+            .editCount=${this.editCount}
+            .editor=${this.editor}
+          >
             <oscd-editor
               .doc=${this.doc}
               .docName=${this.docName}
               .docId=${this.docId}
               .host=${this}
-              .editCount=${this.historyState.editCount}
+              .editCount=${this.editCount}
               .editor=${this.editor}
             >
               <oscd-layout
@@ -81,9 +83,9 @@ export class OpenSCD extends LitElement {
                 .host=${this}
                 .doc=${this.doc}
                 .docName=${this.docName}
-                .editCount=${this.historyState.editCount}
-                .historyState=${this.historyState}
+                .editCount=${this.editCount}
                 .plugins=${this.storedPlugins}
+                .editor=${this.editor}
               >
               </oscd-layout>
             </oscd-editor>
@@ -103,13 +105,6 @@ export class OpenSCD extends LitElement {
 
   editor = new XMLEditor();
 
-  @state()
-  historyState: HistoryState = {
-    editCount: -1,
-    canRedo: false,
-    canUndo: false,
-  }
-
   /** Object containing all *.nsdoc files and a function extracting element's label form them*/
   @property({ attribute: false })
   nsdoc: Nsdoc = initializeNsdoc();
@@ -127,6 +122,10 @@ export class OpenSCD extends LitElement {
   }
 
   @state() private storedPlugins: Plugin[] = [];
+
+  @state() private editCount = -1;
+
+  private unsubscribers: (() => any)[] = [];
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
@@ -187,14 +186,19 @@ export class OpenSCD extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.loadPlugins()
+    this.loadPlugins();
+
+    this.unsubscribers.push(
+      this.editor.subscribe(e => this.editCount++),
+      this.editor.subscribeUndoRedo(e => this.editCount++)
+    );
 
     // TODO: let Lit handle the event listeners, move to render()
     this.addEventListener('reset-plugins', this.resetPlugins);
-    this.addEventListener(historyStateEvent, (e: CustomEvent<HistoryState>) => {
-      this.historyState = e.detail;
-      this.requestUpdate();
-    });
+  }
+
+  disconnectedCallback(): void {
+    this.unsubscribers.forEach(u => u());
   }
 
 
@@ -428,7 +432,7 @@ export class OpenSCD extends LitElement {
         return staticTagHtml`<${tag}
             .doc=${this.doc}
             .docName=${this.docName}
-            .editCount=${this.historyState.editCount}
+            .editCount=${this.editCount}
             .plugins=${this.storedPlugins}
             .docId=${this.docId}
             .pluginId=${plugin.src}
