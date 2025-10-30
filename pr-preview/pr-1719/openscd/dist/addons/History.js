@@ -78,6 +78,8 @@ let OscdHistory = class OscdHistory extends LitElement {
     }
     onReset() {
         this.log = [];
+        this.editor.reset();
+        this.updateHistory();
     }
     onInfo(detail) {
         const entry = {

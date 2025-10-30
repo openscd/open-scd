@@ -11,11 +11,6 @@ var __decorate = (decorators, target, key, kind) => {
 };
 import {
   newEditEvent,
-  isInsertV2,
-  isRemoveV2,
-  isSetAttributesV2,
-  isSetTextContentV2,
-  isComplexV2,
   newEditEventV2
 } from "../../../_snowpack/link/packages/core/dist/foundation.js";
 import {
@@ -41,22 +36,6 @@ export let OscdEditor = class extends LitElement {
     this.doc = null;
     this.docName = "";
     this.docId = "";
-  }
-  getLogText(edit) {
-    if (isInsertV2(edit)) {
-      const name = edit.node instanceof Element ? edit.node.tagName : get("editing.node");
-      return {title: get("editing.created", {name})};
-    } else if (isSetAttributesV2(edit) || isSetTextContentV2(edit)) {
-      const name = edit.element.tagName;
-      return {title: get("editing.updated", {name})};
-    } else if (isRemoveV2(edit)) {
-      const name = edit.node instanceof Element ? edit.node.tagName : get("editing.node");
-      return {title: get("editing.deleted", {name})};
-    } else if (isComplexV2(edit)) {
-      const message = edit.map((e) => this.getLogText(e)).map(({title}) => title).join(", ");
-      return {title: get("editing.complex"), message};
-    }
-    return {title: ""};
   }
   onAction(event) {
     const edit = convertEditActiontoV1(event.detail.action);
