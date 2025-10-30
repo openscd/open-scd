@@ -11,40 +11,27 @@ import {
 import { get } from 'lit-translate';
 import { newPendingStateEvent } from '@openscd/core/foundation/deprecated/waiter.js';
 import { newSettingsUIEvent } from '@openscd/core/foundation/deprecated/settings.js';
+import { XMLEditor } from '@openscd/core';
 import {
   MenuItem,
   Validator,
   MenuPlugin,
   pluginIcons,
-  newResetPluginsEvent,
-  newAddExternalPluginEvent,
-  newSetPluginsEvent,
 } from '../open-scd.js';
 
 import {
-  MenuPosition,
   Plugin,
-  menuPosition,
-  PluginKind,
 } from "../plugin.js"
 
 import {
-  HistoryState,
   HistoryUIKind,
   newEmptyIssuesEvent,
-  newHistoryUIEvent,
-  newRedoEvent,
-  newUndoEvent,
+  newHistoryUIEvent
 } from './History.js';
 import type { Drawer } from '@material/mwc-drawer';
 import type { ActionDetail } from '@material/mwc-list';
 import { List } from '@material/mwc-list';
 import type { ListItem } from '@material/mwc-list/mwc-list-item';
-import type { Dialog } from '@material/mwc-dialog';
-import type { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation.js';
-import type { Select } from '@material/mwc-select';
-import type { Switch } from '@material/mwc-switch';
-import type { TextField } from '@material/mwc-textfield';
 
 import '@material/mwc-drawer';
 import '@material/mwc-list';
@@ -72,13 +59,14 @@ export class OscdLayout extends LitElement {
   /** Index of the last [[`EditorAction`]] applied. */
   @property({ type: Number }) editCount = -1;
 
+  /** XML Editor to apply changes to the scd */
+  @property({ type: Object }) editor!: XMLEditor;
+
   /** The plugins to render the layout. */
   @property({ type: Array }) plugins: Plugin[] = [];
 
   /** The open-scd host element */
   @property({ type: Object }) host!: HTMLElement;
-
-  @property({ type: Object }) historyState!: HistoryState;
 
   @state() validated: Promise<void> = Promise.resolve();
   @state() shouldValidate = false;
@@ -173,9 +161,9 @@ export class OscdLayout extends LitElement {
         name: 'undo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newUndoEvent());
+          this.editor.undo();
         },
-        disabled: (): boolean => !this.historyState.canUndo,
+        disabled: (): boolean => !this.editor.canUndo,
         kind: 'static',
         content: () => html``,
       },
@@ -184,9 +172,9 @@ export class OscdLayout extends LitElement {
         name: 'redo',
         actionItem: true,
         action: (): void => {
-          this.dispatchEvent(newRedoEvent());
+          this.editor.redo();
         },
-        disabled: (): boolean => !this.historyState.canRedo,
+        disabled: (): boolean => !this.editor.canRedo,
         kind: 'static',
         content: () => html``,
       },

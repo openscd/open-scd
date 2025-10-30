@@ -68,3 +68,5 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
 }
 
 export { OscdApi } from './api/api.js';
+
+export { XMLEditor } from './api/editor/xml-editor.js';

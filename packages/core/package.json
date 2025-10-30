@@ -38,7 +38,8 @@
   "dependencies": {
     "@lit/localize": "^0.11.4",
     "@open-wc/lit-helpers": "^0.5.1",
-    "lit": "^2.2.7"
+    "lit": "^2.2.7",
+    "@openscd/oscd-api": "^0.1.5"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.3",
