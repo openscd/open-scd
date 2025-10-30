@@ -163,7 +163,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.editor.undo();
         },
-        disabled: (): boolean => this.editor.past.length === 0,
+        disabled: (): boolean => !this.editor.canUndo,
         kind: 'static',
         content: () => html``,
       },
@@ -174,7 +174,7 @@ export class OscdLayout extends LitElement {
         action: (): void => {
           this.editor.redo();
         },
-        disabled: (): boolean => this.editor.future.length === 0,
+        disabled: (): boolean => !this.editor.canRedo,
         kind: 'static',
         content: () => html``,
       },

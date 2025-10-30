@@ -4,20 +4,36 @@ import { EditV2 } from '@openscd/oscd-api/dist/editv2.js';
 import { Subject } from './subject.js';
 import { handleEditV2 } from '../../foundation.js';
 
+export interface OscdCommit<C> extends Commit<C> {
+  time: number;
+}
 
 export class XMLEditor implements Transactor<EditV2> {
-  public past: Commit<EditV2>[] = [];
-  public future: Commit<EditV2>[] = [];
+  public past: OscdCommit<EditV2>[] = [];
+  public future: OscdCommit<EditV2>[] = [];
 
-  private commitSubject = new Subject<Commit<EditV2>>();
-  private undoSubject = new Subject<Commit<EditV2>>();
-  private redoSubject = new Subject<Commit<EditV2>>();
+  private commitSubject = new Subject<OscdCommit<EditV2>>();
+  private undoSubject = new Subject<OscdCommit<EditV2>>();
+  private redoSubject = new Subject<OscdCommit<EditV2>>();
 
-  commit(change: EditV2, { title, squash }: CommitOptions = {}): Commit<EditV2> {
-    const commit: Commit<EditV2> =
+  get canUndo(): boolean {
+    return this.past.length > 0;
+  }
+
+  get canRedo(): boolean {
+    return this.future.length > 0;
+  }
+
+  reset(): void {
+    this.past = [];
+    this.future = [];
+  }
+
+  commit(change: EditV2, { title, squash }: CommitOptions = {}): OscdCommit<EditV2> {
+    const commit: OscdCommit<EditV2> =
       squash && this.past.length
         ? this.past[this.past.length - 1]
-        : { undo: [], redo: [] };
+        : { undo: [], redo: [], time: Date.now() };
     // TODO: Fix type once issue is fixed https://github.com/openscd/oscd-api/issues/57
     const undo = handleEditV2(change as any);
     // typed as per https://github.com/microsoft/TypeScript/issues/49280#issuecomment-1144181818 recommendation:
@@ -31,7 +47,7 @@ export class XMLEditor implements Transactor<EditV2> {
     return commit;
   };
 
-  undo(): Commit<EditV2> | undefined {
+  undo(): OscdCommit<EditV2> | undefined {
     const commit = this.past.pop();
     if (!commit) return;
     // TODO: Fix type once issue is fixed https://github.com/openscd/oscd-api/issues/57
@@ -41,7 +57,7 @@ export class XMLEditor implements Transactor<EditV2> {
     return commit;
   };
 
-  redo(): Commit<EditV2> | undefined {
+  redo(): OscdCommit<EditV2> | undefined {
     const commit = this.future.shift();
     if (!commit) return;
     // TODO: Fix type once issue is fixed https://github.com/openscd/oscd-api/issues/57
@@ -52,15 +68,15 @@ export class XMLEditor implements Transactor<EditV2> {
   };
 
   subscribe(txCallback: TransactedCallback<EditV2>): () => TransactedCallback<EditV2> {
-    return this.commitSubject.subscribe(txCallback);
+    return this.commitSubject.subscribe(txCallback) as () => TransactedCallback<EditV2>;
   };
 
   subscribeUndo(txCallback: TransactedCallback<EditV2>): () => TransactedCallback<EditV2> {
-    return this.undoSubject.subscribe(txCallback);
+    return this.undoSubject.subscribe(txCallback) as () => TransactedCallback<EditV2>;
   }
 
   subscribeRedo(txCallback: TransactedCallback<EditV2>): () => TransactedCallback<EditV2> {
-    return this.redoSubject.subscribe(txCallback);
+    return this.redoSubject.subscribe(txCallback) as () => TransactedCallback<EditV2>;
   }
 
   subscribeUndoRedo(txCallback: TransactedCallback<EditV2>): () => TransactedCallback<EditV2> {

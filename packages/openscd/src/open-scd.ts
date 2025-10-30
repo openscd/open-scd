@@ -65,7 +65,6 @@ export class OpenSCD extends LitElement {
         <oscd-wizards .host=${this}>
           <oscd-history
             .host=${this}
-            .editCount=${this.editCount}
             .editor=${this.editor}
           >
             <oscd-editor

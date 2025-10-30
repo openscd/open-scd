@@ -24,8 +24,6 @@ import { Snackbar } from '@material/mwc-snackbar';
 import '../filtered-list.js';
 
 import {
-  CommitDetail,
-  CommitEntry,
   InfoDetail,
   InfoEntry,
   IssueDetail,
@@ -45,7 +43,7 @@ import { getLogText } from './history/get-log-text.js';
 interface HistoryItem {
   title: string;
   message?: string;
-  time: Date | null;
+  time: number;
   isActive: boolean;
 }
 
@@ -135,10 +133,6 @@ export class OscdHistory extends LitElement {
   /** XML Editor to apply changes to the scd */
   @property({ type: Object }) editor!: XMLEditor;
 
-  /** Index of the last [[`EditorAction`]] applied. */
-  @property({ type: Number })
-  editCount = -1;
-
   @property()
   diagnoses = new Map<string, IssueDetail[]>();
 
@@ -161,14 +155,6 @@ export class OscdHistory extends LitElement {
 
   private unsubscribers: (() => any)[] = [];
 
-  get canUndo(): boolean {
-    console.log(`Can undo: ${this.editor.past.length > 0}`)
-    return this.editor.past.length > 0;
-  }
-  get canRedo(): boolean {
-    return this.editor.future.length > 0;
-  }
-
   private onIssue(de: IssueEvent): void {
     const issues = this.diagnoses.get(de.detail.validatorId);
 
@@ -189,12 +175,6 @@ export class OscdHistory extends LitElement {
 
   private onReset() {
     this.log = [];
-    this.history = [];
-    this.setEditCount(-1);
-  }
-
-  private setEditCount(count: number): void {
-    this.editCount = count;
   }
 
   private onInfo(detail: InfoDetail) {
@@ -275,7 +255,7 @@ export class OscdHistory extends LitElement {
 
       return {
         isActive: index === activeIndex,
-        time: null,
+        time: e.time,
         title: e.title ?? title,
         message
       };
@@ -323,7 +303,6 @@ export class OscdHistory extends LitElement {
         class="${entry.kind}"
         graphic="icon"
         ?twoline=${!!entry.message}
-        ?activated=${this.editCount == log.length - index - 1}
       >
         <span>
           <!-- FIXME: replace tt with mwc-chip asap -->
@@ -351,13 +330,19 @@ export class OscdHistory extends LitElement {
         ?activated=${entry.isActive}
       >
         <span>
-          <!-- FIXME: replace tt with mwc-chip asap -->
-          <tt>${entry.time?.toLocaleString()}</tt>
+          <tt>${this.formatTime(entry.time)}</tt>
           ${entry.title}
         </span>
         <span slot="secondary">${entry.message}</span>
       </mwc-list-item>
     </abbr>`;
+  }
+
+  private formatTime(time: number): string {
+    const date = new Date(time);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
   }
 
   private renderLog(): TemplateResult[] | TemplateResult {
@@ -372,7 +357,7 @@ export class OscdHistory extends LitElement {
 
   private renderHistory(): TemplateResult[] | TemplateResult {
     if (this.history.length > 0)
-      return this.history.slice().reverse().map(this.renderHistoryEntry);
+      return this.history.slice().reverse().map(e => this.renderHistoryEntry(e));
     else
       return html`<mwc-list-item disabled graphic="icon">
         <span>${get('history.placeholder')}</span>
@@ -444,14 +429,14 @@ export class OscdHistory extends LitElement {
       <mwc-button
         icon="undo"
         label="${get('undo')}"
-        ?disabled=${!this.canUndo}
+        ?disabled=${!this.editor.canUndo}
         @click=${this.undo}
         slot="secondaryAction"
       ></mwc-button>
       <mwc-button
         icon="redo"
         label="${get('redo')}"
-        ?disabled=${!this.canRedo}
+        ?disabled=${!this.editor.canRedo}
         @click=${this.redo}
         slot="secondaryAction"
       ></mwc-button>
