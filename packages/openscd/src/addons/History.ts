@@ -181,6 +181,8 @@ export class OscdHistory extends LitElement {
   @query('#info') infoUI!: Snackbar;
   @query('#issue') issueUI!: Snackbar;
 
+  private unsubscribers: (() => any)[] = [];
+
   get canUndo(): boolean {
     console.log(`Can undo: ${this.editor.past.length > 0}`)
     return this.editor.past.length > 0;
@@ -201,14 +203,10 @@ export class OscdHistory extends LitElement {
   }
 
   undo(): void {
-    console.log('Run undo')
     this.editor.undo();
-    this.updateHistory();
   }
   redo(): void {
-    console.log('Run redo')
     this.editor.redo();
-    this.updateHistory();
   }
 
   private onReset() {
@@ -322,15 +320,20 @@ export class OscdHistory extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    this.editor.subscribe(e => this.updateHistory());
+    this.unsubscribers.push(
+      this.editor.subscribe(e => this.updateHistory()),
+      this.editor.subscribeUndoRedo(e => this.updateHistory())
+    );
 
     this.host.addEventListener('log', this.onLog);
     this.host.addEventListener('issue', this.onIssue);
     this.host.addEventListener('history-dialog-ui', this.historyUIHandler);
     this.host.addEventListener('empty-issues', this.emptyIssuesHandler);
-    this.host.addEventListener('undo', this.undo);
-    this.host.addEventListener('redo', this.redo);
     this.diagnoses.clear();
+  }
+
+  disconnectedCallback(): void {
+    this.unsubscribers.forEach(u => u());
   }
 
   renderLogEntry(

@@ -37,6 +37,7 @@ export class XMLEditor implements Transactor<EditV2> {
     // TODO: Fix type once issue is fixed https://github.com/openscd/oscd-api/issues/57
     handleEditV2(commit.undo as any);
     this.future.unshift(commit);
+    this.undoSubject.next(commit);
     return commit;
   };
 
@@ -46,6 +47,7 @@ export class XMLEditor implements Transactor<EditV2> {
     // TODO: Fix type once issue is fixed https://github.com/openscd/oscd-api/issues/57
     handleEditV2(commit.redo as any);
     this.past.push(commit);
+    this.redoSubject.next(commit);
     return commit;
   };
 
