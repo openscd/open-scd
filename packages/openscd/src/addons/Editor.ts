@@ -10,7 +10,8 @@ import {
   isSetAttributesV2,
   isSetTextContentV2,
   isComplexV2,
-  newEditEventV2
+  newEditEventV2,
+  XMLEditor
 } from '@openscd/core';
 import {
   property,
@@ -56,6 +57,8 @@ export class OscdEditor extends LitElement {
   @property({ type: String }) docName = '';
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
+  /** XML Editor to apply changes to the scd */
+  @property({ type: Object }) editor!: XMLEditor;
 
   @property({
     type: Object,
@@ -151,15 +154,18 @@ export class OscdEditor extends LitElement {
   }
 
   async handleEditEventV2(event: EditEventV2) {
-    const edit = event.detail.edit;
+    const { edit, title, squash } = event.detail;
 
-    const undoEdit = handleEditV2(edit);
+    // const undoEdit = handleEditV2(edit);
+    this.editor.commit(edit, { title, squash });
 
     const shouldCreateHistoryEntry = event.detail.createHistoryEntry !== false;
 
     if (shouldCreateHistoryEntry) {
       const { title, message } = this.getLogText(edit);
 
+      // TODO
+      /*
       this.dispatchEvent(newLogEvent({
         kind: 'action',
         title: event.detail.title ?? title,
@@ -168,6 +174,7 @@ export class OscdEditor extends LitElement {
         undo: undoEdit,
         squash: event.detail.squash
       }));
+      */
     }
 
     await this.updateComplete;

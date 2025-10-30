@@ -45,7 +45,7 @@ import type {
   Plugin as CorePlugin,
   EditCompletedEvent,
 } from '@openscd/core';
-import { OscdApi } from '@openscd/core';
+import { OscdApi, XMLEditor } from '@openscd/core';
 
 import { HistoryState, historyStateEvent } from './addons/History.js';
 
@@ -65,13 +65,14 @@ export class OpenSCD extends LitElement {
     return html`<oscd-waiter>
       <oscd-settings .host=${this}>
         <oscd-wizards .host=${this}>
-          <oscd-history .host=${this} .editCount=${this.historyState.editCount}>
+          <oscd-history .host=${this} .editCount=${this.historyState.editCount} .editor=${this.editor}>
             <oscd-editor
               .doc=${this.doc}
               .docName=${this.docName}
               .docId=${this.docId}
               .host=${this}
               .editCount=${this.historyState.editCount}
+              .editor=${this.editor}
             >
               <oscd-layout
                 @add-external-plugin=${this.handleAddExternalPlugin}
@@ -99,6 +100,8 @@ export class OpenSCD extends LitElement {
   @property({ type: String }) docName = '';
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
+
+  editor = new XMLEditor();
 
   @state()
   historyState: HistoryState = {

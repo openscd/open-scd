@@ -38,7 +38,7 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { EditV2, isComplexV2, newEditEventV2 } from '@openscd/core';
+import { EditV2, isComplexV2, newEditEventV2, XMLEditor } from '@openscd/core';
 
 export const historyStateEvent =  'history-state';
 export interface HistoryState {
@@ -149,6 +149,9 @@ export class OscdHistory extends LitElement {
   @property({ type: Array })
   log: InfoEntry[] = [];
 
+  /** XML Editor to apply changes to the scd */
+  @property({ type: Object }) editor!: XMLEditor;
+
   /** All [[`CommitEntry`]]s received so far through [[`LogEvent`]]s */
   @property({ type: Array })
   history: CommitEntry[] = [];
@@ -177,19 +180,13 @@ export class OscdHistory extends LitElement {
   @query('#issue') issueUI!: Snackbar;
 
   get canUndo(): boolean {
-    return this.editCount >= 0;
+    console.log(`Can undo: ${this.editor.past.length > 0}`)
+    return this.editor.past.length > 0;
   }
   get canRedo(): boolean {
-    return this.nextAction >= 0;
+    return this.editor.future.length > 0;
   }
 
-  get previousAction(): number {
-    if (!this.canUndo) return -1;
-    return this.history
-      .slice(0, this.editCount)
-      .map(entry => (entry.kind == 'action' ? true : false))
-      .lastIndexOf(true);
-  }
   get nextAction(): number {
     let index = this.history
       .slice(this.editCount + 1)
@@ -209,23 +206,11 @@ export class OscdHistory extends LitElement {
     this.issueUI.show();
   }
 
-  undo(): boolean {
-    if (!this.canUndo) return false;
-
-    const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
-    this.host.dispatchEvent(newEditEventV2(undoEdit, { createHistoryEntry: false }));
-    this.setEditCount(this.previousAction);
-
-    return true;
+  undo(): void {
+    this.editor.undo();
   }
-  redo(): boolean {
-    if (!this.canRedo) return false;
-
-    const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
-    this.host.dispatchEvent(newEditEventV2(redoEdit, { createHistoryEntry: false }));
-    this.setEditCount(this.nextAction);
-
-    return true;
+  redo(): void {
+    this.editor.redo();
   }
 
   private onHistory(detail: CommitDetail) {
@@ -394,6 +379,11 @@ export class OscdHistory extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+
+    this.editor.subscribe(e => {
+      console.log(e)
+      this.requestUpdate('history', []);
+    });
 
     this.host.addEventListener('log', this.onLog);
     this.host.addEventListener('issue', this.onIssue);
