@@ -11,7 +11,8 @@ import {
   Update,
   SetAttributesV2,
   SetTextContentV2,
-  RemoveV2
+  RemoveV2,
+  XMLEditor
 } from '@openscd/core';
 import { CommitDetail, LogDetail } from '@openscd/core/foundation/deprecated/history.js';
 
@@ -20,6 +21,7 @@ describe('OSCD-Editor', () => {
   let element: OscdEditor;
   let host: HTMLElement;
   let scd: XMLDocument;
+  let editor: XMLEditor;
 
   let voltageLevel1: Element;
   let voltageLevel2: Element;
@@ -57,8 +59,9 @@ describe('OSCD-Editor', () => {
     );
 
     host = document.createElement('div');
+    editor = new XMLEditor();
 
-    element = <OscdEditor>await fixture(html`<oscd-editor .host=${host} .doc=${scd}></oscd-editor>`, { parentNode: host });
+    element = <OscdEditor>await fixture(html`<oscd-editor .host=${host} .doc=${scd} .editor=${editor}></oscd-editor>`, { parentNode: host });
 
     voltageLevel1 = scd.querySelector('VoltageLevel[name="v1"]')!;
     voltageLevel2 = scd.querySelector('VoltageLevel[name="v2"]')!;
@@ -336,20 +339,6 @@ describe('OSCD-Editor', () => {
           });
         });
 
-        it('should log edit by default', () => {
-          const remove: RemoveV2 = {
-            node: bay2,
-          };
-
-          host.dispatchEvent(newEditEventV2(remove));
-
-          expect(log).to.have.lengthOf(1);
-          const logEntry = log[0] as CommitDetail;
-          expect(logEntry.kind).to.equal('action');
-          expect(logEntry.title).to.equal('[editing.deleted]');
-          expect(logEntry.redo).to.deep.equal(remove);
-        });
-
         describe('validate after edit', () => {
           let hasTriggeredValidate = false;
           beforeEach(() => {
@@ -398,9 +387,7 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2(insert));
 
-      const undoInsert = log[0].undo as RemoveV2;
-
-      host.dispatchEvent(newEditEventV2(undoInsert));
+      editor.undo();
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
     });
@@ -412,9 +399,7 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2(remove));
 
-      const undoRemove = log[0].undo as InsertV2;
-
-      host.dispatchEvent(newEditEventV2(undoRemove));
+      editor.undo();
 
       const bay4FromScd = scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b4"]');
       expect(bay4FromScd).to.deep.equal(bay4);
@@ -432,9 +417,7 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2(update));
 
-      const undoUpdate = log[0].undo as SetAttributesV2;
-
-      host.dispatchEvent(newEditEventV2(undoUpdate));
+      editor.undo();
 
       expect(bay1.getAttribute('desc')).to.be.null;
       expect(bay1.getAttribute('kind')).to.equal('bay');
@@ -448,9 +431,7 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2(update));
 
-      const undoUpdate = log[0].undo as SetTextContentV2;
-
-      host.dispatchEvent(newEditEventV2(undoUpdate));
+      editor.undo();
 
       expect(bayWithoutTextContent.textContent).to.be.empty;
     });
@@ -465,9 +446,7 @@ describe('OSCD-Editor', () => {
 
       expect(bay2.children).to.be.empty;
 
-      const undoUpdate = log[0].undo as SetTextContentV2;
-
-      host.dispatchEvent(newEditEventV2(undoUpdate));
+      editor.undo();
 
       expect(bay2.children[0]).to.deep.equal(lnode2);
     });
@@ -484,14 +463,11 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2(insert));
 
-      const undoIsert = log[0].undo;
-      const redoInsert = log[0].redo;
-
-      host.dispatchEvent(newEditEventV2(undoIsert));
+      editor.undo();
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
 
-      host.dispatchEvent(newEditEventV2(redoInsert));
+      editor.redo();
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.deep.equal(newNode);
     });
@@ -520,16 +496,13 @@ describe('OSCD-Editor', () => {
 
       host.dispatchEvent(newEditEventV2([insert, remove, update]));
 
-      const undoComplex = log[0].undo;
-      const redoComplex = log[0].redo;
-
-      host.dispatchEvent(newEditEventV2(undoComplex));
+      editor.undo();
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.be.null;
       expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.deep.equal(bay2);
       expect(bay1.getAttribute('desc')).to.be.null;
 
-      host.dispatchEvent(newEditEventV2(redoComplex));
+      editor.redo();
 
       expect(scd.querySelector('VoltageLevel[name="v1"] > Bay[name="b3"]')).to.deep.equal(newNode);
       expect(scd.querySelector('VoltageLevel[name="v2"] > Bay[name="b2"]')).to.be.null;
