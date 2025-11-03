@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 
 import { Subject } from '../api/editor/subject.js';
 
-describe('Validators', () => {
+describe('Subject', () => {
   let subject: Subject<string>;
 
   let subOneValues: string[];
