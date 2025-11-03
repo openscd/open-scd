@@ -19,5 +19,6 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "incremental": true
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.test.ts"]
 }
