@@ -10,12 +10,27 @@ import {
   newLogEvent,
 } from '@openscd/core/foundation/deprecated/history.js';
 import { OscdHistory } from '../../src/addons/History.js';
+import { InsertV2 } from '@openscd/core';
+import { createElement } from '@openscd/xml';
 
 describe('HistoringElement', () => {
   let mock: MockOpenSCD;
   let element: OscdHistory;
+  let scd: XMLDocument;
+
   beforeEach(async () => {
-    mock = <MockOpenSCD>await fixture(html`<mock-open-scd></mock-open-scd>`);
+    scd = new DOMParser().parseFromString(
+      `<Substation name="s1">
+        <VoltageLevel name="v1">
+          <Bay name="b1" kind="bay">
+            <LNode name="l1" />
+          </Bay>
+        </VoltageLevel>
+      </Substation>`,
+      'application/xml',
+    );
+
+    mock = <MockOpenSCD>await fixture(html`<mock-open-scd .doc=${scd}></mock-open-scd>`);
     element = mock.historyAddon;
   });
 
@@ -70,19 +85,58 @@ describe('HistoringElement', () => {
     expect(element.diagnosticUI).to.have.property('open', true);
   });
 
-  // TODO: Replace wiht editor -> history tests
   describe('with an action logged', () => {
+    const insertTitle = 'Insert bay 2';
+    let voltageLevel: Element;
+
     beforeEach(async () => {
-      element.dispatchEvent(
-        newLogEvent({
-          kind: 'action',
-          title: 'test MockAction'
-        })
-      );
+      voltageLevel = scd.querySelector('VoltageLevel')!;
+      const bay2 = createElement(scd, 'Bay', { name: 'b2' });
+      const insert: InsertV2 = {
+        parent: voltageLevel,
+        node: bay2,
+        reference: null
+      };
+      element.editor.commit(insert, { title: insertTitle });
+
       element.requestUpdate();
       await element.updateComplete;
       mock.requestUpdate();
       await mock.updateComplete;
+    });
+
+    it('should have a history', () => {
+      expect(element.history.length).to.equal(1);
+      const insertEntry = element.history[0];
+      expect(insertEntry.title).to.equal(insertTitle);
+      expect(insertEntry.isActive).to.true;
+    });
+
+    it('should keep undone entries in history and set is active accordingly', () => {
+      const bay3 = createElement(scd, 'Bay', { name: 'b3' });
+      const insert: InsertV2 = {
+        parent: voltageLevel,
+        node: bay3,
+        reference: null
+      };
+
+      element.editor.commit(insert);
+
+      let [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.false;
+      expect(bay3Insert.isActive).to.be.true;
+
+      element.editor.undo();
+
+      [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.true;
+      expect(bay3Insert.isActive).to.be.false;
+
+      element.editor.redo();
+
+      [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.false;
+      expect(bay3Insert.isActive).to.be.true;
     });
 
     it('can reset its log', () => {
