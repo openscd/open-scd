@@ -210,7 +210,6 @@ export class OscdHistory extends LitElement {
         break;
       case 'action':
         // No longer needed
-        // this.onHistory(le.detail);
         break;
       default:
         this.onInfo(le.detail);
