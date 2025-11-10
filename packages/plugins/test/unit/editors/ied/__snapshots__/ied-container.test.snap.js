@@ -27,8 +27,17 @@ snapshots["ied-container looks like the latest snapshot"] =
     <mwc-icon-button icon="settings">
     </mwc-icon-button>
   </abbr>
+  <abbr
+    slot="action"
+    title="[iededitor.addAccessPoint]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
   <access-point-container>
   </access-point-container>
+  <add-access-point-dialog>
+  </add-access-point-dialog>
 </action-pane>
 `;
 /* end snapshot ied-container looks like the latest snapshot */

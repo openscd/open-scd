@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 
 import {
+  canCreateValidExtRef,
   createExtRefElement,
   getExistingSupervision,
   getExtRef,
@@ -332,6 +333,23 @@ describe('foundation', () => {
       const extRef = getExtRef(inputs, fcda, controlBlock);
 
       expect(extRef).to.equal(expectedExtRef)
+    });
+  });
+
+  describe('regression test for bugfix 1711', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/editors/bugfix1711-can-create-extref.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+
+    it('should return true for canCreateValidExtRef on FCDA without lnInst for LN0', () => {
+      const fcda = doc.querySelector('FCDA')!;
+      const controlBlock = doc.querySelector('IED[name="IED1"] GSEControl[name="gseControl"]')!;
+
+      const canCreateExtRef = canCreateValidExtRef(fcda, controlBlock);
+
+      expect(canCreateExtRef).to.be.true;
     });
   });
 });

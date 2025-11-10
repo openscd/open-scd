@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.43.0](https://github.com/openscd/open-scd/compare/v0.42.0...v0.43.0) (2025-10-27)
+
+
+### Features
+
+* add elements to virtual ied ([#1714](https://github.com/openscd/open-scd/issues/1714)) ([0c1074b](https://github.com/openscd/open-scd/commit/0c1074bf9d4f154a06c8031e593974c1f618fead))
+* add virtual ied ([#1712](https://github.com/openscd/open-scd/issues/1712)) ([cf45fe9](https://github.com/openscd/open-scd/commit/cf45fe92e4a09066ca9b426b282486229dfbc43a))
+* edit and delete virtual IED elements ([#1715](https://github.com/openscd/open-scd/issues/1715)) ([106688b](https://github.com/openscd/open-scd/commit/106688bd736b449a3182045ecb6fccc5a51067c7))
+
+
+### Bug Fixes
+
+* Disable experimental require module to make node 20.19 and above work ([#1709](https://github.com/openscd/open-scd/issues/1709)) ([d47a3da](https://github.com/openscd/open-scd/commit/d47a3dac6c57ee814cfbd78f3636fe872a052568))
+* Require lnInst only for regular lns ([#1713](https://github.com/openscd/open-scd/issues/1713)) ([003161f](https://github.com/openscd/open-scd/commit/003161fd5a0b363477ece059629ed2c0d6d86aa0))
+
+## [0.42.0](https://github.com/openscd/open-scd/compare/v0.41.0...v0.42.0) (2025-09-15)
+
+
+### Features
+
+* Add oscd api with plugin state ([#1696](https://github.com/openscd/open-scd/issues/1696)) ([1c457cf](https://github.com/openscd/open-scd/commit/1c457cf02a404a61b7ff09553223091bc5edd1f6))
+
+
+### Bug Fixes
+
+* Connected AP wizard element order ([#1703](https://github.com/openscd/open-scd/issues/1703)) ([cd3b39a](https://github.com/openscd/open-scd/commit/cd3b39ad45b6ddfc5d8c3641a5c120dd95bb5dd6))
+* **Import IED:** Fix order of edits ([#1698](https://github.com/openscd/open-scd/issues/1698)) ([0831fa4](https://github.com/openscd/open-scd/commit/0831fa4e4cde55a21c261b1b4b8b5994868509b0))
+* Settings addon translations ([cd3b39a](https://github.com/openscd/open-scd/commit/cd3b39ad45b6ddfc5d8c3641a5c120dd95bb5dd6))
+
 ## [0.41.0](https://github.com/openscd/open-scd/compare/v0.40.0...v0.41.0) (2025-08-04)
 
 

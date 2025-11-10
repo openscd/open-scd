@@ -1,0 +1,6 @@
+.tsbuildinfo
+
+dist/
+node_modules/
+doc/
+coverage/

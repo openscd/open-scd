@@ -5,6 +5,9 @@ import {
   getNameAttribute,
 } from '@openscd/open-scd/src/foundation.js';
 import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
+import { createElement } from '@openscd/xml';
+import { InsertV2 } from '@openscd/core';
+import { insertSelectedLNodeType } from '@openenergytools/scl-lib/dist/tDataTypeTemplates/insertSelectedLNodeType.js';
 
 /** Base class for all containers inside the IED Editor. */
 export class Container extends LitElement {
@@ -63,12 +66,145 @@ export function findElement(
  * @param ancestors - The list of elements to search in for an LN or LN0 element.
  * @returns The LN0/LN Element found or null if not found.
  */
-export function findLogicaNodeElement(ancestors: Element[]): Element | null {
+export function findLogicalNodeElement(ancestors: Element[]): Element | null {
   let element = findElement(ancestors, 'LN0');
   if (!element) {
     element = findElement(ancestors, 'LN');
   }
   return element;
+}
+
+/**
+ * Find an existing LLN0 LNodeType in the document.
+ * @param doc - The XML document to search in.
+ * @returns The LLN0 LNodeType element or null if not found.
+ */
+export function findLLN0LNodeType(doc: XMLDocument): Element | null {
+  return doc.querySelector('DataTypeTemplates > LNodeType[lnClass="LLN0"]');
+}
+
+/**
+ * Create a minimal LLN0 LNodeType with essential data objects.
+ * @param doc - The XML document to create the LNodeType in.
+ * @param id - Optional ID for the LNodeType, defaults to 'LLN0_OpenSCD'.
+ * @returns Array of InsertV2 operations to create the LNodeType and dependencies.
+ */
+export function createLLN0LNodeType(doc: XMLDocument, id: string): InsertV2[] {
+  const selection = {
+    Beh: {
+      stVal: {
+        on: {},
+        blocked: {},
+        test: {},
+        'test/blocked': {},
+        off: {},
+      },
+      q: {},
+      t: {},
+    },
+  };
+
+  const logicalnode = {
+    class: 'LLN0',
+    id,
+  };
+
+  return insertSelectedLNodeType(doc, selection, logicalnode);
+}
+
+/**
+ * Create a basic IED structure with the specified name.
+ * @param doc - The XML document to create the IED in.
+ * @param iedName - The name for the new IED.
+ * @param lnTypeId - The LNodeType ID to use for the LN0.
+ * @param manufacturer - Optional manufacturer name, defaults to 'OpenSCD'.
+ * @returns The created IED element.
+ */
+export function createIEDStructure(
+  doc: XMLDocument,
+  iedName: string,
+  lnTypeId: string,
+  manufacturer: string = 'OpenSCD'
+): Element {
+  const ied = createElement(doc, 'IED', {
+    name: iedName,
+    manufacturer,
+  });
+
+  const accessPoint = createElement(doc, 'AccessPoint', { name: 'AP1' });
+  ied.appendChild(accessPoint);
+
+  const server = createElement(doc, 'Server', {});
+  accessPoint.appendChild(server);
+
+  const authentication = createElement(doc, 'Authentication', {});
+  server.appendChild(authentication);
+
+  const lDevice = createElement(doc, 'LDevice', { inst: 'LD1' });
+  server.appendChild(lDevice);
+
+  const ln0 = createElement(doc, 'LN0', {
+    lnClass: 'LLN0',
+    inst: '',
+    lnType: lnTypeId,
+  });
+  lDevice.appendChild(ln0);
+
+  return ied;
+}
+
+/**
+ * Create an AccessPoint element for an IED.
+ * @param doc - The XML document to create the AccessPoint in.
+ * @param name - The name for the new AccessPoint.
+ * @returns The created AccessPoint element.
+ */
+export function createAccessPoint(doc: XMLDocument, name: string): Element {
+  return createElement(doc, 'AccessPoint', { name });
+}
+
+/**
+ * Create a ServerAt element pointing to an existing AccessPoint.
+ * @param doc - The XML document to create the ServerAt in.
+ * @param apName - The name of the AccessPoint that contains the Server to reference.
+ * @param desc - Optional description for the ServerAt element.
+ * @returns The created ServerAt element.
+ */
+export function createServerAt(
+  doc: XMLDocument,
+  apName: string,
+  desc?: string
+): Element {
+  const attributes: Record<string, string> = { apName };
+
+  if (desc) {
+    attributes.desc = desc;
+  }
+
+  return createElement(doc, 'ServerAt', attributes);
+}
+
+/**
+ * Get all existing AccessPoint names from the current IED.
+ * @param ied - The IED element to search in.
+ * @returns Array of AccessPoint names.
+ */
+export function getExistingAccessPointNames(ied: Element): string[] {
+  return Array.from(ied.querySelectorAll(':scope > AccessPoint'))
+    .map(ap => ap.getAttribute('name'))
+    .filter((name): name is string => name !== null);
+}
+
+/**
+ * Get AccessPoint names that contain a Server element (can be referenced by ServerAt).
+ * @param ied - The IED element to search in.
+ * @returns Array of AccessPoint names that have Server elements.
+ */
+export function getAccessPointsWithServer(ied: Element): string[] {
+  return Array.from(ied.querySelectorAll(':scope > AccessPoint'))
+    .filter(ap => ap.querySelector(':scope > Server'))
+    .map(ap => ap.getAttribute('name'))
+    .filter((name): name is string => name !== null);
 }
 
 /**
@@ -144,6 +280,26 @@ export function newFullElementPathEvent(
     ...eventInitDict,
     detail: { elementNames, ...eventInitDict?.detail },
   });
+}
+
+/**
+ * Get all LDevice inst values from a Server element.
+ * @param server - The Server element to search in.
+ * @returns Array of LDevice inst values.
+ */
+export function getLDeviceInsts(server: Element): string[] {
+  return Array.from(server.querySelectorAll(':scope > LDevice')).map(
+    ld => ld.getAttribute('inst') || ''
+  );
+}
+
+/**
+ * Get LNodeType elements from DataTypeTemplates in the document.
+ * @param doc - The XML document to search in.
+ * @returns Array of LNodeType elements.
+ */
+export function getLNodeTypes(doc: XMLDocument): Element[] {
+  return Array.from(doc.querySelectorAll('DataTypeTemplates > LNodeType'));
 }
 
 declare global {

@@ -15,7 +15,7 @@ import { Nsdoc } from '@openscd/open-scd/src/foundation/nsdoc.js';
 import {
   findDOTypeElement,
   findElement,
-  findLogicaNodeElement,
+  findLogicalNodeElement,
   getValueElements,
 } from './foundation.js';
 
@@ -38,7 +38,7 @@ function renderFields(
   const iedElement = findElement(ancestors, 'IED');
   const accessPointElement = findElement(ancestors, 'AccessPoint');
   const lDeviceElement = findElement(ancestors, 'LDevice');
-  const logicalNodeElement = findLogicaNodeElement(ancestors);
+  const logicalNodeElement = findLogicalNodeElement(ancestors);
   const doElement = findElement(ancestors, 'DO');
   const doTypeElement = findDOTypeElement(doElement);
 

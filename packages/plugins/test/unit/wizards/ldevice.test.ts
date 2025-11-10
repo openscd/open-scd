@@ -40,7 +40,7 @@ describe('Wizards for SCL element LDevice', () => {
 
   it('contains a wizard-textfield with a non-empty "inst" value', async () => {
     expect(
-      (<WizardTextField[]>inputs).find(textField => textField.label == 'ldInst')
+      (<WizardTextField[]>inputs).find(textField => textField.label == 'inst')
         ?.value
     ).to.be.equal(ldevice.getAttribute('inst'));
   });

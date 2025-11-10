@@ -37,7 +37,7 @@ To develop, follow these steps :
 1. Install [↗ Node.js](https://nodejs.org/en/download/package-manager)
 
 > [!IMPORTANT]  
-> `Node.js` version should be set to `20.x.x` as there are incompatibilities with higher version
+> `Node.js` version should be set to `18.x.x` as there are incompatibilities with higher version
 
 2. Run `npm ci` in OpenSCD's root folder.
 

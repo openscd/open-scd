@@ -229,6 +229,8 @@ export const de: Translations = {
     missing: 'Kein IED vorhanden',
     toggleChildElements: 'Kindelemente umschalten',
     settings: 'Services für IED or AccessPoint',
+    createIed: 'Virtuelles IED erstellen',
+    addAccessPoint: 'AccessPoint hinzufügen',
     wizard: {
       daTitle: 'DA Informationen anzeigen',
       doTitle: 'DO Informationen anzeigen',
@@ -248,11 +250,57 @@ export const de: Translations = {
       daBType: 'DA Typ',
       daValue: 'DA Wert',
     },
+    createDialog: {
+      iedName: 'IED Name',
+      nameFormatError: 'IED Name darf keine Leerzeichen enthalten',
+      nameUniqueError: 'IED Name ist bereits vergeben',
+    },
+    addAccessPointDialog: {
+      title: 'AccessPoint hinzufügen',
+      nameHelper: 'AccessPoint Name',
+      descHelper: 'AccessPoint Beschreibung',
+      apName: 'AccessPoint Name',
+      createServerAt: 'ServerAt hinzufügen',
+      selectAccessPoint: 'AccessPoint auswählen',
+      serverAtDesc: 'ServerAt Beschreibung',
+      nameFormatError: 'AccessPoint Name darf keine Leerzeichen enthalten',
+      nameUniqueError: 'AccessPoint Name ist bereits vergeben',
+      nameTooLongError: 'AccessPoint Name ist zu lang',
+    },
+    addLDeviceDialog: {
+      title: 'LDevice hinzufügen',
+      inst: 'LDevice inst',
+      desc: 'LDevice Beschreibung',
+      instRequiredError: 'LDevice inst ist erforderlich',
+      instFormatError: 'LDevice inst darf keine Leerzeichen enthalten',
+      instUniqueError: 'LDevice inst ist bereits vergeben',
+      instTooLongError: 'LDevice inst ist zu lang',
+    },
+    addLnDialog: {
+      title: 'LN hinzufügen',
+      amount: 'Menge',
+      prefix: 'Prefix',
+      filter: 'Logical Node Types filtern',
+      noResults: 'Keine Logical Node Types gefunden',
+    },
+  },
+  accesspoint: {
+    wizard: {
+      nameHelper: 'AccessPoint Name',
+      descHelper: 'AccessPoint Beschreibung',
+      title: {
+        add: 'AccessPoint hinzufügen',
+        edit: 'AccessPoint bearbeiten',
+        delete: 'AccessPoint mit Abhängigkeiten entfernen',
+        references: 'Gelöschte Abhängikeiten',
+      },
+    },
   },
   ied: {
     wizard: {
       nameHelper: 'Name des IED',
       descHelper: 'Beschreibung des IED',
+      manufacturerHelper: 'Hersteller des IED',
       title: {
         edit: 'IED bearbeiten',
         delete: 'IED mit Abhängigkeiten entfernen',
@@ -269,6 +317,7 @@ export const de: Translations = {
       nameHelper: 'Name des Logisches Gerät',
       noNameSupportHelper: 'IED unterstützt keine funktionale Benennung',
       descHelper: 'Beschreibung des Logisches Gerät',
+      instHelper: 'Instanz des Logisches Gerät',
       title: {
         edit: 'Logisches Gerät bearbeiten',
       },

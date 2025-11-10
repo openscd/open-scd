@@ -56,6 +56,44 @@ async function clickListItem(
   await element.updateComplete;
 }
 
+describe('regression for bug 1700', () => {
+  let doc: XMLDocument;
+  let element: MockWizardEditor;
+  let parent: Element;
+
+  beforeEach(async () => {
+    element = <MockWizardEditor>(
+      await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
+    );
+
+    doc = await fetch('/test/testfiles/wizards/bugfix_1700_connected_ap_wizard.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    parent = doc.querySelector('SubNetwork')!;
+    const wizard = createConnectedApWizard(parent);
+    element.dispatchEvent(newWizardEvent(wizard));
+    await element.requestUpdate();
+  });
+
+  it('creates GSE and SMV in correct order', async () => {
+    await clickListItem(element, ['IED1>S1']);
+
+    const connectedAP = parent.querySelector('ConnectedAP[iedName="IED1"][apName="S1"]');
+    expect(connectedAP).to.exist;
+    const children = Array.from(connectedAP!.children);
+    const firstSMVIndex = children.findIndex(e => e.tagName === 'SMV');
+
+    for (let i = 0; i < children.length; i++) {
+      if (i < firstSMVIndex) {
+        expect(children[i].tagName).to.equal('GSE');
+      } else {
+        expect(children[i].tagName).to.equal('SMV');
+      }
+    }
+  });
+});
+
 describe('create wizard for ConnectedAP element', () => {
   let doc: XMLDocument;
   let element: MockWizardEditor;

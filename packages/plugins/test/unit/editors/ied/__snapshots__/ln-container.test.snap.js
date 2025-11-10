@@ -66,6 +66,12 @@ snapshots["looks like the latest snapshot with a LN0 element and child elements 
 
 snapshots["looks like the latest snapshot with a LN element."] = 
 `<action-pane tabindex="0">
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr slot="action">
     <mwc-icon-button
       icon="edit"
@@ -91,6 +97,12 @@ snapshots["looks like the latest snapshot with a LN element."] =
 
 snapshots["looks like the latest snapshot with a LN element and child elements are toggled."] = 
 `<action-pane tabindex="0">
+  <mwc-icon-button
+    icon="delete"
+    slot="action"
+    title="[remove]"
+  >
+  </mwc-icon-button>
   <abbr slot="action">
     <mwc-icon-button
       icon="edit"

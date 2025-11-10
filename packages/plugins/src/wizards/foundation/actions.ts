@@ -4,14 +4,12 @@ import {
   WizardInputElement,
 } from '@openscd/open-scd/src/foundation.js';
 
-import {
-  cloneElement,
-} from '@openscd/xml';
+import { cloneElement } from '@openscd/xml';
 
 import {
   ComplexAction,
   EditorAction,
-  createUpdateAction
+  createUpdateAction,
 } from '@openscd/core/foundation/deprecated/editor';
 import { get } from 'lit-translate';
 import { updateReferences } from './references.js';
@@ -69,6 +67,13 @@ export function updateNamingAttributeWithReferencesAction(
   return (inputs: WizardInputElement[]): EditorAction[] => {
     const newAttributes: Record<string, string | null> = {};
     processNamingAttributes(newAttributes, element, inputs);
+    processOptionalAttribute(
+      newAttributes,
+      element,
+      inputs,
+      'manufacturer',
+      'manufacturer'
+    );
     if (Object.keys(newAttributes).length == 0) {
       return [];
     }
@@ -100,6 +105,21 @@ export function processNamingAttributes(
   }
   if (desc !== element.getAttribute('desc')) {
     newAttributes['desc'] = desc;
+  }
+}
+
+function processOptionalAttribute(
+  newAttributes: Record<string, string | null>,
+  element: Element,
+  inputs: WizardInputElement[],
+  inputLabel: string,
+  attrName: string
+): void {
+  const input = inputs.find(i => i.label === inputLabel);
+  if (!input) return;
+  const value = getValue(input);
+  if (value !== element.getAttribute(attrName)) {
+    newAttributes[attrName] = value;
   }
 }
 
