@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.44.0](https://github.com/openscd/open-scd/compare/v0.43.0...v0.44.0) (2025-11-10)
+
+
+### Features
+
+* API compliant editor ([#1719](https://github.com/openscd/open-scd/issues/1719)) ([e43ee6a](https://github.com/openscd/open-scd/commit/e43ee6a10805d1d09e5a8adb539be7d68a65ab6a))
+* Form library ([#1718](https://github.com/openscd/open-scd/issues/1718)) ([396bb13](https://github.com/openscd/open-scd/commit/396bb13d0d5ecf6c3994072f00958587bb9e5fcd))
+
+
+### Bug Fixes
+
+* update node  to 20.x in release workflow ([#1716](https://github.com/openscd/open-scd/issues/1716)) ([115f22a](https://github.com/openscd/open-scd/commit/115f22a6f1f9cfe02a4817ec03811bcc53cd1fea))
+
 ## [0.43.0](https://github.com/openscd/open-scd/compare/v0.42.0...v0.43.0) (2025-10-27)
 
 
