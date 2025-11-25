@@ -2,7 +2,7 @@
 
 > [!CAUTION]
 > #This repository of OpenSCD is end of life. Part of the development will continue in LF energy CoMPAS.
-> #Try it here: [demo.compass.energy](demo.compass.energy) or find the repository [here](https://github.com/com-pas/open-scd). This is also the place for issues.
+> #Try it here: [demo.compass.energy](demo.compas.energy) or find the repository [here](https://github.com/com-pas/open-scd). This is also the place for issues.
 
 
 
