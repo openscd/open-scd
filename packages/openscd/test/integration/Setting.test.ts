@@ -5,16 +5,19 @@ import '../../src/addons/History.js';
 import '../../src/addons/Settings.js';
 import { OscdHistory } from '../../src/addons/History.js';
 import { OscdSettings } from '../../src/addons/Settings.js';
+import { XMLEditor } from '@openscd/core';
 
 describe('Oscd-Settings', () => {
   let logger: OscdHistory;
   let settings: OscdSettings;
+  let editor: XMLEditor;
 
   beforeEach(async () => {
     localStorage.clear();
+    editor = new XMLEditor();
 
     logger = await fixture(
-      html`<oscd-history .host=${document}>
+      html`<oscd-history .host=${document} .editor=${editor}>
         <oscd-settings .host=${document}></oscd-settings>
       </oscd-history>`
     );

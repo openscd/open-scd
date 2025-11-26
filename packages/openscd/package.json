@@ -39,6 +39,7 @@
     "@material/mwc-textarea": "0.22.1",
     "@material/mwc-textfield": "0.22.1",
     "@material/mwc-top-app-bar-fixed": "0.22.1",
+    "@openscd/oscd-api": "^0.1.5",
     "@openscd/core": "*",
     "@openscd/xml": "*",
     "ace-custom-element": "^1.6.5",

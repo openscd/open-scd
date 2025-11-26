@@ -1,16 +1,9 @@
 import {
-  EditV2,
   EditEventV2,
   OpenEvent,
-  newEditCompletedEvent,
   newEditEvent,
-  handleEditV2,
-  isInsertV2,
-  isRemoveV2,
-  isSetAttributesV2,
-  isSetTextContentV2,
-  isComplexV2,
-  newEditEventV2
+  newEditEventV2,
+  XMLEditor
 } from '@openscd/core';
 import {
   property,
@@ -31,17 +24,12 @@ import { newValidateEvent } from '@openscd/core/foundation/deprecated/validation
 import { OpenDocEvent } from '@openscd/core/foundation/deprecated/open-event.js';
 
 import {
-  AttributeValue,
   Edit,
   EditEvent,
-  Insert,
   isComplex,
   isInsert,
-  isNamespaced,
   isRemove,
   isUpdate,
-  Remove,
-  Update,
 } from '@openscd/core';
 
 import { convertEditActiontoV1 } from './editor/edit-action-to-v1-converter.js';
@@ -56,33 +44,13 @@ export class OscdEditor extends LitElement {
   @property({ type: String }) docName = '';
   /** The UUID of the current [[`doc`]] */
   @property({ type: String }) docId = '';
+  /** XML Editor to apply changes to the scd */
+  @property({ type: Object }) editor!: XMLEditor;
 
   @property({
     type: Object,
   })
   host!: HTMLElement;
-
-  private getLogText(edit: EditV2): { title: string, message?: string } {
-    if (isInsertV2(edit)) {
-      const name = edit.node instanceof Element ?
-        edit.node.tagName :
-        get('editing.node');
-      return { title: get('editing.created', { name }) };
-    } else if (isSetAttributesV2(edit) || isSetTextContentV2(edit)) {
-      const name = edit.element.tagName;
-      return { title: get('editing.updated', { name }) };
-    } else if (isRemoveV2(edit)) {
-      const name = edit.node instanceof Element ?
-        edit.node.tagName :
-        get('editing.node');
-      return { title: get('editing.deleted', { name }) };
-    } else if (isComplexV2(edit)) {
-      const message = edit.map(e => this.getLogText(e)).map(({ title }) => title).join(', ');
-      return { title: get('editing.complex'), message };
-    }
-
-    return { title: '' };
-  }
 
   private onAction(event: EditorActionEvent<EditorAction>) {
     const edit = convertEditActiontoV1(event.detail.action);
@@ -151,24 +119,9 @@ export class OscdEditor extends LitElement {
   }
 
   async handleEditEventV2(event: EditEventV2) {
-    const edit = event.detail.edit;
+    const { edit, title, squash } = event.detail;
 
-    const undoEdit = handleEditV2(edit);
-
-    const shouldCreateHistoryEntry = event.detail.createHistoryEntry !== false;
-
-    if (shouldCreateHistoryEntry) {
-      const { title, message } = this.getLogText(edit);
-
-      this.dispatchEvent(newLogEvent({
-        kind: 'action',
-        title: event.detail.title ?? title,
-        message,
-        redo: edit,
-        undo: undoEdit,
-        squash: event.detail.squash
-      }));
-    }
+    this.editor.commit(edit, { title, squash });
 
     await this.updateComplete;
     this.dispatchEvent(newValidateEvent());

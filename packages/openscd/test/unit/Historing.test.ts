@@ -10,47 +10,31 @@ import {
   newLogEvent,
 } from '@openscd/core/foundation/deprecated/history.js';
 import { OscdHistory } from '../../src/addons/History.js';
+import { InsertV2 } from '@openscd/core';
+import { createElement } from '@openscd/xml';
 
 describe('HistoringElement', () => {
   let mock: MockOpenSCD;
   let element: OscdHistory;
+  let scd: XMLDocument;
+
   beforeEach(async () => {
-    mock = <MockOpenSCD>await fixture(html`<mock-open-scd></mock-open-scd>`);
+    scd = new DOMParser().parseFromString(
+      `<Substation name="s1">
+        <VoltageLevel name="v1">
+          <Bay name="b1" kind="bay">
+            <LNode name="l1" />
+          </Bay>
+        </VoltageLevel>
+      </Substation>`,
+      'application/xml',
+    );
+
+    mock = <MockOpenSCD>await fixture(html`<mock-open-scd .doc=${scd}></mock-open-scd>`);
     element = mock.historyAddon;
   });
 
-  it('starts out with an empty log', () =>
-    expect(element).property('log').to.be.empty);
-
-  it('cannot undo', () => expect(element).property('canUndo').to.be.false);
-  it('cannot redo', () => expect(element).property('canRedo').to.be.false);
-
-  it('cannot undo info messages', () => {
-    element.dispatchEvent(newLogEvent({ kind: 'info', title: 'test info' }));
-    expect(element).property('log').to.have.lengthOf(1);
-    expect(element).property('canUndo').to.be.false;
-  });
-
-  it('cannot undo warning messages', () => {
-    element.dispatchEvent(
-      newLogEvent({ kind: 'warning', title: 'test warning' })
-    );
-    expect(element).property('log').to.have.lengthOf(1);
-    expect(element).property('canUndo').to.be.false;
-  });
-
-  it('cannot undo error messages', () => {
-    element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
-    expect(element).property('log').to.have.lengthOf(1);
-    expect(element).property('canUndo').to.be.false;
-  });
-
-  it('has no previous action', () =>
-    expect(element).to.have.property('previousAction', -1));
-  it('has no edit count', () =>
-    expect(element).to.have.property('editCount', -1));
-  it('has no next action', () =>
-    expect(element).to.have.property('nextAction', -1));
+  it('starts out with an empty log', () => expect(element).property('log').to.be.empty);
 
   it('renders a placeholder message', () =>
     expect(element.logUI).to.contain('mwc-list-item[disabled]'));
@@ -102,121 +86,63 @@ describe('HistoringElement', () => {
   });
 
   describe('with an action logged', () => {
+    const insertTitle = 'Insert bay 2';
+    let voltageLevel: Element;
+
     beforeEach(async () => {
-      element.dispatchEvent(
-        newLogEvent({
-          kind: 'action',
-          title: 'test MockAction',
-          redo: mockEdits.insert(),
-          undo: mockEdits.insert()
-        })
-      );
+      voltageLevel = scd.querySelector('VoltageLevel')!;
+      const bay2 = createElement(scd, 'Bay', { name: 'b2' });
+      const insert: InsertV2 = {
+        parent: voltageLevel,
+        node: bay2,
+        reference: null
+      };
+      element.editor.commit(insert, { title: insertTitle });
+
       element.requestUpdate();
       await element.updateComplete;
       mock.requestUpdate();
       await mock.updateComplete;
     });
 
-    it('can undo', () => expect(element).property('canUndo').to.be.true);
-    it('cannot redo', () => expect(element).property('canRedo').to.be.false);
+    it('should have a history', () => {
+      expect(element.history.length).to.equal(1);
+      const insertEntry = element.history[0];
+      expect(insertEntry.title).to.equal(insertTitle);
+      expect(insertEntry.isActive).to.true;
+    });
 
-    it('has no previous action', () =>
-      expect(element).to.have.property('previousAction', -1));
-    it('has an edit count', () =>
-      expect(element).to.have.property('editCount', 0));
-    it('has no next action', () =>
-      expect(element).to.have.property('nextAction', -1));
+    it('should keep undone entries in history and set is active accordingly', () => {
+      const bay3 = createElement(scd, 'Bay', { name: 'b3' });
+      const insert: InsertV2 = {
+        parent: voltageLevel,
+        node: bay3,
+        reference: null
+      };
+
+      element.editor.commit(insert);
+
+      let [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.false;
+      expect(bay3Insert.isActive).to.be.true;
+
+      element.editor.undo();
+
+      [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.true;
+      expect(bay3Insert.isActive).to.be.false;
+
+      element.editor.redo();
+
+      [ bay2Insert, bay3Insert ] = element.history;
+      expect(bay2Insert.isActive).to.be.false;
+      expect(bay3Insert.isActive).to.be.true;
+    });
 
     it('can reset its log', () => {
       element.dispatchEvent(newLogEvent({ kind: 'reset' }));
       expect(element).property('log').to.be.empty;
       expect(element).property('history').to.be.empty;
-      expect(element).to.have.property('editCount', -1);
-    });
-
-    it('renders a history message for the action', () =>
-      expect(element.historyUI).to.contain.text('test'));
-
-    describe('with a second action logged', () => {
-      beforeEach(() => {
-        element.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: 'test info',
-          })
-        );
-        element.dispatchEvent(
-          newLogEvent({
-            kind: 'action',
-            title: 'test MockAction',
-            redo: mockEdits.remove(),
-            undo: mockEdits.remove()
-          })
-        );
-      });
-
-      it('has a previous action', () =>
-        expect(element).to.have.property('previousAction', 0));
-      it('has an edit count', () =>
-        expect(element).to.have.property('editCount', 1));
-      it('has no next action', () =>
-        expect(element).to.have.property('nextAction', -1));
-
-      describe('with an action undone', () => {
-        beforeEach(() => element.undo());
-
-        it('has no previous action', () =>
-          expect(element).to.have.property('previousAction', -1));
-        it('has an edit count', () =>
-          expect(element).to.have.property('editCount', 0));
-        it('has a next action', () =>
-          expect(element).to.have.property('nextAction', 1));
-
-        it('can redo', () => expect(element).property('canRedo').to.be.true);
-
-        it('removes the undone action when a new action is logged', async () => {
-          element.dispatchEvent(
-            newLogEvent({
-              kind: 'action',
-              title: 'test MockAction',
-              redo: mockEdits.insert(),
-              undo: mockEdits.insert()
-            })
-          );
-          await element.updateComplete;
-          expect(element).property('log').to.have.lengthOf(1);
-          expect(element).property('history').to.have.lengthOf(2);
-          expect(element).to.have.property('editCount', 1);
-          expect(element).to.have.property('nextAction', -1);
-        });
-
-        describe('with the second action undone', () => {
-          beforeEach(async () => {
-            element.undo();
-            await element.updateComplete;
-            await mock.updateComplete;
-          });
-
-          it('cannot undo any funther', () => {
-            console.log('error');
-            expect(element.undo()).to.be.false;
-          });
-        });
-
-        describe('with the action redone', () => {
-          beforeEach(() => element.redo());
-
-          it('has a previous action', () =>
-            expect(element).to.have.property('previousAction', 0));
-          it('has an edit count', () =>
-            expect(element).to.have.property('editCount', 1));
-          it('has no next action', () =>
-            expect(element).to.have.property('nextAction', -1));
-
-          it('cannot redo any further', () =>
-            expect(element.redo()).to.be.false);
-        });
-      });
     });
   });
 

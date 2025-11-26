@@ -12,6 +12,7 @@ import '../src/addons/Wizards.js';
 import '../src/addons/Editor.js';
 
 import { OscdWizards } from '../src/addons/Wizards.js';
+import { XMLEditor } from '@openscd/core';
 
 @customElement('mock-wizard-editor')
 export class MockWizardEditor extends LitElement {
@@ -19,6 +20,8 @@ export class MockWizardEditor extends LitElement {
 
   @query('oscd-wizards')
   wizards!: OscdWizards;
+
+  editor = new XMLEditor();
 
   render(): TemplateResult {
     return html`
@@ -28,6 +31,7 @@ export class MockWizardEditor extends LitElement {
         .docId=${'test'}
         .host=${this}
         .editCount=${-1}
+        .editor=${this.editor}
       >
         <oscd-wizards .host=${this}>
           <slot></slot>

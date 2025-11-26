@@ -24,8 +24,6 @@ import { Snackbar } from '@material/mwc-snackbar';
 import '../filtered-list.js';
 
 import {
-  CommitDetail,
-  CommitEntry,
   InfoDetail,
   InfoEntry,
   IssueDetail,
@@ -38,24 +36,15 @@ import {
 import { getFilterIcon, iconColors } from '../icons/icons.js';
 
 import { Plugin } from '../plugin.js';
-import { EditV2, isComplexV2, newEditEventV2 } from '@openscd/core';
+import { XMLEditor } from '@openscd/core';
 
-export const historyStateEvent =  'history-state';
-export interface HistoryState {
-  editCount: number;
-  canUndo: boolean;
-  canRedo: boolean;
-}
-export type HistoryStateEvent = CustomEvent<HistoryState>;
+import { getLogText } from './history/get-log-text.js';
 
-function newHistoryStateEvent(state: HistoryState): HistoryStateEvent {
-  return new CustomEvent(historyStateEvent, { detail: state });
-}
-
-declare global {
-  interface ElementEventMap {
-    [historyStateEvent]: HistoryStateEvent;
-  }
+interface HistoryItem {
+  title: string;
+  message?: string;
+  time: number;
+  isActive: boolean;
 }
 
 const icons = {
@@ -135,38 +124,26 @@ export function newEmptyIssuesEvent(
   });
 }
 
-export function newUndoEvent(): CustomEvent {
-  return new CustomEvent('undo', { bubbles: true, composed: true });
-}
-
-export function newRedoEvent(): CustomEvent {
-  return new CustomEvent('redo', { bubbles: true, composed: true });
-}
-
 @customElement('oscd-history')
 export class OscdHistory extends LitElement {
   /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
   @property({ type: Array })
   log: InfoEntry[] = [];
 
-  /** All [[`CommitEntry`]]s received so far through [[`LogEvent`]]s */
-  @property({ type: Array })
-  history: CommitEntry[] = [];
-
-  /** Index of the last [[`EditorAction`]] applied. */
-  @property({ type: Number })
-  editCount = -1;
+  /** XML Editor to apply changes to the scd */
+  @property({ type: Object }) editor!: XMLEditor;
 
   @property()
   diagnoses = new Map<string, IssueDetail[]>();
 
-  @property({
-    type: Object,
-  })
+  @property({ type: Object })
   host!: HTMLElement;
 
   @state()
   latestIssue!: IssueDetail;
+
+  @state()
+  history: HistoryItem[] = [];
 
   @query('#log') logUI!: Dialog;
   @query('#history') historyUI!: Dialog;
@@ -176,27 +153,7 @@ export class OscdHistory extends LitElement {
   @query('#info') infoUI!: Snackbar;
   @query('#issue') issueUI!: Snackbar;
 
-  get canUndo(): boolean {
-    return this.editCount >= 0;
-  }
-  get canRedo(): boolean {
-    return this.nextAction >= 0;
-  }
-
-  get previousAction(): number {
-    if (!this.canUndo) return -1;
-    return this.history
-      .slice(0, this.editCount)
-      .map(entry => (entry.kind == 'action' ? true : false))
-      .lastIndexOf(true);
-  }
-  get nextAction(): number {
-    let index = this.history
-      .slice(this.editCount + 1)
-      .findIndex(entry => entry.kind == 'action');
-    if (index >= 0) index += this.editCount + 1;
-    return index;
-  }
+  private unsubscribers: (() => any)[] = [];
 
   private onIssue(de: IssueEvent): void {
     const issues = this.diagnoses.get(de.detail.validatorId);
@@ -209,108 +166,17 @@ export class OscdHistory extends LitElement {
     this.issueUI.show();
   }
 
-  undo(): boolean {
-    if (!this.canUndo) return false;
-
-    const undoEdit = (<CommitEntry>this.history[this.editCount]).undo;
-    this.host.dispatchEvent(newEditEventV2(undoEdit, { createHistoryEntry: false }));
-    this.setEditCount(this.previousAction);
-
-    return true;
+  undo(): void {
+    this.editor.undo();
   }
-  redo(): boolean {
-    if (!this.canRedo) return false;
-
-    const redoEdit = (<CommitEntry>this.history[this.nextAction]).redo;
-    this.host.dispatchEvent(newEditEventV2(redoEdit, { createHistoryEntry: false }));
-    this.setEditCount(this.nextAction);
-
-    return true;
-  }
-
-  private onHistory(detail: CommitDetail) {
-    const entry: CommitEntry = {
-      time: new Date(),
-      ...detail,
-    };
-
-    if (this.nextAction !== -1) {
-      this.history.splice(this.nextAction);
-    }
-
-    this.addHistoryEntry(entry);
-    this.setEditCount(this.history.length - 1);
-    this.requestUpdate('history', []);
-  }
-
-  private addHistoryEntry(entry: CommitEntry) {
-    const shouldSquash = Boolean(entry.squash) && this.history.length > 0;
-
-    if (shouldSquash) {
-      const previousEntry = this.history.pop() as CommitEntry;
-      const squashedEntry = this.squashHistoryEntries(entry, previousEntry);
-      this.history.push(squashedEntry);
-    } else {
-      this.history.push(entry);
-    }
-  }
-
-  private squashHistoryEntries(current: CommitEntry, previous: CommitEntry): CommitEntry {
-    const undo = this.squashUndo(current.undo, previous.undo);
-    const redo = this.squashRedo(current.redo, previous.redo);
-
-    return {
-      ...current,
-      undo,
-      redo
-    };
-  }
-
-  private squashUndo(current: EditV2, previous: EditV2): EditV2 {
-    const isCurrentComplex = isComplexV2(current);
-    const isPreviousComplex = isComplexV2(previous);
-
-    const previousUndos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
-    const currentUndos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
-
-    return [
-      ...currentUndos,
-      ...previousUndos
-    ];
-  }
-
-  private squashRedo(current: EditV2, previous: EditV2): EditV2 {
-    const isCurrentComplex = isComplexV2(current);
-    const isPreviousComplex = isComplexV2(previous);
-
-    const previousRedos: EditV2[] = (isPreviousComplex ? previous : [ previous ]) as EditV2[];
-    const currentRedos: EditV2[] = (isCurrentComplex ? current : [ current ]) as EditV2[];
-
-    return [
-      ...previousRedos,
-      ...currentRedos
-    ];
+  redo(): void {
+    this.editor.redo();
   }
 
   private onReset() {
     this.log = [];
-    this.history = [];
-    this.setEditCount(-1);
-  }
-
-  private setEditCount(count: number): void {
-    this.editCount = count;
-    this.dispatchHistoryStateEvent();
-  }
-
-  private dispatchHistoryStateEvent(): void {
-    this.host.dispatchEvent(
-      newHistoryStateEvent({
-        editCount: this.editCount,
-        canUndo: this.canUndo,
-        canRedo: this.canRedo
-      })
-    );
+    this.editor.reset();
+    this.updateHistory();
   }
 
   private onInfo(detail: InfoDetail) {
@@ -343,7 +209,7 @@ export class OscdHistory extends LitElement {
         this.onReset();
         break;
       case 'action':
-        this.onHistory(le.detail);
+        // No longer needed
         break;
       default:
         this.onInfo(le.detail);
@@ -379,6 +245,24 @@ export class OscdHistory extends LitElement {
         : this.diagnosticUI.show();
   }
 
+  private updateHistory(): void {
+    const { past, future } = this.editor;
+
+    const activeIndex = past.length - 1;
+    const allEntries = [ ...past, ...future ];
+
+    this.history = allEntries.map((e, index) => {
+      const { title, message } = getLogText(e.redo as any);
+
+      return {
+        isActive: index === activeIndex,
+        time: e.time,
+        title: e.title ?? title,
+        message
+      };
+    });
+  }
+
   constructor() {
     super();
     this.undo = this.undo.bind(this);
@@ -388,20 +272,26 @@ export class OscdHistory extends LitElement {
     this.historyUIHandler = this.historyUIHandler.bind(this);
     this.emptyIssuesHandler = this.emptyIssuesHandler.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.dispatchHistoryStateEvent = this.dispatchHistoryStateEvent.bind(this);
     document.onkeydown = this.handleKeyPress;
   }
 
   connectedCallback(): void {
     super.connectedCallback();
 
+    this.unsubscribers.push(
+      this.editor.subscribe(e => this.updateHistory()),
+      this.editor.subscribeUndoRedo(e => this.updateHistory())
+    );
+
     this.host.addEventListener('log', this.onLog);
     this.host.addEventListener('issue', this.onIssue);
     this.host.addEventListener('history-dialog-ui', this.historyUIHandler);
     this.host.addEventListener('empty-issues', this.emptyIssuesHandler);
-    this.host.addEventListener('undo', this.undo);
-    this.host.addEventListener('redo', this.redo);
     this.diagnoses.clear();
+  }
+
+  disconnectedCallback(): void {
+    this.unsubscribers.forEach(u => u());
   }
 
   renderLogEntry(
@@ -414,7 +304,6 @@ export class OscdHistory extends LitElement {
         class="${entry.kind}"
         graphic="icon"
         ?twoline=${!!entry.message}
-        ?activated=${this.editCount == log.length - index - 1}
       >
         <span>
           <!-- FIXME: replace tt with mwc-chip asap -->
@@ -434,32 +323,27 @@ export class OscdHistory extends LitElement {
   }
 
   renderHistoryEntry(
-    entry: CommitEntry,
-    index: number,
-    history: LogEntry[]
+    entry: HistoryItem
   ): TemplateResult {
     return html` <abbr title="${entry.title}">
       <mwc-list-item
-        class="${entry.kind}"
-        graphic="icon"
         ?twoline=${!!entry.message}
-        ?activated=${this.editCount == history.length - index - 1}
+        ?activated=${entry.isActive}
       >
         <span>
-          <!-- FIXME: replace tt with mwc-chip asap -->
-          <tt>${entry.time?.toLocaleString()}</tt>
-          ${entry.title}</span
-        >
+          <tt>${this.formatTime(entry.time)}</tt>
+          ${entry.title}
+        </span>
         <span slot="secondary">${entry.message}</span>
-        <mwc-icon
-          slot="graphic"
-          style="--mdc-theme-text-icon-on-background:var(${iconColors[
-            entry.kind
-          ]})"
-          >history</mwc-icon
-        >
-      </mwc-list-item></abbr
-    >`;
+      </mwc-list-item>
+    </abbr>`;
+  }
+
+  private formatTime(time: number): string {
+    const date = new Date(time);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
   }
 
   private renderLog(): TemplateResult[] | TemplateResult {
@@ -474,7 +358,7 @@ export class OscdHistory extends LitElement {
 
   private renderHistory(): TemplateResult[] | TemplateResult {
     if (this.history.length > 0)
-      return this.history.slice().reverse().map(this.renderHistoryEntry, this);
+      return this.history.slice().reverse().map(e => this.renderHistoryEntry(e));
     else
       return html`<mwc-list-item disabled graphic="icon">
         <span>${get('history.placeholder')}</span>
@@ -546,14 +430,14 @@ export class OscdHistory extends LitElement {
       <mwc-button
         icon="undo"
         label="${get('undo')}"
-        ?disabled=${!this.canUndo}
+        ?disabled=${!this.editor.canUndo}
         @click=${this.undo}
         slot="secondaryAction"
       ></mwc-button>
       <mwc-button
         icon="redo"
         label="${get('redo')}"
-        ?disabled=${!this.canRedo}
+        ?disabled=${!this.editor.canRedo}
         @click=${this.redo}
         slot="secondaryAction"
       ></mwc-button>

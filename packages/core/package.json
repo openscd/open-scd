@@ -31,6 +31,7 @@
     "clean": "rimraf .tsbuildinfo dist",
     "build": "tsc -b",
     "doc": "typedoc --out doc foundation.ts",
+    "test": "web-test-runner --coverage",
     "prepublish": "npm run lint && npm run build && npm run doc",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
@@ -38,7 +39,8 @@
   "dependencies": {
     "@lit/localize": "^0.11.4",
     "@open-wc/lit-helpers": "^0.5.1",
-    "lit": "^2.2.7"
+    "lit": "^2.2.7",
+    "@openscd/oscd-api": "^0.1.5"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.3",
@@ -52,6 +54,7 @@
     "@typescript-eslint/parser": "^5.30.7",
     "@web/dev-server": "^0.1.32",
     "@web/test-runner": "next",
+    "@web/dev-server-esbuild": "^0.2.16",
     "@web/test-runner-playwright": "^0.8.10",
     "@web/test-runner-visual-regression": "^0.6.6",
     "concurrently": "^7.3.0",
