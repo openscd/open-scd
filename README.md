@@ -2,15 +2,11 @@
 
 > [!IMPORTANT]
 >
-> **This distribution has moved and is now being maintained by [LF Energy CoMPAS](https://github.com/com-pas/open-scd).**
+> As part of a restructuring effort, this repository has moved and is now being maintained by [LF Energy CoMPAS](https://github.com/com-pas/open-scd).
 >
-> _This copy of the repo remains available solely for informational purposes. The deployment URL remains unchanged, but this repository is no longer maintained._
+> For more current distributions, please visit **https://openscd.org/get.**
 >
-> For current distributions, please visit **https://openscd.org/get**.
->
-> OpenSCD is also transitioning to a new Shell & Plugin Store, which will be available soon on **openscd.github.io**.
->
-> Additional information and distributions can be found at **https://openscd.org**.
+> The OpenSCD project continues to grow! Only this repository has moved and until it will be replaced with a new version it will still being avaialble at **https://openscd.github.io/**. Still, further development of the distribution will continue in the LF Energy CoMPAS.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_shield)
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
