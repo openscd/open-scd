@@ -1,12 +1,13 @@
 # `OpenSCD`
 
-> [!CAUTION]
-> #This repository of OpenSCD is end of life. Part of the development will continue in LF energy CoMPAS.
-> #Try it here: [demo.compass.energy](demo.compas.energy) or find the repository [here](https://github.com/com-pas/open-scd). This is also the place for issues.
+> [!IMPORTANT]
+>
+> As part of a restructuring effort, this repository has moved and is now being maintained by [LF Energy CoMPAS](https://github.com/com-pas/open-scd).
+>
+> For more current distributions, please visit **https://openscd.org/get.**
+>
+> The OpenSCD project continues to grow! Only this repository has moved and until it will be replaced with a new version it will still being avaialble at **https://openscd.github.io/**. Still, further development of the distribution will continue in the LF Energy CoMPAS.
 
-
-
-[![Build Status](https://travis-ci.org/openscd/open-scd.svg?branch=main)](https://travis-ci.org/openscd/open-scd)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_shield)
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
 [![Zulip Chat](https://img.shields.io/badge/Zulip%20-%20%23OpenSCD%20chat-purple?logo=zulip&color=2aa198&labelColor=6c71c4)](https://openscd.zulipchat.com/join/k3cyur3wx526tvafkjwubhjn)
